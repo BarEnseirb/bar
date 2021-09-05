@@ -1,5 +1,7 @@
 package fr.pjdevs.bar;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
@@ -12,20 +14,20 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Tab;
 
 public class CartTab extends Tab {
-    private double total;
+    private BigDecimal total;
 
     public CartTab() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CartTab.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
-    
+
         try {
             fxmlLoader.load();
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
         
-        this.total = 0.0;
+        this.total = new BigDecimal("0.00");
 
         Cart.getInstance().addListenner(new CartChangedListenner() {
             @Override
@@ -47,11 +49,11 @@ public class CartTab extends Tab {
     @FXML
     public void update() {
         this.cartItemsBox.getChildren().clear();
-        this.total = 0.0;
+        this.total = new BigDecimal("0.00");
 
         Cart.getInstance().getItems().forEach((item, count) -> {
             this.cartItemsBox.getChildren().add(new CartItemView(item, count));
-            this.total += item.getPrice() * count;
+            this.total = this.total.add(item.getPrice().multiply(BigDecimal.valueOf(count)));
         });
 
         this.totalLbl.setText(this.total + "E");

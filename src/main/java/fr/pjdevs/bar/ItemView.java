@@ -47,12 +47,6 @@ public class ItemView extends HBox {
     Label itemPriceLbl;
 
     @FXML
-    public void initialize() {
-        // countSpinner.valueProperty().addListener((obs, oldValue, newValue) -> 
-        //     System.out.println("New value: " + newValue));
-    }
-
-    @FXML
     public void addToCart() {
         int count = countSpinner.getValue();
 
