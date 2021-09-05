@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.* ?>
+<?import javafx.scene.layout.* ?>
+<?import javafx.scene.image.* ?>
+
+<fx:root type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10">
+   <ImageView fx:id="itemImage" fitWidth="100.0" fitHeight="100.0" pickOnBounds="true" onMouseClicked="#purchase"/>
+   <Spinner fx:id="countSpinner" editable="true">
+      <valueFactory>
+         <SpinnerValueFactory.IntegerSpinnerValueFactory min="1" max="100" initialValue="1" amountToStepBy="1"/>
+      </valueFactory>
+   </Spinner>
+   <Label fx:id="itemNameLbl" text="Item name"/>
+   <Label fx:id="itemPriceLbl" text="Item price"/>
+</fx:root>

@@ -1,0 +1,14 @@
+{
+    "itemList": [
+        {
+            "name": "Snickers",
+            "price": 1.2,
+            "imagePath": "file:data/items/images/snickers.jpg"
+        },
+        {
+            "name": "Twix",
+            "price": 1.5,
+            "imagePath": "file:data/items/images/twix.jpg"
+        }
+    ]
+}

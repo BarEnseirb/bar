@@ -1,0 +1,43 @@
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+}
+
+version '0.0.1'
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+dependencies {
+    // Use JUnit Jupiter for testing.
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
+
+    // JSON Parsing
+    implementation 'com.google.code.gson:gson:2.8.8'
+}
+
+application {
+    mainModule = 'fr.pjdevs.bar'
+    mainClass = 'fr.pjdevs.bar.Launcher'
+}
+
+javafx {
+    version = '16'
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+sourceSets {
+  main {
+    resources {
+        srcDirs = ["src/main/resources"]
+        includes = ["**/*.fxml"]
+    }
+  }
+}
+
+tasks.named('test') {
+    // Use JUnit Platform for unit tests.
+    useJUnitPlatform()
+}
