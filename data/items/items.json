@@ -2,12 +2,12 @@
     "itemList": [
         {
             "name": "Snickers",
-            "price": 1.2,
+            "price": 1.20,
             "imagePath": "file:data/items/images/snickers.jpg"
         },
         {
             "name": "Twix",
-            "price": 1.5,
+            "price": 1.50,
             "imagePath": "file:data/items/images/twix.jpg"
         },
         {
@@ -17,12 +17,12 @@
         },
         {
             "name": "Oasis",
-            "price": 0.7,
+            "price": 0.70,
             "imagePath": "file:data/items/images/oasis.jpg"
         },
         {
             "name": "Coca",
-            "price": 0.7,
+            "price": 0.70,
             "imagePath": "file:data/items/images/coca.jpg"
         }
     ]

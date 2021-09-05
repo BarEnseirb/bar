@@ -52,6 +52,8 @@ public final class Cart {
         } else {
             this.items.replace(item, count);
         }
+
+        this.cartChanged();
     }
 
     public int getCount(Item item) {

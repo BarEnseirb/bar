@@ -29,10 +29,10 @@ public class CartItemView extends HBox {
         this();
 
         this.setItem(item);
-        this.setCount(count);
+        this.updateCountLabel(count);
     }
 
-    public void setItem(Item item) {
+    private void setItem(Item item) {
         this.item = item;
 
         Image img = new Image(item.getImagePath(), 100, 100, false, false);
@@ -41,22 +41,22 @@ public class CartItemView extends HBox {
         this.itemPriceLbl.setText(item.getPrice() + "E");
     }
 
-    public void setCount(int count) {
+    private void setCount(int count) {
         if (count <= 0) {
             Cart.getInstance().remove(this.item);
             return;
         }
 
         Cart.getInstance().update(this.item, count);
-        this.itemCountLbl.setText("x " + count);
+        this.updateCountLabel(count);
     }
 
-    public int getCount() {
+    private int getCount() {
         return Cart.getInstance().getCount(this.item);
     }
 
-    public Item getItem() {
-        return this.item;
+    private void updateCountLabel(int count) {
+        this.itemCountLbl.setText("x " + count);
     }
 
     @FXML
