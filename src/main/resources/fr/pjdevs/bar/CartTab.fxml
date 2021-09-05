@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.* ?>
+<?import javafx.scene.layout.* ?>
+
+<fx:root type="javafx.scene.control.Tab" xmlns:fx="http://javafx.com/fxml" closable="false" text="Cart" onSelectionChanged="#update">
+    <content>
+        <BorderPane>
+            <children>
+            </children>
+            <bottom>
+            <HBox spacing="10.0" BorderPane.alignment="BOTTOM_CENTER">
+                <children>
+                    <Button fx:id="purchaseBtn" text="Purchase" onAction="#purchase"/>
+                    <Label fx:id="totalLbl" text="Total"/>
+                    <Button fx:id="clearBtn" text="Clear" onAction="#clear"/>
+                </children>
+            </HBox>
+            </bottom>
+            <center>
+            <ScrollPane BorderPane.alignment="CENTER">
+                <content>
+                    <AnchorPane>
+                        <children>
+                        <VBox fx:id="cartItemsBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        </children>
+                    </AnchorPane>
+                </content>
+            </ScrollPane>
+            </center>
+        </BorderPane>
+    </content>
+</fx:root>

@@ -48,12 +48,15 @@ public class ItemView extends HBox {
 
     @FXML
     public void initialize() {
-        countSpinner.valueProperty().addListener((obs, oldValue, newValue) -> 
-            System.out.println("New value: " + newValue));
+        // countSpinner.valueProperty().addListener((obs, oldValue, newValue) -> 
+        //     System.out.println("New value: " + newValue));
     }
 
     @FXML
-    public void purchase() {
-        new Alert(AlertType.INFORMATION, "You purchased " + countSpinner.getValue() + " " + this.item.getName()).show();
+    public void addToCart() {
+        int count = countSpinner.getValue();
+
+        Cart.getInstance().add(this.item, count);
+        new Alert(AlertType.INFORMATION, "Added " + count + " " + this.item.getName() + " to the cart.").show();
     }
 }
