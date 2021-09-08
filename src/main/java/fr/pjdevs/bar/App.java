@@ -15,7 +15,8 @@ import javafx.fxml.FXMLLoader;
 public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        final Parent root = FXMLLoader.load(getClass().getResource("App.fxml"));
+        final Parent root = FXMLLoader.load(getClass().getResource("fxml/App.fxml"));
+        root.getStylesheets().add(getClass().getResource("css/bar.css").toExternalForm());
         final Scene scene = new Scene(root, 600, 800);
 
         stage.setTitle("Bar");
