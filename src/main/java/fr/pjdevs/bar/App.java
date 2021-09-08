@@ -8,6 +8,10 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
+/**
+ * Main JavaFX class that extends {@code Application} base class.
+ * The main layout {@code App.fxml} loaded here and the window is created.
+ */
 public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {

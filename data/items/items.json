@@ -1,29 +1,27 @@
-{
-    "itemList": [
-        {
-            "name": "Snickers",
-            "price": 1.20,
-            "imagePath": "file:data/items/images/snickers.jpg"
-        },
-        {
-            "name": "Twix",
-            "price": 1.50,
-            "imagePath": "file:data/items/images/twix.jpg"
-        },
-        {
-            "name": "Kit-Kat",
-            "price": 1.35,
-            "imagePath": "file:data/items/images/kitkat.jpg"
-        },
-        {
-            "name": "Oasis",
-            "price": 0.70,
-            "imagePath": "file:data/items/images/oasis.jpg"
-        },
-        {
-            "name": "Coca",
-            "price": 0.70,
-            "imagePath": "file:data/items/images/coca.jpg"
-        }
-    ]
-}
+[
+    {
+        "name": "Snickers",
+        "price": 1.20,
+        "imagePath": "file:data/items/images/snickers.jpg"
+    },
+    {
+        "name": "Twix",
+        "price": 1.50,
+        "imagePath": "file:data/items/images/twix.jpg"
+    },
+    {
+        "name": "Kit-Kat",
+        "price": 1.35,
+        "imagePath": "file:data/items/images/kitkat.jpg"
+    },
+    {
+        "name": "Oasis",
+        "price": 0.70,
+        "imagePath": "file:data/items/images/oasis.jpg"
+    },
+    {
+        "name": "Coca",
+        "price": 0.70,
+        "imagePath": "file:data/items/images/coca.jpg"
+    }
+]
