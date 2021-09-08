@@ -12,7 +12,7 @@
 
 <?import fr.pjdevs.bar.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="100" minWidth="100" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="100" minWidth="100" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@app/bar.css">
    <children>
       <TabPane layoutX="10.0" layoutY="10.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
