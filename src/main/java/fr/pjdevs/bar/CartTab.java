@@ -1,7 +1,6 @@
 package fr.pjdevs.bar;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
@@ -17,7 +16,7 @@ public class CartTab extends Tab {
     private BigDecimal total;
 
     public CartTab() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CartTab.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/CartTab.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

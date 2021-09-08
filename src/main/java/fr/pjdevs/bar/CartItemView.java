@@ -14,7 +14,7 @@ public class CartItemView extends HBox {
     private Item item;
 
     public CartItemView() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CartItemView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/CartItemView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

@@ -16,7 +16,7 @@ public class ItemView extends HBox {
     private Item item;
 
     public ItemView() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ItemView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/ItemView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

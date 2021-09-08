@@ -12,7 +12,7 @@ import javafx.scene.control.Tab;
 public class ItemTab extends Tab {
 
     public ItemTab() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ItemTab.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/ItemTab.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
     
