@@ -10,3 +10,9 @@ bin
 .settings
 .project
 .classpath
+
+# Ignore databases
+*.db
+
+#Ignore lock files
+*.lock
