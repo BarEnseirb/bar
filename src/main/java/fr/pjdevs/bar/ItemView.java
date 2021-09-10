@@ -25,6 +25,8 @@ public class ItemView extends HBox {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        this.getStyleClass().add("item-view");
     }
 
     public ItemView(Item item) {

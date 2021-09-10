@@ -6,29 +6,23 @@
 
 <fx:root type="javafx.scene.control.Tab" xmlns:fx="http://javafx.com/fxml" closable="false" text="Cart" onSelectionChanged="#update">
     <content>
-        <BorderPane>
-            <children>
-            </children>
-            <bottom>
-            <HBox spacing="10.0" BorderPane.alignment="BOTTOM_CENTER">
-                <children>
-                    <Button fx:id="purchaseBtn" text="Purchase" onAction="#purchase"/>
-                    <Label fx:id="totalLbl" text="Total"/>
-                    <Button fx:id="clearBtn" text="Clear" onAction="#clear"/>
-                </children>
-            </HBox>
-            </bottom>
+        <BorderPane styleClass="background">
             <center>
-            <ScrollPane BorderPane.alignment="CENTER">
-                <content>
-                    <AnchorPane>
-                        <children>
-                        <VBox fx:id="cartItemsBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        </children>
-                    </AnchorPane>
-                </content>
-            </ScrollPane>
+                <ScrollPane BorderPane.alignment="CENTER">
+                    <content>
+                        <VBox styleClass="background" fx:id="cartItemsBox"/>
+                    </content>
+                </ScrollPane>
             </center>
+            <bottom>
+                <HBox spacing="20.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="purchaseBtn" text="Purchase" alignment="CENTER" onAction="#purchase"/>
+                        <Label fx:id="totalLbl" text="Total"/>
+                        <Button fx:id="clearBtn" text="Clear" onAction="#clear"/>
+                    </children>
+                </HBox>
+            </bottom>
         </BorderPane>
     </content>
 </fx:root>

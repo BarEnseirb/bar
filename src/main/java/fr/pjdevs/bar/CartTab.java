@@ -25,6 +25,8 @@ public class CartTab extends Tab {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        this.getStyleClass().add("tab");
         
         this.total = new BigDecimal("0.00");
 

@@ -7,7 +7,7 @@
 
 <fx:root type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml" alignment="CENTER_LEFT" spacing="10">
    <ImageView fx:id="itemImage" preserveRatio="false" fitWidth="100.0" fitHeight="100.0" pickOnBounds="true" onMouseClicked="#addToCart"/>
-   <Spinner fx:id="countSpinner" editable="true">
+   <Spinner fx:id="countSpinner" editable="true" HBox.hgrow="ALWAYS">
       <valueFactory>
          <SpinnerValueFactory.IntegerSpinnerValueFactory min="1" max="100" initialValue="1" amountToStepBy="1"/>
       </valueFactory>

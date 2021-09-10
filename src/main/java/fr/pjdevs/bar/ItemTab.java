@@ -21,6 +21,8 @@ public class ItemTab extends Tab {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        this.getStyleClass().add("tab");
     }
 
     @FXML
@@ -35,5 +37,10 @@ public class ItemTab extends Tab {
         } catch (Exception e) {
             new Alert(AlertType.ERROR, "Error while opening item list.\n" + e).show();
         }
+    }
+
+    @FXML
+    public void logName() {
+        System.out.println("Focus changed");
     }
 }

@@ -12,7 +12,7 @@ public class Accounts {
      */
     public void getAccountList() {
         try (Connection conn = DriverManager.getConnection(
-            "jdbc:sqlite:" + System.getProperty("user.dir") + "\\data\\db\\bar.db",
+            "jdbc:sqlite:" + System.getProperty("user.dir") + "/data/db/bar.db",
             "",
             "")) {
             

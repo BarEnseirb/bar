@@ -6,18 +6,10 @@
 
 <fx:root type="javafx.scene.control.Tab" xmlns:fx="http://javafx.com/fxml" closable="false" text="Items">
     <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0">
-            <children>
-            <ScrollPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                <content>
-                    <AnchorPane>
-                        <children>
-                        <VBox fx:id="itemsBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        </children>
-                    </AnchorPane>
-                </content>
-            </ScrollPane>
-            </children>
-        </AnchorPane>
+        <ScrollPane fitToWidth="true" fitToHeight="true">
+            <content>
+                <VBox fx:id="itemsBox"/>
+            </content>
+        </ScrollPane>
     </content>
 </fx:root>

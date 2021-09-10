@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<fx:root closable="false" text="Accounts" type="javafx.scene.control.Tab" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
+    <content>
+        <ScrollPane>
+            <content>
+                <VBox fx:id="accountBox"/>
+            </content>
+        </ScrollPane>
+    </content>
+</fx:root>

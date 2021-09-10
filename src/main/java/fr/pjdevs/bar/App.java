@@ -21,18 +21,24 @@ import javafx.fxml.FXMLLoader;
  */
 public class App extends Application {
     /**
+     * The lock file
+     */
+    private FileLock lock;
+
+    /**
      * Try to acquire a lock to avoid multiple instance running simultaneously.
      */
     private boolean acquireLock() {
         File file = new File(System.getProperty("user.dir"), "bar.lock");
+        file.deleteOnExit();
 
         try {
             FileChannel fc = FileChannel.open(file.toPath(),
                     StandardOpenOption.CREATE,
                     StandardOpenOption.WRITE);
-            FileLock lock = fc.tryLock();
+            this.lock = fc.tryLock();
             
-            return lock != null;
+            return this.lock != null;
         } catch (IOException e) {
             throw new Error(e);
         }
