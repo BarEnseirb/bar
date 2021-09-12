@@ -6,11 +6,11 @@
 
 <fx:root type="javafx.scene.control.Tab" xmlns:fx="http://javafx.com/fxml" closable="false" text="Cart" onSelectionChanged="#update">
     <content>
-        <BorderPane styleClass="background">
+        <BorderPane>
             <center>
-                <ScrollPane BorderPane.alignment="CENTER">
+                <ScrollPane fitToWidth="true" fitToHeight="true" BorderPane.alignment="CENTER">
                     <content>
-                        <VBox styleClass="background" fx:id="cartItemsBox"/>
+                        <VBox fx:id="cartItemsBox"/>
                     </content>
                 </ScrollPane>
             </center>

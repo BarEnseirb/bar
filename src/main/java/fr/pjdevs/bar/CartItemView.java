@@ -23,8 +23,6 @@ public class CartItemView extends HBox {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-
-        this.getStyleClass().add("item-view");
     }
 
     public CartItemView(Item item, int count) {

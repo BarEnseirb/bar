@@ -8,7 +8,7 @@
 
 <fx:root closable="false" text="Accounts" type="javafx.scene.control.Tab" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
     <content>
-        <ScrollPane>
+        <ScrollPane fitToWidth="true" fitToHeight="true">
             <content>
                 <VBox fx:id="accountBox"/>
             </content>
