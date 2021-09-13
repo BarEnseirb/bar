@@ -4,13 +4,19 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Tab;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 
-public class AccountView extends AnchorPane {
+public class AccountView extends HBox {
+    @FXML
+    Label loginLbl;
+    @FXML
+    Label nameLbl;
+    @FXML
+    Label moneyLbl;
+    @FXML
+    Label yearLbl;
+
     public AccountView() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/AccountView.fxml"));
         fxmlLoader.setRoot(this);
@@ -23,4 +29,12 @@ public class AccountView extends AnchorPane {
         }
     }
 
+    public AccountView(Account account) {
+        this();
+
+        loginLbl.setText(account.getLogin());
+        nameLbl.setText(account.getName());
+        moneyLbl.setText(account.getMoney().toString());
+        yearLbl.setText(String.valueOf(account.getYear()));
+    }
 }

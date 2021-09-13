@@ -21,8 +21,6 @@ public class ItemTab extends Tab {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-
-        this.getStyleClass().add("tab");
     }
 
     @FXML

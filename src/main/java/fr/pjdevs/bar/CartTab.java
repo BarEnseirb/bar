@@ -26,8 +26,6 @@ public class CartTab extends Tab {
             throw new RuntimeException(exception);
         }
 
-        this.getStyleClass().add("tab");
-        
         this.total = new BigDecimal("0.00");
 
         Cart.getInstance().addListenner(new CartChangedListenner() {
