@@ -2,12 +2,16 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 
-<fx:root type="javafx.scene.layout.HBox" alignment="CENTER" spacing="50.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
+<fx:root type="javafx.scene.layout.HBox" spacing="50.0" alignment="CENTER_LEFT" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
    <children>
-      <Label fx:id="loginLbl" text="pimorel" />
-      <Label fx:id="nameLbl" text="Pj #leDev #ekip" />
-      <Label fx:id="moneyLbl" text="200E" />
-      <Label fx:id="yearLbl" text="2" />
+      <Label fx:id="loginLbl" maxWidth="50" text="pimorel" />
+      <StackPane/>
+      <Label fx:id="nameLbl" maxWidth="50" text="Pj #leDev #ekip" />
+      <StackPane/>
+      <Label fx:id="moneyLbl" maxWidth="50" text="200E" />
+      <StackPane/>
+      <Label fx:id="yearLbl" maxWidth="50" text="2" />
    </children>
 </fx:root>

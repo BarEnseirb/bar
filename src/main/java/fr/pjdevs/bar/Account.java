@@ -12,6 +12,7 @@ public class Account {
         this.login = login;
         this.name = name;
         this.money = money;
+        this.year = year;
     }
 
     public String getLogin() {

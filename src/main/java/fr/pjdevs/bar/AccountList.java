@@ -1,6 +1,7 @@
 package fr.pjdevs.bar;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,12 +11,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Alert;
+
 public final class AccountList {
 
     private final static String DB_PATH =  "jdbc:sqlite:" + System.getProperty("user.dir") + "/data/db/bar.db";
     private static AccountList instance;
 
+    private List<Account> accountList;
+
     private AccountList() {
+        try {
+            accountList = this.queryList();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -41,7 +52,7 @@ public final class AccountList {
         }
     }
 
-    public List<Account> queryList() throws SQLException {
+    private List<Account> queryList() throws SQLException {
         List<Account> accountList = new ArrayList<Account>();
         SQLException ex = null;
 
@@ -53,13 +64,13 @@ public final class AccountList {
                     while (r.next()) {
                         String login = r.getString("login");
                         String name = r.getString("name");
-                        BigDecimal money = r.getBigDecimal("money");
+                        BigDecimal money = r.getBigDecimal("money").movePointLeft(2);
                         int year = r.getInt("year");
                     
                         accountList.add(new Account(login, name, money, year));
                     }
                 } catch (SQLException e) {
-                    
+                    new Alert(AlertType.ERROR, "Could not fetch an account correctly" + e.getMessage()).show();
                 }
             });
         } catch (SQLException e) {
@@ -69,5 +80,27 @@ public final class AccountList {
         if (ex == null)
             return accountList;
         else throw ex;
+    }
+
+    /**
+     * Retrieves the list of all student account.
+     * @return Returns the list of all {@link Account}.
+     */
+    public List<Account> getList() {
+        return this.accountList;
+    }
+
+    public void updateMoney(String login, BigDecimal money) {
+        try {
+            makeStatement((stmt) -> {
+                try {
+                    stmt.executeUpdate("update student set money = " + money.unscaledValue() + "where login = " +  login);
+                } catch (SQLException e) {
+                    new Alert(AlertType.ERROR, "Could not execute a statement :\n" + e.getMessage()).show();
+                }
+            });
+        } catch (SQLException e) {
+            new Alert(AlertType.ERROR, "Could not update money of " + login).show();
+        }
     }
 }
