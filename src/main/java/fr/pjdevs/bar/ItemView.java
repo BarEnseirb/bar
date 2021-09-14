@@ -1,6 +1,7 @@
 package fr.pjdevs.bar;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -33,7 +34,7 @@ public class ItemView extends HBox {
         Image img = new Image(item.getImagePath(), 100, 100, false, false);
         this.itemImage.setImage(img);
         this.itemNameLbl.setText(item.getName());
-        this.itemPriceLbl.setText(item.getPrice() + "E");
+        this.itemPriceLbl.setText(BigDecimal.valueOf(item.getPrice()).movePointLeft(2).toPlainString() + "E");
         this.item = item;
     }
 

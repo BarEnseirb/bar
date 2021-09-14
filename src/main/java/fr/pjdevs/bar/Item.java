@@ -1,13 +1,11 @@
 package fr.pjdevs.bar;
 
-import java.math.BigDecimal;
-
 public class Item {
     private String name;
-    private BigDecimal price;
+    private int price;
     private String imagePath;
 
-    public Item(String name, BigDecimal price, String imagePath) {
+    public Item(String name, int price, String imagePath) {
         this.name = name;
         this.price = price;
         this.imagePath = imagePath;
@@ -17,7 +15,7 @@ public class Item {
         return this.name;
     }
 
-    public BigDecimal getPrice() {
+    public int getPrice() {
         return this.price;
     }
 

@@ -15,6 +15,10 @@
     -fx-text-fill: rgb(221, 221, 221);
 }
 
+.table-view .label {
+    -fx-text-fill: black;
+}
+
 .tab-pane .tab-header-area .tab-header-background {
     -fx-opacity: 0;
     -fx-focus-color: rgba(0, 0, 0, 0);

@@ -13,7 +13,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Tab;
 
 public class CartTab extends Tab {
-    private BigDecimal total;
+    private int total;
 
     public CartTab() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/CartTab.fxml"));
@@ -26,7 +26,7 @@ public class CartTab extends Tab {
             throw new RuntimeException(exception);
         }
 
-        this.total = new BigDecimal("0.00");
+        this.total = 0;
 
         Cart.getInstance().addListenner(new CartChangedListenner() {
             @Override
@@ -48,14 +48,14 @@ public class CartTab extends Tab {
     @FXML
     public void update() {
         this.cartItemsBox.getChildren().clear();
-        this.total = new BigDecimal("0.00");
+        this.total = 0;
 
         Cart.getInstance().getItems().forEach((item, count) -> {
             this.cartItemsBox.getChildren().add(new CartItemView(item, count));
-            this.total = this.total.add(item.getPrice().multiply(BigDecimal.valueOf(count)));
+            this.total += item.getPrice() * count;
         });
 
-        this.totalLbl.setText(this.total + "E");
+        this.totalLbl.setText(BigDecimal.valueOf(this.total).movePointLeft(2) + "E");
     }
 
     @FXML
@@ -66,6 +66,27 @@ public class CartTab extends Tab {
 
     @FXML
     public void purchase() {
-        new Alert(AlertType.INFORMATION, "Purchased " + total + "E").show();
+        if (Cart.getInstance().getItems().size() <= 0) {
+            return;
+        }
+
+        try (DatabaseConnection c = new DatabaseConnection()) {
+            Account a = c.getAccount("pimorel");
+            
+            if (a.money.get() >= this.total) {
+                a.money.set(a.money.get() - this.total);
+                c.updateAccount(a.login.get(), a);
+
+                new Alert(AlertType.INFORMATION, "Purchased " + BigDecimal.valueOf(total).movePointLeft(2).toPlainString() + "E").show();
+
+                Cart.getInstance().clear();
+                this.update();
+            } else {
+                new Alert(AlertType.ERROR, "Not enough money.").show();
+            }
+                
+        } catch (Exception e) {
+            new Alert(AlertType.ERROR, e.getMessage()).show();
+        }
     }
 }

@@ -4,14 +4,10 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.TableView?>
 
-<fx:root closable="false" text="Accounts" type="javafx.scene.control.Tab" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
+<fx:root closable="false" text="Accounts" type="javafx.scene.control.Tab" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" onSelectionChanged="#updateAccountList">
     <content>
-        <ScrollPane fitToWidth="true" fitToHeight="true">
-            <content>
-                <GridPane fx:id="accountBox" vgap="15" hgap="5"/>
-            </content>
-        </ScrollPane>
+        <TableView fx:id="accountTable"/>
     </content>
 </fx:root>
