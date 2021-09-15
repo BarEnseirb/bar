@@ -7,13 +7,18 @@
     <content>
         <VBox>
             <children>
+                <HBox spacing="10">
+                    <children>
+                        <Button text="Go Next Year" onAction="#nextYear" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    </children>
+                </HBox>
                 <TableView fx:id="accountTable" VBox.vgrow="ALWAYS" maxHeight="Infinity"/>
                 <HBox spacing="10">
                     <children>
                         <TextField fx:id="loginField" promptText="Login"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
                         <TextField fx:id="nameField" promptText="Name"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
                         <TextField fx:id="yearField" promptText="Year"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                        <Button text="Add" onAction="#addAccount"/>
+                        <Button text="Add" onAction="#addAccount" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
                         <Button text="Remove" onAction="#removeAccount"/>
                     </children>
                 </HBox>

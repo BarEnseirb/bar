@@ -160,4 +160,15 @@ public class AccountTab extends Tab {
             new Alert(AlertType.ERROR, e.getMessage()).show();
         }
     }
+
+    @FXML
+    public void nextYear() {
+        try (DatabaseConnection c = new DatabaseConnection()) {
+            c.nextYear();
+            this.updateAccountList();
+            new Alert(AlertType.INFORMATION, "All years have been incremented.").show();
+        } catch (Exception e) {
+            new Alert(AlertType.ERROR, e.getMessage()).show();
+        }
+    }
 }

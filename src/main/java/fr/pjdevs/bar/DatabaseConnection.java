@@ -46,6 +46,10 @@ public class DatabaseConnection implements AutoCloseable {
         this.connection.createStatement().executeUpdate("delete from student where login = '" + login + "'");
     }
 
+    public void nextYear() throws SQLException {
+        this.connection.createStatement().executeUpdate("update student set year = year+1");
+    }
+
     public void close() throws SQLException {
         this.connection.close();
     }

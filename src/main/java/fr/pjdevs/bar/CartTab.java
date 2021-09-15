@@ -1,6 +1,7 @@
 package fr.pjdevs.bar;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
@@ -71,11 +72,17 @@ public class CartTab extends Tab {
         }
 
         try (DatabaseConnection c = new DatabaseConnection()) {
-            Account a = c.getAccount("pimorel");
+            Optional<Account> accountResult = new AccountChoiceDialog(c.getAccountList()).showAndWait();
+
+            if (accountResult.isEmpty()) {
+                return;
+            }
+
+            Account account = accountResult.get();
             
-            if (a.money.get() >= this.total) {
-                a.money.set(a.money.get() - this.total);
-                c.updateAccount(a.login.get(), a);
+            if (account.money.get() >= this.total) {
+                account.money.set(account.money.get() - this.total);
+                c.updateAccount(account.login.get(), account);
 
                 new Alert(AlertType.INFORMATION, "Purchased " + BigDecimal.valueOf(total).movePointLeft(2).toPlainString() + "E").show();
 
