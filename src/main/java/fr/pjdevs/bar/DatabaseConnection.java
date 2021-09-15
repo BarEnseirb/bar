@@ -38,8 +38,12 @@ public class DatabaseConnection implements AutoCloseable {
     }
 
     public void createAccount(Account account) throws SQLException{
-        this.connection.createStatement().executeUpdate(String.format("insert into student (login, name, money, treshold, class, year) VALUES ('%s', '%s', %s, 0, 0, %s)",
+        this.connection.createStatement().executeUpdate(String.format("insert into student (login, name, money, threshold, class, year) VALUES ('%s', '%s', %s, 0, 0, %s)",
             account.login.get(), account.name.get(),  String.valueOf(account.money.get()), String.valueOf(account.year.get())));   
+    }
+
+    public void removeAccount(String login) throws SQLException {
+        this.connection.createStatement().executeUpdate("delete from student where login = '" + login + "'");
     }
 
     public void close() throws SQLException {

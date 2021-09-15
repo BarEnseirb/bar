@@ -9,18 +9,24 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.util.converter.IntegerStringConverter;
 
 public class AccountTab extends Tab {
     @FXML
     private TableView<Account> accountTable;
+    @FXML
+    private TextField loginField;
+    @FXML
+    private TextField nameField;
+    @FXML
+    private TextField yearField;
 
     private ObservableList<Account> accountList;
 
@@ -73,7 +79,7 @@ public class AccountTab extends Tab {
                     updateAccount(account.login.get(), account);
                 }
             }
-        );  
+        );
 
         TableColumn<Account, Integer> yearColumn = new TableColumn<Account, Integer>("Year");
         yearColumn.setCellValueFactory(cellData -> cellData.getValue().year.asObject());
@@ -105,6 +111,40 @@ public class AccountTab extends Tab {
             c.updateAccount(login, account);
         } catch (SQLException e) {
             new Alert(AlertType.ERROR, e.getMessage()).show();;
+        }
+    }
+
+    @FXML
+    public void addAccount() {
+        String login = this.loginField.getText();
+        String name =  this.nameField.getText();
+        String yearStr = this.yearField.getText();
+
+        if (login.isBlank() || name.isBlank() || yearStr.isBlank()) {
+            return;
+        }
+
+        try (DatabaseConnection c = new DatabaseConnection()) {
+            int year = Integer.valueOf(yearStr);
+            c.createAccount(new Account(login, name, 0, year));
+            this.updateAccountList();
+            new Alert(AlertType.INFORMATION, "Account " + login + " successfuly added.").show();
+        } catch (SQLException e) {
+            new Alert(AlertType.ERROR, e.getMessage()).show();
+        } catch (NumberFormatException e) {
+            new Alert(AlertType.ERROR, "Year field is not a valid number.").show();
+        }
+    }
+
+    @FXML
+    public void removeAccount() {
+        try (DatabaseConnection c = new DatabaseConnection()) {
+            String login = accountTable.getSelectionModel().getSelectedItem().login.get();
+            c.removeAccount(login);
+            this.updateAccountList();
+            new Alert(AlertType.INFORMATION, "Account " + login + " successfuly removed.").show();
+        } catch (SQLException e) {
+            new Alert(AlertType.ERROR, e.getMessage()).show();
         }
     }
 
