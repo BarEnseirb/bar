@@ -72,7 +72,13 @@ public final class Cart {
      * @param count The number of {@code item} to add
      */
     public void add(Item item, int count) {
-        this.items.put(item, count);
+        Integer oldCount = this.items.get(item);
+
+        if (oldCount == null) {
+            this.items.put(item, count);
+        } else {
+            this.items.put(item, count + oldCount);
+        }
     }
 
     /**
