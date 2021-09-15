@@ -46,6 +46,8 @@ public class CartItemView extends HBox {
         if (count <= 0) {
             Cart.getInstance().remove(this.item);
             return;
+        } else if (count >= 100) {
+            count = 100;
         }
 
         Cart.getInstance().update(this.item, count);
