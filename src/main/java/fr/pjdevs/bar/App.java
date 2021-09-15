@@ -51,9 +51,11 @@ public class App extends Application {
         try {
             if (!acquireLock()) {
                 new Alert(AlertType.ERROR, "An instance is already running.").show();
+                stage.close();
             }
         } catch(Error e) {
             new Alert(AlertType.ERROR, e.toString()).show();
+            stage.close();
         }
 
         // Create window
