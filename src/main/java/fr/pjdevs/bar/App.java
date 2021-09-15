@@ -72,7 +72,7 @@ public class App extends Application {
             stage.setScene(scene);
             stage.show();
         } else {
-            new Alert(AlertType.ERROR, "Cannot acquiere lock. An instance may already be running.").show();
+            new Alert(AlertType.ERROR, "Cannot acquire lock. An instance may already be running.").show();
             stage.close();
         }
     }

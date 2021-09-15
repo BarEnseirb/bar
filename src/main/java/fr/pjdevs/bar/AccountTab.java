@@ -142,8 +142,13 @@ public class AccountTab extends Tab {
 
         try (DatabaseConnection c = new DatabaseConnection()) {
             int year = Integer.valueOf(yearStr);
+            if (year < 0) {
+                throw new NumberFormatException();
+            }
+
             c.createAccount(new Account(login, name, 0, year));
             this.updateAccountList();
+
             new Alert(AlertType.INFORMATION, "Account " + login + " successfuly added.").show();
         } catch (SQLException e) {
             new Alert(AlertType.ERROR, e.getMessage()).show();
