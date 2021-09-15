@@ -26,6 +26,7 @@ public class AccountChoiceDialog extends Dialog<Account> {
         this.initModality(Modality.APPLICATION_MODAL);
         this.setTitle("Payment");
         this.setHeaderText("Choose an account to pay");
+        this.setWidth(800);
 
         ButtonType chooseButtonType = new ButtonType("Choose", ButtonData.OK_DONE);
         this.getDialogPane().getButtonTypes().addAll(chooseButtonType, ButtonType.CANCEL);
@@ -51,7 +52,7 @@ public class AccountChoiceDialog extends Dialog<Account> {
         bottomLayout.setAlignment(Pos.CENTER);
         Label filterLabel = new Label("Filter :");
         TextField nameFilterField = new TextField();
-        nameFilterField.setPromptText("Name");
+        nameFilterField.setPromptText("Login/Name");
 
         bottomLayout.getChildren().add(filterLabel);
         bottomLayout.getChildren().add(nameFilterField);
@@ -70,7 +71,7 @@ public class AccountChoiceDialog extends Dialog<Account> {
                 if (newValue == null || newValue.isBlank()) {
                     return true;
                 } else {
-                    return account.name.get().contains(newValue);
+                    return account.name.get().toLowerCase().contains(newValue.toLowerCase()) || account.login.get().toLowerCase().contains(newValue.toLowerCase());
                 }
             });
         });
