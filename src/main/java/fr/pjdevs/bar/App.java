@@ -31,7 +31,6 @@ public class App extends Application {
      */
     private boolean acquireLock() {
         File file = new File(System.getProperty("user.dir"), "bar.lock");
-        file.deleteOnExit();
 
         try {
             FileChannel fc = FileChannel.open(file.toPath(),
@@ -39,7 +38,12 @@ public class App extends Application {
                     StandardOpenOption.WRITE);
             this.lock = fc.tryLock();
             
-            return this.lock != null;
+            if (this.lock != null) {
+                file.deleteOnExit();
+                return true;
+            } else {
+                return false;
+            }
         } catch (IOException e) {
             throw new Error(e);
         }
@@ -47,26 +51,29 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        boolean lock;
+
         // Try to acquire lock
         try {
-            if (!acquireLock()) {
-                new Alert(AlertType.ERROR, "An instance is already running.").show();
-                stage.close();
-            }
+            lock = acquireLock();
         } catch(Error e) {
-            new Alert(AlertType.ERROR, e.toString()).show();
-            stage.close();
+            lock = false;
         }
 
-        // Create window
-        // stage.getIcons().add(new Image(getClass().getResourceAsStream("images/ekip.jpg")));
+        if (lock) {
+            // Create window
+            // stage.getIcons().add(new Image(getClass().getResourceAsStream("images/ekip.jpg")));
 
-        final Parent root = FXMLLoader.load(getClass().getResource("fxml/App.fxml"));
-        root.getStylesheets().add(getClass().getResource("css/bar.css").toExternalForm());
-        final Scene scene = new Scene(root, 600, 800);
+            final Parent root = FXMLLoader.load(getClass().getResource("fxml/App.fxml"));
+            root.getStylesheets().add(getClass().getResource("css/bar.css").toExternalForm());
+            final Scene scene = new Scene(root, 600, 800);
 
-        stage.setTitle("Bar");
-        stage.setScene(scene);
-        stage.show();
+            stage.setTitle("Bar");
+            stage.setScene(scene);
+            stage.show();
+        } else {
+            new Alert(AlertType.ERROR, "Cannot acquiere lock. An instance may already be running.").show();
+            stage.close();
+        }
     }
 }
