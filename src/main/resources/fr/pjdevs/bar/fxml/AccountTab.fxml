@@ -12,6 +12,7 @@
                         <Button text="Go Next Year" onAction="#nextYear" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
                     </children>
                 </HBox>
+                <TextField fx:id="nameFilterField" promptText="Filter by name or login"/>
                 <TableView fx:id="accountTable" VBox.vgrow="ALWAYS" maxHeight="Infinity"/>
                 <HBox spacing="10">
                     <children>

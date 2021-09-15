@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.EventHandler;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -27,8 +28,11 @@ public class AccountTab extends Tab {
     private TextField nameField;
     @FXML
     private TextField yearField;
+    @FXML
+    private TextField nameFilterField;
 
     private ObservableList<Account> accountList;
+    private FilteredList<Account> filteredAccountList;
 
     public AccountTab() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/AccountTab.fxml"));
@@ -99,8 +103,20 @@ public class AccountTab extends Tab {
         this.accountTable.getColumns().add(moneyColumn);
         this.accountTable.getColumns().add(yearColumn);
 
+
         this.accountList = FXCollections.observableArrayList();
-        this.accountTable.setItems(accountList);
+        this.filteredAccountList = new FilteredList<Account>(this.accountList);
+        this.nameFilterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredAccountList.setPredicate(account -> {
+                if (newValue == null || newValue.isBlank()) {
+                    return true;
+                } else {
+                    return account.name.get().toLowerCase().contains(newValue.toLowerCase()) || account.login.get().toLowerCase().contains(newValue.toLowerCase());
+                }
+            });
+        });
+
+        this.accountTable.setItems(this.filteredAccountList);
         this.accountTable.setEditable(true);
 
         this.updateAccountList();
