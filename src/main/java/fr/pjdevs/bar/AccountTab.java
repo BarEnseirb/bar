@@ -29,6 +29,8 @@ public class AccountTab extends Tab {
     @FXML
     private TextField yearField;
     @FXML
+    private TextField sectorField;
+    @FXML
     private TextField nameFilterField;
 
     private ObservableList<Account> accountList;
@@ -98,11 +100,25 @@ public class AccountTab extends Tab {
             }
         );  
 
+        
+        TableColumn<Account, Integer> sectorColumn = new TableColumn<Account, Integer>("Sector");
+        sectorColumn.setCellValueFactory(cellData -> cellData.getValue().sector.asObject());
+        sectorColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        sectorColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, Integer>>(){
+                @Override
+                public void handle(CellEditEvent<Account, Integer> t) {
+                    Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
+                    account.sector.set(t.getNewValue());
+                    updateAccount(account.login.get(), account);
+                }
+            }
+        );  
+
         this.accountTable.getColumns().add(loginColumn);
         this.accountTable.getColumns().add(nameColumn);
         this.accountTable.getColumns().add(moneyColumn);
         this.accountTable.getColumns().add(yearColumn);
-
+        this.accountTable.getColumns().add(sectorColumn);
 
         this.accountList = FXCollections.observableArrayList();
         this.filteredAccountList = new FilteredList<Account>(this.accountList);
@@ -111,7 +127,8 @@ public class AccountTab extends Tab {
                 if (newValue == null || newValue.isBlank()) {
                     return true;
                 } else {
-                    return account.name.get().toLowerCase().contains(newValue.toLowerCase()) || account.login.get().toLowerCase().contains(newValue.toLowerCase());
+                    return account.name.get().toLowerCase().contains(newValue.toLowerCase()) || account.login.get().toLowerCase().contains(newValue.toLowerCase())
+                        || String.valueOf(account.year.get()).equals(newValue) || String.valueOf(account.sector.get()).equals(newValue);
                 }
             });
         });
@@ -135,25 +152,27 @@ public class AccountTab extends Tab {
         String login = this.loginField.getText();
         String name =  this.nameField.getText();
         String yearStr = this.yearField.getText();
+        String sectorStr = this.sectorField.getText();
 
-        if (login.isBlank() || name.isBlank() || yearStr.isBlank()) {
+        if (login.isBlank() || name.isBlank() || yearStr.isBlank() || sectorStr.isBlank()) {
             return;
         }
 
         try (DatabaseConnection c = new DatabaseConnection()) {
             int year = Integer.valueOf(yearStr);
-            if (year < 0) {
+            int sector = Integer.valueOf(sectorStr);
+            if (year < 0 || sector < 0 || sector > 6) {
                 throw new NumberFormatException();
             }
 
-            c.createAccount(new Account(login, name, 0, year));
+            c.createAccount(new Account(login, name, 0, year, sector));
             this.updateAccountList();
 
             new Alert(AlertType.INFORMATION, "Account " + login + " successfuly added.").show();
         } catch (SQLException e) {
             new Alert(AlertType.ERROR, e.getMessage()).show();
         } catch (NumberFormatException e) {
-            new Alert(AlertType.ERROR, "Year field is not a valid number.").show();
+            new Alert(AlertType.ERROR, "Year or Sector field is not a valid number.").show();
         }
     }
 

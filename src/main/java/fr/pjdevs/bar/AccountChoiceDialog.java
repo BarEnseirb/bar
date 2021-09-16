@@ -42,10 +42,16 @@ public class AccountChoiceDialog extends Dialog<Account> {
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().name);
         TableColumn<Account, Integer> moneyColumn = new TableColumn<Account, Integer>("Money");
         moneyColumn.setCellValueFactory(cellData -> cellData.getValue().money.asObject());
+        TableColumn<Account, Integer> yearColumn = new TableColumn<Account, Integer>("Year");
+        yearColumn.setCellValueFactory(cellData -> cellData.getValue().year.asObject());
+        TableColumn<Account, Integer> sectorColumn = new TableColumn<Account, Integer>("Sector");
+        sectorColumn.setCellValueFactory(cellData -> cellData.getValue().sector.asObject());
 
         tableView.getColumns().add(loginColumn);
         tableView.getColumns().add(nameColumn);
         tableView.getColumns().add(moneyColumn);
+        tableView.getColumns().add(yearColumn);
+        tableView.getColumns().add(sectorColumn);
 
         HBox bottomLayout = new HBox();
         bottomLayout.setSpacing(10.0);
@@ -71,7 +77,8 @@ public class AccountChoiceDialog extends Dialog<Account> {
                 if (newValue == null || newValue.isBlank()) {
                     return true;
                 } else {
-                    return account.name.get().toLowerCase().contains(newValue.toLowerCase()) || account.login.get().toLowerCase().contains(newValue.toLowerCase());
+                    return account.name.get().toLowerCase().contains(newValue.toLowerCase()) || account.login.get().toLowerCase().contains(newValue.toLowerCase())
+                        || String.valueOf(account.year.get()).equals(newValue) || String.valueOf(account.sector.get()).equals(newValue);
                 }
             });
         });

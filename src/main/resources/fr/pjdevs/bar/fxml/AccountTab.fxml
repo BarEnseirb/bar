@@ -19,7 +19,8 @@
                         <TextField fx:id="loginField" promptText="Login"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
                         <TextField fx:id="nameField" promptText="Name"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
                         <TextField fx:id="yearField" promptText="Year"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                        <Button text="Add" onAction="#addAccount" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <TextField fx:id="sectorField" promptText="Sector"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button text="Add" onAction="#addAccount"/>
                         <Button text="Remove" onAction="#removeAccount"/>
                     </children>
                 </HBox>

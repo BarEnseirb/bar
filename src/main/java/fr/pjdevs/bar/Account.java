@@ -8,11 +8,13 @@ public class Account {
     public SimpleStringProperty name;
     public SimpleIntegerProperty money;
     public SimpleIntegerProperty year;
+    public SimpleIntegerProperty sector;
 
-    public Account(String login, String name, int money, int year) {
+    public Account(String login, String name, int money, int year, int sector) {
         this.login = new SimpleStringProperty(login);
         this.name = new SimpleStringProperty(name);
         this.money = new SimpleIntegerProperty(money);
         this.year = new SimpleIntegerProperty(year);
+        this.sector = new SimpleIntegerProperty(sector);
     }
 }
