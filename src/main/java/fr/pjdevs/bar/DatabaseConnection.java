@@ -18,7 +18,7 @@ public class DatabaseConnection implements AutoCloseable {
     public Account getAccount(String login) throws SQLException {
         ResultSet r = this.connection.createStatement().executeQuery("select * from student where login = '" + login + "'");
 
-        return new Account(r.getInt("oid"), r.getString("login"), r.getString("name"), r.getInt("money"), r.getInt("year"), r.getInt("class"));
+        return new Account(r.getString("login"), r.getString("name"), r.getInt("money"), r.getInt("year"), r.getInt("class"));
     }
 
     public List<Account> getAccountList() throws SQLException {
@@ -26,7 +26,7 @@ public class DatabaseConnection implements AutoCloseable {
         List<Account> accounts = new ArrayList<Account>();
 
         while (r.next()) {
-            accounts.add(new Account(r.getInt("oid"), r.getString("login"), r.getString("name"), r.getInt("money"), r.getInt("year"), r.getInt("class")));
+            accounts.add(new Account(r.getString("login"), r.getString("name"), r.getInt("money"), r.getInt("year"), r.getInt("class")));
         }
 
         return accounts;
