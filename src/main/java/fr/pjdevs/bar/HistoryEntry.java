@@ -1,6 +1,10 @@
 package fr.pjdevs.bar;
 
 import javafx.beans.property.SimpleStringProperty;
+
+import java.time.Instant;
+import java.util.Date;
+
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class HistoryEntry {
@@ -25,6 +29,8 @@ public class HistoryEntry {
 
     public static HistoryEntry PurchaseEntry(Account account) {
         Cart cart = Cart.getInstance();
-        int total;
+        int total = 0;
+
+        return new HistoryEntry(account.getId(), "Cart", total, Date.from(Instant.now()).toString(), "Achat");
     }
 }
