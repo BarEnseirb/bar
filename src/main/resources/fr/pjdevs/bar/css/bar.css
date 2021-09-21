@@ -2,15 +2,16 @@
     -fx-background-color: #2b2b2b;
 }
 
-.sep {
-    -fx-border-width: 0 0 0 2;
-    -fx-border-color: white;
-}
-
 .title {
     -fx-font-size: 5em;
     -fx-font-color: white;
     -fx-font-weight: bold;
+}
+
+.warning {
+    -fx-background-color: red;
+    -fx-border-color: #2b2b2b;
+    -fx-text-fill: rgb(221, 221, 221);
 }
 
 #itemsBox {

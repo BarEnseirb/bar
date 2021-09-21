@@ -9,7 +9,7 @@
             <children>
                 <HBox spacing="10">
                     <children>
-                        <Button text="Go Next Year" onAction="#nextYear" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button styleClass="warning" text="Go Next Year" onAction="#nextYear" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
                     </children>
                 </HBox>
                 <TextField fx:id="nameFilterField" promptText="Filter by name or login"/>

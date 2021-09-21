@@ -2,6 +2,7 @@ package fr.pjdevs.bar;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -10,6 +11,8 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
@@ -203,6 +206,13 @@ public class AccountTab extends Tab {
 
     @FXML
     public void nextYear() {
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure to go next year ?");
+        // alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> res = alert.showAndWait();
+        if (res.isEmpty() || res.get() == ButtonType.CANCEL) {
+            return;
+        }
+
         try (DatabaseConnection c = new DatabaseConnection()) {
             c.nextYear();
             this.updateAccountList();
