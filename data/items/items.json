@@ -30,18 +30,18 @@
         "imagePath": "file:data/items/images/eau.jpg"
     },
     {
-        "name": "Bière trappist",
-        "price": 200,
+        "name": "Bière V&B 25cl",
+        "price": 150,
         "imagePath": "file:data/items/images/trappist.jpg"
     },
     {
-        "name": "Chimay",
+        "name": "Bière V&B 33cl",
         "price": 200,
         "imagePath": "file:data/items/images/chimay.jpg"
     },
     {
-        "name": "Straffe",
-        "price": 200,
+        "name": "Bière V&B 50cl",
+        "price": 250,
         "imagePath": "file:data/items/images/straffe.jpg"
     }
 ]
