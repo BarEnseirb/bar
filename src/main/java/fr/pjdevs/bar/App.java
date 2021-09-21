@@ -11,7 +11,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-// import javafx.scene.image.Image;
+import javafx.scene.image.Image;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -61,15 +61,14 @@ public class App extends Application {
         }
 
         if (lock) {
-            // Create window
-            // stage.getIcons().add(new Image(getClass().getResourceAsStream("images/ekip.jpg")));
-
             final Parent root = FXMLLoader.load(getClass().getResource("fxml/App.fxml"));
             root.getStylesheets().add(getClass().getResource("css/bar.css").toExternalForm());
-            final Scene scene = new Scene(root, 600, 800);
+            final Scene scene = new Scene(root);
 
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("images/ekip.jpg")));
             stage.setTitle("Bar");
             stage.setScene(scene);
+            stage.setMaximized(true);
             stage.show();
         } else {
             new Alert(AlertType.ERROR, "Cannot acquire lock. An instance may already be running.").show();

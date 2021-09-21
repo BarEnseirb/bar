@@ -206,8 +206,7 @@ public class AccountTab extends Tab {
 
     @FXML
     public void nextYear() {
-        Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure to go next year ?");
-        // alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Go to next year ?");
         Optional<ButtonType> res = alert.showAndWait();
         if (res.isEmpty() || res.get() == ButtonType.CANCEL) {
             return;

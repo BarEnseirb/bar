@@ -10,12 +10,12 @@
         "imagePath": "file:data/items/images/oasis.jpg"
     },
     {
-        "name": "Café court",
+        "name": "Café",
         "price": 50,
         "imagePath": "file:data/items/images/cafe.jpg"
     },
     {
-        "name": "Café long",
+        "name": "Café double",
         "price": 80,
         "imagePath": "file:data/items/images/cafe.jpg"
     },
