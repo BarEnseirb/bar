@@ -4,11 +4,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 
 import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.control.Alert;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
