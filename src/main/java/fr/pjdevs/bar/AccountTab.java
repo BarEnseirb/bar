@@ -165,7 +165,7 @@ public class AccountTab extends Tab {
                 throw new NumberFormatException();
             }
 
-            c.createAccount(new Account(login, name, 0, year, sector));
+            c.createAccount(login, name, year, sector);
             this.updateAccountList();
 
             new Alert(AlertType.INFORMATION, "Account " + login + " successfuly added.").show();
