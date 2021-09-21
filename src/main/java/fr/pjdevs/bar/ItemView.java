@@ -41,17 +41,12 @@ public class ItemView extends HBox {
     @FXML
     ImageView itemImage;
     @FXML
-    Spinner<Integer> countSpinner;
-    @FXML
     Label itemNameLbl;
     @FXML
     Label itemPriceLbl;
 
     @FXML
     public void addToCart() {
-        int count = countSpinner.getValue();
-
-        Cart.getInstance().add(this.item, count);
-        new Alert(AlertType.INFORMATION, "Added " + count + " " + this.item.getName() + " to the cart.").show();
+        Cart.getInstance().add(this.item, 1);
     }
 }

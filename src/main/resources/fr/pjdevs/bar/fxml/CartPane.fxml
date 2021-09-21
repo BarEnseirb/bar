@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.* ?>
+<?import javafx.scene.layout.* ?>
+
+<fx:root type="javafx.scene.layout.BorderPane" xmlns:fx="http://javafx.com/fxml">
+    <top>
+        <Label styleClass="title" text="Cart"/>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true" BorderPane.alignment="CENTER_RIGHT">
+            <content>
+                <VBox fx:id="cartItemsBox"/>
+            </content>
+        </ScrollPane>
+    </center>
+    <bottom>
+        <HBox spacing="20.0" BorderPane.alignment="CENTER_RIGHT">
+            <children>
+                <Button fx:id="purchaseBtn" text="Purchase" alignment="CENTER" onAction="#purchase"/>
+                <Label fx:id="totalLbl" text="Total"/>
+                <Button fx:id="clearBtn" text="Clear" onAction="#clear"/>
+            </children>
+        </HBox>
+    </bottom>
+</fx:root>

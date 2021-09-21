@@ -7,17 +7,18 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Tab;
 
-public class CartTab extends Tab {
+public class CartPane extends BorderPane {
     private int total;
 
-    public CartTab() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/CartTab.fxml"));
+    public CartPane() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/CartPane.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -37,17 +38,7 @@ public class CartTab extends Tab {
         });
     }
 
-    @FXML
-    VBox cartItemsBox;
-    @FXML
-    Label totalLbl;
-    @FXML
-    Button clearBtn;
-    @FXML
-    Button purchaseBtn;
-    
-    @FXML
-    public void update() {
+    private void update() {
         this.cartItemsBox.getChildren().clear();
         this.total = 0;
 
@@ -58,6 +49,15 @@ public class CartTab extends Tab {
 
         this.totalLbl.setText(BigDecimal.valueOf(this.total).movePointLeft(2) + "E");
     }
+
+    @FXML
+    VBox cartItemsBox;
+    @FXML
+    Label totalLbl;
+    @FXML
+    Button clearBtn;
+    @FXML
+    Button purchaseBtn;
 
     @FXML
     public void clear() {

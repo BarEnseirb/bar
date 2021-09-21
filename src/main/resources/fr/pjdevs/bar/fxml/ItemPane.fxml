@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.* ?>
+<?import javafx.scene.layout.* ?>
+
+<fx:root type="javafx.scene.control.ScrollPane" xmlns:fx="http://javafx.com/fxml" fitToWidth="true" fitToHeight="true">
+    <content>
+        <VBox>
+            <children> 
+                <Label styleClass="title" text="Items"/>
+                <VBox fx:id="itemsBox"/>
+            </children>
+        </VBox>
+    </content>
+</fx:root>

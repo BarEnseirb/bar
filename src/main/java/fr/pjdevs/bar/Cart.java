@@ -79,6 +79,8 @@ public final class Cart {
         } else {
             this.items.put(item, count + oldCount);
         }
+
+        this.cartChanged();
     }
 
     /**
@@ -87,7 +89,6 @@ public final class Cart {
      */
     public void remove(Item item) {
         this.items.remove(item);
-
         this.cartChanged();
     }
 
@@ -116,5 +117,6 @@ public final class Cart {
 
     public void clear() {
         this.items.clear();
+        this.cartChanged();
     }
 }

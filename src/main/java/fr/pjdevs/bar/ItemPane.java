@@ -8,11 +8,14 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Tab;
+import javafx.scene.control.ScrollPane;
 
-public class ItemTab extends Tab {
+public class ItemPane extends ScrollPane {
+    @FXML
+    private VBox itemsBox;
 
-    public ItemTab() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/ItemTab.fxml"));
+    public ItemPane() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/ItemPane.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
     
@@ -21,13 +24,7 @@ public class ItemTab extends Tab {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-    }
 
-    @FXML
-    private VBox itemsBox;
-
-    @FXML
-    public void initialize() {
         try {
             for (Item item : ItemList.getInstance().getList()) {
                 itemsBox.getChildren().add(new ItemView(item));
@@ -35,10 +32,5 @@ public class ItemTab extends Tab {
         } catch (Exception e) {
             new Alert(AlertType.ERROR, "Error while opening item list.\n" + e).show();
         }
-    }
-
-    @FXML
-    public void logName() {
-        System.out.println("Focus changed");
     }
 }
