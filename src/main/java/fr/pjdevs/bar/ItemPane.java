@@ -7,9 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ScrollPane;
 
-public class ItemPane extends ScrollPane {
+public class ItemPane extends VBox {
     @FXML
     private VBox itemsBox;
 

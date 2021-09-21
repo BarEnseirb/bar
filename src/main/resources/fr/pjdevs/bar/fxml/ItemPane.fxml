@@ -4,13 +4,13 @@
 <?import javafx.scene.control.* ?>
 <?import javafx.scene.layout.* ?>
 
-<fx:root type="javafx.scene.control.ScrollPane" xmlns:fx="http://javafx.com/fxml" fitToWidth="true" fitToHeight="true">
-    <content>
-        <VBox>
-            <children> 
-                <Label styleClass="title" text="Items"/>
+<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml">
+    <children>
+        <Label styleClass="title" text="Items"/>
+        <ScrollPane fitToWidth="true" fitToHeight="true">
+            <content>
                 <VBox fx:id="itemsBox"/>
-            </children>
-        </VBox>
-    </content>
+            </content>
+        </ScrollPane>
+    </children>
 </fx:root>

@@ -1,27 +1,47 @@
 [
     {
-        "name": "Snickers",
-        "price": 120,
-        "imagePath": "file:data/items/images/snickers.jpg"
-    },
-    {
-        "name": "Twix",
-        "price": 150,
-        "imagePath": "file:data/items/images/twix.jpg"
-    },
-    {
-        "name": "Kit-Kat",
-        "price": 135,
+        "name": "Barre",
+        "price": 80,
         "imagePath": "file:data/items/images/kitkat.jpg"
     },
     {
-        "name": "Oasis",
+        "name": "Canette",
         "price": 70,
         "imagePath": "file:data/items/images/oasis.jpg"
     },
     {
-        "name": "Coca",
-        "price": 70,
-        "imagePath": "file:data/items/images/coca.jpg"
+        "name": "Café court",
+        "price": 50,
+        "imagePath": "file:data/items/images/cafe.jpg"
+    },
+    {
+        "name": "Café long",
+        "price": 80,
+        "imagePath": "file:data/items/images/cafe.jpg"
+    },
+    {
+        "name": "Thé",
+        "price": 50,
+        "imagePath": "file:data/items/images/the.jpg"
+    },
+    {
+        "name": "Eau",
+        "price": 50,
+        "imagePath": "file:data/items/images/eau.jpg"
+    },
+    {
+        "name": "Bière trappist",
+        "price": 200,
+        "imagePath": "file:data/items/images/trappist.jpg"
+    },
+    {
+        "name": "Chimay",
+        "price": 200,
+        "imagePath": "file:data/items/images/chimay.jpg"
+    },
+    {
+        "name": "Straffe",
+        "price": 200,
+        "imagePath": "file:data/items/images/straffe.jpg"
     }
 ]
