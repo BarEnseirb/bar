@@ -6,7 +6,7 @@
 
 <fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml">
     <children>
-        <ScrollPane fitToWidth="true" fitToHeight="true">
+        <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
             <content>
                 <VBox fx:id="cartItemsBox"/>
             </content>
