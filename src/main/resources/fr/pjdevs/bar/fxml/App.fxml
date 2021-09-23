@@ -12,7 +12,11 @@
             <HBox>
                <children>
                   <ItemPane HBox.hgrow="ALWAYS"/>
-                  <CartPane HBox.hgrow="ALWAYS"/>
+                  <VBox HBox.hgrow="ALWAYS">
+                     <children>
+                        <CartPane VBox.vgrow="ALWAYS"/>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
          </content>
@@ -20,7 +24,6 @@
       <AccountTab/>
       <Tab closable="false" text="History">
          <content>
-            
          </content>
       </Tab>
    </tabs>
