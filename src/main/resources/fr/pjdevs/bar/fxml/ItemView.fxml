@@ -5,8 +5,8 @@
 <?import javafx.scene.layout.* ?>
 <?import javafx.scene.image.* ?>
 
-<fx:root type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml" alignment="CENTER_LEFT" spacing="10">
-   <ImageView fx:id="itemImage" preserveRatio="false" fitWidth="100.0" fitHeight="100.0" pickOnBounds="true" onMouseClicked="#addToCart"/>
-   <Label fx:id="itemNameLbl" text="Item name"/>
-   <Label fx:id="itemPriceLbl" text="Item price"/>
+<fx:root styleClass="item-view" type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml" prefWidth="200" prefHeight="200" alignment="CENTER" spacing="10" onMouseClicked="#addToCart">
+   <Label fx:id="itemNameLbl" text="Item name" wrapText="true"/>
+   <Label fx:id="itemPriceLbl" text="Item price" wrapText="true"/>
+   <Label fx:id="itemDescriptionLbl" text="Item description" wrapText="true"/>
 </fx:root>

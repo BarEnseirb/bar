@@ -2,46 +2,46 @@
     {
         "name": "Barre",
         "price": 80,
-        "imagePath": "file:data/items/images/kitkat.jpg"
+        "description": "Chocolaté"
     },
     {
         "name": "Canette",
         "price": 70,
-        "imagePath": "file:data/items/images/oasis.jpg"
+        "description": "33cl"
     },
     {
         "name": "Café",
         "price": 50,
-        "imagePath": "file:data/items/images/cafe.jpg"
+        "description": ""
     },
     {
         "name": "Café double",
         "price": 80,
-        "imagePath": "file:data/items/images/cafe.jpg"
+        "description": ""
     },
     {
         "name": "Thé",
         "price": 50,
-        "imagePath": "file:data/items/images/the.jpg"
+        "description": ""
     },
     {
         "name": "Eau",
         "price": 50,
-        "imagePath": "file:data/items/images/eau.jpg"
+        "description": "Evian"
     },
     {
         "name": "Bière V&B 25cl",
         "price": 150,
-        "imagePath": "file:data/items/images/trappist.jpg"
+        "description": "Cool"
     },
     {
         "name": "Bière V&B 33cl",
         "price": 200,
-        "imagePath": "file:data/items/images/chimay.jpg"
+        "description": "Pas bonne"
     },
     {
         "name": "Bière V&B 50cl",
         "price": 250,
-        "imagePath": "file:data/items/images/straffe.jpg"
+        "description": "PROMO"
     }
 ]

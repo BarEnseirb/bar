@@ -5,8 +5,6 @@ import java.math.BigDecimal;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
@@ -36,8 +34,6 @@ public class CartItemView extends HBox {
     private void setItem(Item item) {
         this.item = item;
 
-        Image img = new Image(item.getImagePath(), 100, 100, false, false);
-        this.itemImage.setImage(img);
         this.itemNameLbl.setText(item.getName());
         this.itemPriceLbl.setText(BigDecimal.valueOf(item.getPrice()).movePointLeft(2).toPlainString() + "E");
     }
@@ -60,8 +56,6 @@ public class CartItemView extends HBox {
         this.itemCountLbl.setText("x " + count);
     }
 
-    @FXML
-    ImageView itemImage;
     @FXML
     Label itemNameLbl;
     @FXML

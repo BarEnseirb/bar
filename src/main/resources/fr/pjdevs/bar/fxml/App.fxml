@@ -12,11 +12,7 @@
             <HBox>
                <children>
                   <ItemPane HBox.hgrow="ALWAYS"/>
-                  <VBox HBox.hgrow="ALWAYS">
-                     <children>
-                        <CartPane VBox.vgrow="ALWAYS"/>
-                     </children>
-                  </VBox>
+                  <CartPane HBox.hgrow="ALWAYS"/>
                </children>
             </HBox>
          </content>

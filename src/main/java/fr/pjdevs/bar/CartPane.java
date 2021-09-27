@@ -94,4 +94,21 @@ public class CartPane extends VBox {
             new Alert(AlertType.ERROR, e.getMessage()).show();
         }
     }
+
+    @FXML public void add1Cent() {}
+    @FXML public void add2Cent() {}
+    @FXML public void add5Cent() {}
+    @FXML public void add10Cent() {}
+    @FXML public void add20Cent() {}
+    @FXML public void add50Cent() {}
+    @FXML public void add1Euro() {}
+    @FXML public void add2Euro() {}
+    @FXML public void add5Euro() {}
+    @FXML public void add10Euro() {}
+    @FXML public void add20Euro() {}
+    @FXML public void add50Euro() {}
+    @FXML public void add100Euro() {}
+    @FXML public void add200Euro() {}
+    @FXML public void add500Euro() {}
+    
 }

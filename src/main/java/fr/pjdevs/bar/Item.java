@@ -3,12 +3,12 @@ package fr.pjdevs.bar;
 public class Item {
     private String name;
     private int price;
-    private String imagePath;
+    private String description;
 
-    public Item(String name, int price, String imagePath) {
+    public Item(String name, int price, String description) {
         this.name = name;
         this.price = price;
-        this.imagePath = imagePath;
+        this.description = description;
     }
 
     public String getName() {
@@ -19,7 +19,7 @@ public class Item {
         return this.price;
     }
 
-    public String getImagePath() {
-        return this.imagePath;
+    public String getDesciption() {
+        return this.description;
     }
 }

@@ -4,13 +4,11 @@ import java.io.IOException;
 import java.math.BigDecimal;
 
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
-public class ItemView extends HBox {
+public class ItemView extends VBox {
     private Item item;
 
     public ItemView() {
@@ -28,19 +26,18 @@ public class ItemView extends HBox {
     public ItemView(Item item) {
         this();
 
-        Image img = new Image(item.getImagePath(), 100, 100, false, false);
-        this.itemImage.setImage(img);
         this.itemNameLbl.setText(item.getName());
         this.itemPriceLbl.setText(BigDecimal.valueOf(item.getPrice()).movePointLeft(2).toPlainString() + "E");
+        this.itemDescriptionLbl.setText(item.getDesciption());
         this.item = item;
     }
 
     @FXML
-    ImageView itemImage;
-    @FXML
     Label itemNameLbl;
     @FXML
     Label itemPriceLbl;
+    @FXML
+    Label itemDescriptionLbl;
 
     @FXML
     public void addToCart() {
