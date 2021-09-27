@@ -6,7 +6,7 @@
 <?import javafx.scene.image.* ?>
 
 
-<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml" spacing="10">
+<fx:root styleClass="cart-pane" type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml" spacing="50">
     <children>
         <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
             <content>
@@ -91,15 +91,21 @@
             </ImageView>
         </GridPane>
         <GridPane hgap="10" vgap="10">
-            <Label fx:id="totalLbl" text="Prix total: ${}" wrapText="true" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <Label fx:id="totalLbl" text="Prix saisi: ${}" wrapText="true" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-            <Label fx:id="totalLbl" text="Rendu: ${}" wrapText="true" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-            <Label fx:id="totalLbl" text="Reste à payer: ${}" wrapText="true" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label text="Total:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <Label styleClass="price" fx:id="totalLbl" wrapText="true" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="Given:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <Label styleClass="price" fx:id="givenTotalLbl" wrapText="true" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+            <Label text="To give back:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <Label styleClass="price,red" fx:id="backTotalLbl" wrapText="true" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label text="Left to pay:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+            <Label styleClass="price,green" fx:id="leftTotalLbl" wrapText="true" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
         </GridPane>
         <HBox spacing="20">
             <children>
-                <Button fx:id="purchaseBtn" text="Purchase" alignment="CENTER" onAction="#purchase"/>
-                <Button fx:id="clearBtn" text="Clear" onAction="#clear"/>
+                <Button fx:id="purchaseBtn" text="Purchase" onAction="#purchase"/>
+                <Button fx:id="purchaseMoneyBtn" text="Purchase money" onAction="#purchaseMoney"/>
+                <Button fx:id="clearBtn" text="Clear cart" onAction="#clear"/>
+                <Button fx:id="clearMoneyBtn" text="Clear money" onAction="#clearMoney"/>
             </children>
         </HBox>
     </children>

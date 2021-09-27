@@ -87,3 +87,20 @@
     -fx-border-width: 5 5 5 5;
     -fx-border-color: black;
 }
+
+.cart-pane {
+    -fx-font-size: 1.5em;
+}
+
+.price {
+    -fx-font-size: 2em;
+    -fx-font-weight: bold;
+}
+
+.red {
+    -fx-text-fill: red;
+}
+
+.green {
+    -fx-text-fill: green;
+}

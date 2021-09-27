@@ -2,10 +2,8 @@ package fr.pjdevs.bar;
 
 import java.io.IOException;
 
-import javafx.beans.binding.StringBinding;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -16,16 +14,13 @@ public class CartItemView extends HBox {
     private final IntegerProperty count;
 
     @FXML
-    Label itemNameLbl;
+    private Label itemNameLbl;
     @FXML
-    Label itemPriceLbl;
+    private Label itemPriceLbl;
     @FXML
-    Label itemCountLbl;    
+    private Label itemCountLbl;    
 
     public CartItemView(Item item, int count) {
-        this.item = item;
-        this.count = new SimpleIntegerProperty(this, "count", count);
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/CartItemView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -36,9 +31,12 @@ public class CartItemView extends HBox {
             throw new RuntimeException(exception);
         }
 
-        itemNameLbl.textProperty().bind(this.item.nameProperty());
-        itemPriceLbl.textProperty().bind(this.item.priceProperty().divide(100.0).asString("%,.2fE"));
-        itemCountLbl.textProperty().bind(this.count.asString("x%d"));
+        this.item = item;
+        this.count = new SimpleIntegerProperty(count);
+
+        this.itemNameLbl.textProperty().bind(this.item.nameProperty());
+        this.itemPriceLbl.textProperty().bind(this.item.priceProperty().divide(100.0).asString("%.2fE"));
+        this.itemCountLbl.textProperty().bind(this.count.asString("x%d"));
     }
 
     @FXML

@@ -27,7 +27,7 @@ public class ItemView extends VBox {
         this();
 
         this.itemNameLbl.setText(item.getName());
-        this.itemPriceLbl.setText(BigDecimal.valueOf(item.getPrice()).movePointLeft(2).toPlainString() + "E");
+        this.itemPriceLbl.setText(String.format("%,.2fE", item.getPrice()/100.0));
         this.itemDescriptionLbl.setText(item.getDesciption());
         this.item = item;
     }
