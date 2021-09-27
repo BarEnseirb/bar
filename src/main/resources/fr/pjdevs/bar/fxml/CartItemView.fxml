@@ -6,8 +6,8 @@
 <?import javafx.scene.image.* ?>
 
 <fx:root type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10">
-   <Label fx:id="itemNameLbl" text="Item name"/>
-   <Label fx:id="itemPriceLbl" text="Item price"/>
+   <Label fx:id="itemNameLbl" text="Item"/>
+   <Label fx:id="itemPriceLbl" text="0.5E"/>
    <Label fx:id="itemCountLbl" text="x 1"/>
    <Button fx:id="minusBtn" text="-" onAction="#minus"/>
 </fx:root>

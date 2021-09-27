@@ -11,12 +11,25 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public final class ItemList {
+    private class ItemModel {
+        String name;
+        int price;
+        String description;
+    }
+
     private static ItemList instance;
 
-    private ArrayList<Item> itemList;
+    private List<Item> itemList;
 
-    private ArrayList<Item> listFromJson(String json) throws IOException {
-        return new Gson().fromJson(json, (new TypeToken<List<Item>>() {}).getType());
+    private List<Item> listFromJson(String json) throws IOException {
+        List<ItemModel> models = new Gson().fromJson(json, (new TypeToken<List<ItemModel>>() {}).getType());
+        
+        List<Item> list = new ArrayList<Item>(models.size());
+        for (ItemModel model : models) {
+            list.add(new Item(model.name, model.price, model.description));
+        }
+
+        return list;
     }
 
     private ItemList() throws IOException {

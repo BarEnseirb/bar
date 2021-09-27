@@ -1,18 +1,31 @@
 package fr.pjdevs.bar;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 
-import javafx.scene.control.Label;
-import javafx.scene.control.Button;
+import javafx.beans.binding.StringBinding;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 public class CartItemView extends HBox {
-    private Item item;
+    private final Item item;
+    private final IntegerProperty count;
 
-    public CartItemView() {
+    @FXML
+    Label itemNameLbl;
+    @FXML
+    Label itemPriceLbl;
+    @FXML
+    Label itemCountLbl;    
+
+    public CartItemView(Item item, int count) {
+        this.item = item;
+        this.count = new SimpleIntegerProperty(this, "count", count);
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/CartItemView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -22,51 +35,20 @@ public class CartItemView extends HBox {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        itemNameLbl.textProperty().bind(this.item.nameProperty());
+        itemPriceLbl.textProperty().bind(this.item.priceProperty().divide(100.0).asString("%,.2fE"));
+        itemCountLbl.textProperty().bind(this.count.asString("x%d"));
     }
-
-    public CartItemView(Item item, int count) {
-        this();
-
-        this.setItem(item);
-        this.updateCountLabel(count);
-    }
-
-    private void setItem(Item item) {
-        this.item = item;
-
-        this.itemNameLbl.setText(item.getName());
-        this.itemPriceLbl.setText(BigDecimal.valueOf(item.getPrice()).movePointLeft(2).toPlainString() + "E");
-    }
-
-    private void setCount(int count) {
-        if (count <= 0) {
-            Cart.getInstance().remove(this.item);
-            return;
-        }
-
-        Cart.getInstance().update(this.item, count);
-        this.updateCountLabel(count);
-    }
-
-    private int getCount() {
-        return Cart.getInstance().getCount(this.item);
-    }
-
-    private void updateCountLabel(int count) {
-        this.itemCountLbl.setText("x " + count);
-    }
-
-    @FXML
-    Label itemNameLbl;
-    @FXML
-    Label itemPriceLbl;
-    @FXML
-    Label itemCountLbl;
-    @FXML
-    Button minusBtn;
 
     @FXML
     public void minus() {
-        this.setCount(this.getCount()-1);
+        this.count.set(this.count.get()-1);
+
+        if (this.count.get() <= 0) {
+            Cart.getInstance().remove(this.item);
+        } else {
+            Cart.getInstance().update(this.item, this.count.get());
+        }
     }
 }
