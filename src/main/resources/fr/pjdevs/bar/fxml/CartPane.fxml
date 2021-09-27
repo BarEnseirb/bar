@@ -6,95 +6,95 @@
 <?import javafx.scene.image.* ?>
 
 
-<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml">
+<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml" spacing="10">
     <children>
         <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
             <content>
                 <VBox fx:id="cartItemsBox"/>
             </content>
         </ScrollPane>
-        <GridPane>
-            <ImageView onMouseClicked="#add1Cent" fitHeight="50" fitWidth="50"  GridPane.rowIndex="0" GridPane.columnIndex="1">
+        <GridPane hgap="5" vgap="5">
+            <ImageView onMouseClicked="#add1Cent" fitHeight="100" fitWidth="100" preserveRatio="true" GridPane.rowIndex="0" GridPane.columnIndex="0">
                 <image>
                     <Image url="@../images/1cent.jpg"/>
                 </image>
             </ImageView>
-            <ImageView onMouseClicked="#add2Cent" fitHeight="100" fitWidth="100"  GridPane.rowIndex="0" GridPane.columnIndex="2">
+            <ImageView onMouseClicked="#add2Cent" fitHeight="100" fitWidth="100" preserveRatio="true" GridPane.rowIndex="0" GridPane.columnIndex="1">
                 <image>
                     <Image url="@../images/2cent.jpg"/>
                 </image>
             </ImageView>
-            <ImageView onMouseClicked="#add5Cent" fitHeight="100" fitWidth="100"  GridPane.rowIndex="0" GridPane.columnIndex="3">
+            <ImageView onMouseClicked="#add5Cent" fitHeight="100" fitWidth="100" preserveRatio="true" GridPane.rowIndex="0" GridPane.columnIndex="2">
                 <image>
                     <Image url="@../images/5cent.jpg"/>
                 </image>
             </ImageView>
-            <ImageView onMouseClicked="#add10Cent" fitHeight="100" fitWidth="100"  GridPane.rowIndex="0" GridPane.columnIndex="4">
+            <ImageView onMouseClicked="#add10Cent" fitHeight="100" fitWidth="100" preserveRatio="true" GridPane.rowIndex="0" GridPane.columnIndex="3">
                 <image>
                     <Image url="@../images/10cent.jpg"/>
                 </image>
             </ImageView>
-            <ImageView onMouseClicked="#add20Cent" fitHeight="100" fitWidth="100"  GridPane.rowIndex="0" GridPane.columnIndex="5">
+            <ImageView onMouseClicked="#add20Cent" fitHeight="100" fitWidth="100" preserveRatio="true" GridPane.rowIndex="0" GridPane.columnIndex="4">
                 <image>
                     <Image url="@../images/20cent.jpg"/>
                 </image>
             </ImageView>
-            <ImageView onMouseClicked="#add50Cent" fitHeight="100" fitWidth="100"  GridPane.rowIndex="1" GridPane.columnIndex="0">
+            <ImageView onMouseClicked="#add50Cent" fitHeight="100" fitWidth="100" preserveRatio="true" GridPane.rowIndex="1" GridPane.columnIndex="0">
                 <image>
                     <Image url="@../images/50cent.jpg"/>
                 </image>
             </ImageView>
-            <ImageView onMouseClicked="#add1Euro" fitHeight="100" fitWidth="100"  GridPane.rowIndex="1" GridPane.columnIndex="1">
+            <ImageView onMouseClicked="#add1Euro" fitHeight="100" fitWidth="100" preserveRatio="true" GridPane.rowIndex="1" GridPane.columnIndex="1">
                 <image>
                     <Image url="@../images/1euro.jpg"/>
                 </image>
             </ImageView>
-            <ImageView onMouseClicked="#add2Euro" fitHeight="100" fitWidth="100"  GridPane.rowIndex="1" GridPane.columnIndex="2">
+            <ImageView onMouseClicked="#add2Euro" fitHeight="100" fitWidth="100" preserveRatio="true" GridPane.rowIndex="1" GridPane.columnIndex="2">
                 <image>
                     <Image url="@../images/2euro.jpg"/>
                 </image>
             </ImageView>
-            <ImageView onMouseClicked="#add5Euro" fitHeight="100" fitWidth="100"  GridPane.rowIndex="1" GridPane.columnIndex="3">
+            <ImageView onMouseClicked="#add5Euro" fitHeight="100" fitWidth="100" preserveRatio="true" GridPane.rowIndex="1" GridPane.columnIndex="3">
                 <image>
                     <Image url="@../images/5euro.jpg"/>
                 </image>
             </ImageView>
-            <ImageView onMouseClicked="#add10Euro" fitHeight="100" fitWidth="100"  GridPane.rowIndex="1" GridPane.columnIndex="4">
+            <ImageView onMouseClicked="#add10Euro" fitHeight="100" fitWidth="100" preserveRatio="true" GridPane.rowIndex="1" GridPane.columnIndex="4">
                 <image>
                     <Image url="@../images/10euro.jpg"/>
                 </image>
             </ImageView>
-            <ImageView onMouseClicked="#add20Euro" fitHeight="100" fitWidth="100"  GridPane.rowIndex="1" GridPane.columnIndex="5">
+            <ImageView onMouseClicked="#add20Euro" fitHeight="100" fitWidth="100" preserveRatio="true" GridPane.rowIndex="2" GridPane.columnIndex="0">
                 <image>
                     <Image url="@../images/20euro.jpg"/>
                 </image>
             </ImageView>
-            <ImageView onMouseClicked="#add50Euro" fitHeight="100" fitWidth="100"  GridPane.rowIndex="2" GridPane.columnIndex="0">
+            <ImageView onMouseClicked="#add50Euro" fitHeight="100" fitWidth="100" preserveRatio="true" GridPane.rowIndex="2" GridPane.columnIndex="1">
                 <image>
                     <Image url="@../images/50euro.jpg"/>
                 </image>
             </ImageView>
-            <ImageView onMouseClicked="#add100Euro" fitHeight="100" fitWidth="100"  GridPane.rowIndex="2" GridPane.columnIndex="1">
+            <ImageView onMouseClicked="#add100Euro" fitHeight="100" fitWidth="100" preserveRatio="true" GridPane.rowIndex="2" GridPane.columnIndex="2">
                 <image>
                     <Image url="@../images/100euro.jpg"/>
                 </image>
             </ImageView>
-            <ImageView onMouseClicked="#add200Euro" fitHeight="100" fitWidth="100"  GridPane.rowIndex="2" GridPane.columnIndex="2">
+            <ImageView onMouseClicked="#add200Euro" fitHeight="100" fitWidth="100" preserveRatio="true" GridPane.rowIndex="2" GridPane.columnIndex="3">
                 <image>
                     <Image url="@../images/200euro.jpg"/>
                 </image>
             </ImageView>
-            <ImageView onMouseClicked="#add500Euro" fitHeight="100" fitWidth="100"  GridPane.rowIndex="2" GridPane.columnIndex="3">
+            <ImageView onMouseClicked="#add500Euro" fitHeight="100" fitWidth="100" preserveRatio="true" GridPane.rowIndex="2" GridPane.columnIndex="4">
                 <image>
                     <Image url="@../images/500euro.jpg"/>
                 </image>
             </ImageView>
         </GridPane>
-        <GridPane>
-            <Label fx:id="totalLbl" text="Prix total: ${}" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <Label fx:id="totalLbl" text="Prix saisi: ${}" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-            <Label fx:id="totalLbl" text="Rendu: ${}" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-            <Label fx:id="totalLbl" text="Reste à payer: ${}" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <GridPane hgap="10" vgap="10">
+            <Label fx:id="totalLbl" text="Prix total: ${}" wrapText="true" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <Label fx:id="totalLbl" text="Prix saisi: ${}" wrapText="true" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label fx:id="totalLbl" text="Rendu: ${}" wrapText="true" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <Label fx:id="totalLbl" text="Reste à payer: ${}" wrapText="true" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
         </GridPane>
         <HBox spacing="20">
             <children>
