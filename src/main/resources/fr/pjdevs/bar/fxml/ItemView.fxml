@@ -9,4 +9,5 @@
    <Label fx:id="itemNameLbl" text="Item name" wrapText="true"/>
    <Label fx:id="itemPriceLbl" text="Item price" wrapText="true"/>
    <Label fx:id="itemDescriptionLbl" text="Item description" wrapText="true"/>
+   <Button fx:id="editBtn" text="Edit" onAction="#edit"/>
 </fx:root>

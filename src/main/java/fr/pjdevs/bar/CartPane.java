@@ -1,6 +1,5 @@
 package fr.pjdevs.bar;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 import java.io.IOException;
 
@@ -61,9 +60,9 @@ public class CartPane extends VBox {
             else return String.format("%,.2fE", back/100.0);
         }, this.total, this.givenTotal));
 
-        Cart.getInstance().addListenner(new CartChangedListenner() {
+        Cart.getInstance().addListenner(new ChangedListenner() {
             @Override
-            public void onCartChanged() {
+            public void onChanged() {
                 update();
             }
         });

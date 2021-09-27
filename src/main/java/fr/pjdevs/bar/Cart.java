@@ -1,6 +1,7 @@
 package fr.pjdevs.bar;
 
 import java.util.Map;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,20 +15,20 @@ public final class Cart {
     private static Cart instance;
 
     /**
-     * List of listenners for event {@link CartChangedListenner}
+     * List of listenners for event {@link ChangedListenner}
      */
-    private ArrayList<CartChangedListenner> listenners;
+    private List<ChangedListenner> listenners;
     /**
      * List of {@link Item} in the cart associated with their count.
      */
     private Map<Item, Integer> items;
 
     /**
-     * Calls {@link CartChangedListenner#onCartChanged} on all subscribed listenners in {@link #listenners}.
+     * Calls {@link ChangedListenner#onCartChanged} on all subscribed listenners in {@link #listenners}.
      */
     private void cartChanged() {
-        for (CartChangedListenner listenner : this.listenners) {
-            listenner.onCartChanged();
+        for (ChangedListenner listenner : this.listenners) {
+            listenner.onChanged();
         }
     }
 
@@ -35,7 +36,7 @@ public final class Cart {
      * The private constructor intialize all attributes.
      */
     private Cart() {
-        listenners = new ArrayList<CartChangedListenner>();
+        listenners = new ArrayList<ChangedListenner>();
         items = new HashMap<Item, Integer>();
     }
 
@@ -51,10 +52,10 @@ public final class Cart {
     }
 
     /**
-     * Subscribes a new {@link CartChangedListenner}.
+     * Subscribes a new {@link ChangedListenner}.
      * @param listenner The listenner to subscribe.
      */
-    public void addListenner(CartChangedListenner listenner) {
+    public void addListenner(ChangedListenner listenner) {
         this.listenners.add(listenner);
     }
 
