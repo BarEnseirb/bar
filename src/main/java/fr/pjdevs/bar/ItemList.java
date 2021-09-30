@@ -2,7 +2,7 @@ package fr.pjdevs.bar;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -10,35 +10,66 @@ import java.nio.file.Paths;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 public final class ItemList {
     private class ItemModel {
-        String name;
-        int price;
-        String description;
+        private String name;
+        private int price;
+        private String description;
+
+        private ItemModel(String name, int price, String description) {
+            this.name = name;
+            this.price = price;
+            this.description = description;
+        }
     }
 
+    private final static String JSON_PATH = "data/items/items.json"; 
     private static ItemList instance;
 
     private List<Item> itemList;
     private List<ChangedListenner> listenners;
 
-    private List<Item> listFromJson(String json) throws IOException {
-        List<ItemModel> models = new Gson().fromJson(json, (new TypeToken<List<ItemModel>>() {}).getType());
-        
-        List<Item> list = new ArrayList<Item>(models.size());
+    private List<Item> modelsToItems(List<ItemModel> models) {
+        List<Item> items = new ArrayList<Item>(models.size());
+
         for (ItemModel model : models) {
-            list.add(new Item(model.name, model.price, model.description));
+            items.add(new Item(model.name, model.price, model.description));
         }
 
-        return list;
+        return items;
     }
 
-    private ItemList() {
+    private List<ItemModel> itemsToModels(List<Item> items) {
+        List<ItemModel> models = new ArrayList<ItemModel>(items.size());
+        
+        for (Item item : items) {
+            models.add(new ItemModel(item.getName(), item.getPrice(), item.getDesciption()));
+        }
+
+        return models;
+    }
+
+    private List<Item> loadJsonItems() throws IOException{
+        String json = Files.readString(Paths.get(JSON_PATH));
+        List<ItemModel> models = new Gson().fromJson(json, (new TypeToken<List<ItemModel>>() {}).getType());
+
+        return modelsToItems(models);
+    }
+
+    private void saveJsonItems(List<Item> items) throws IOException {
+        List<ItemModel> models = this.itemsToModels(items);
+        Files.writeString(Paths.get(JSON_PATH), new Gson().toJson(models));
+    }
+
+    private ItemList() throws IOException {
         try {
-            String json = Files.readString(Paths.get("data/items/items.json"));
-            this.itemList = this.listFromJson(json);
+            this.itemList = this.loadJsonItems();
         } catch (Exception e) {
             this.itemList = new ArrayList<Item>();
+            this.saveJsonItems(this.itemList);
         }
 
         this.listenners = new ArrayList<ChangedListenner>();
@@ -54,7 +85,7 @@ public final class ItemList {
         this.listenners.add(listenner);
     }
 
-    public static ItemList getInstance() {
+    public static ItemList getInstance() throws IOException {
         if (instance == null) {
             instance = new ItemList();
         }
@@ -66,14 +97,22 @@ public final class ItemList {
         return this.itemList;
     }
 
-    public void update(Item oldItem, Item newItem) {
+    public void update(Item oldItem, Item newItem) throws IOException {
         int index = this.itemList.indexOf(oldItem);
         this.itemList.set(index, newItem);
+        this.saveJsonItems(this.itemList);
         this.listChanged();
     }
 
-    public void add(Item newItem) {
+    public void add(Item newItem) throws IOException {
         this.itemList.add(newItem);
+        this.saveJsonItems(this.itemList);
+        this.listChanged();
+    }
+
+    public void remove(Item item) throws IOException {
+        this.itemList.remove(item);
+        this.saveJsonItems(this.itemList);
         this.listChanged();
     }
 }

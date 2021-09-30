@@ -31,11 +31,11 @@ public class ItemView extends VBox {
     }
 
     @FXML
-    Label itemNameLbl;
+    private Label itemNameLbl;
     @FXML
-    Label itemPriceLbl;
+    private Label itemPriceLbl;
     @FXML
-    Label itemDescriptionLbl;
+    private Label itemDescriptionLbl;
 
     @FXML
     public void addToCart() {
@@ -47,10 +47,22 @@ public class ItemView extends VBox {
         Optional<Item> newItem = new ItemDialog(this.item).showAndWait();
 
         if (newItem.isPresent()) {
-            ItemList.getInstance().update(item, newItem.get());
-            new Alert(AlertType.INFORMATION, "Item updated.").show();
+            try {
+                ItemList.getInstance().update(this.item, newItem.get());
+            } catch (IOException e) {
+                new Alert(AlertType.ERROR, "Cannot open item list :\n" + e.getMessage()).show();
+            }
         } else {
             new Alert(AlertType.ERROR, "Item not updated due to wrong values.").show();
+        }
+    }
+
+    @FXML
+    public void remove() {
+        try {
+            ItemList.getInstance().remove(this.item);
+        } catch (IOException e) {
+            new Alert(AlertType.ERROR, "Cannot open item list :\n" + e.getMessage()).show();
         }
     }
 }

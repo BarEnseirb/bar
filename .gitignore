@@ -2,8 +2,8 @@
 .gradle
 
 # Ignore Gradle build output directory
-build
-bin
+build/
+bin/
 
 # Ignore vscode config
 .vscode
@@ -11,9 +11,8 @@ bin
 .project
 .classpath
 
-# Ignore databases
-*.db
-*.db-journal
+#Private data
+data/
 
 #Ignore lock files
 *.lock

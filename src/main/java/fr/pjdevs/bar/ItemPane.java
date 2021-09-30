@@ -39,12 +39,16 @@ public class ItemPane extends VBox {
         this.addBtn.setPrefWidth(200);
         this.addBtn.setPrefHeight(200);
 
-        ItemList.getInstance().addListenner(new ChangedListenner(){
-            @Override
-            public void onChanged() {
-                update();
-            }
-        });
+        try {
+            ItemList.getInstance().addListenner(new ChangedListenner(){
+                @Override
+                public void onChanged() {
+                    update();
+                }
+            });
+        } catch (IOException e) {
+            new Alert(AlertType.ERROR, "Cannot open item list :\n" + e.getMessage()).show();
+        }
 
         this.update();
     }
@@ -53,26 +57,35 @@ public class ItemPane extends VBox {
         Optional<Item> newItem = new ItemDialog(null).showAndWait();
 
         if (newItem.isPresent()) {
-            ItemList.getInstance().add(newItem.get());
-            new Alert(AlertType.INFORMATION, "Item added.").show();
+            try {
+                ItemList.getInstance().add(newItem.get());
+            } catch (IOException e) {
+                new Alert(AlertType.ERROR, "Cannot open item list :\n" + e.getMessage()).show();
+            }
         } else {
             new Alert(AlertType.ERROR, "Item not added due to wrong values.").show();
         }
     }
 
     private void update() {
+        this.itemsBox.getChildren().clear();
+
         int currentRow = 0;
         int currentColumn = 0;
         int columnCount = 4;
 
-        for (Item item : ItemList.getInstance().getList()) {
-            this.itemsBox.add(new ItemView(item), currentColumn, currentRow);
-            ++currentColumn;
+        try {
+            for (Item item : ItemList.getInstance().getList()) {
+                this.itemsBox.add(new ItemView(item), currentColumn, currentRow);
+                ++currentColumn;
 
-            if (currentColumn > columnCount) {
-                currentColumn = 0;
-                ++currentRow;
+                if (currentColumn > columnCount) {
+                    currentColumn = 0;
+                    ++currentRow;
+                }
             }
+        } catch (IOException e) {
+            new Alert(AlertType.ERROR, "Cannot open item list :\n" + e.getMessage()).show();
         }
 
         this.itemsBox.add(this.addBtn, currentColumn, currentRow);
