@@ -58,13 +58,11 @@ You will need a data folder next to the JAR file containing :
     {
         "name": "Product name",
         "price": 120,
-        "imagePath": "file:data/items/images/xxxxx.yyy"
+        "description": "Promotion"
     },
     ...
 ]
 ```
-
-- `data/items/images/xxxxx.yyy` : Images for the items.
 
 ## Authors
 
