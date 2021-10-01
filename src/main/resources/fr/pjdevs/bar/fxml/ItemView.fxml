@@ -3,15 +3,45 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.* ?>
 <?import javafx.scene.layout.* ?>
+<?import javafx.scene.image.* ?>
+<?import javafx.scene.text.* ?>
+<?import javafx.scene.effect.* ?>
 
-<fx:root styleClass="item-view" type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml" prefWidth="200" prefHeight="200" alignment="CENTER" spacing="10" onMouseClicked="#addToCart">
+<fx:root styleClass="item-view" type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10" onMouseClicked="#addToCart">
    <Label fx:id="itemNameLbl" text="Item name" wrapText="true"/>
    <Label fx:id="itemPriceLbl" text="Item price" wrapText="true"/>
-   <Label fx:id="itemDescriptionLbl" text="Item description" wrapText="true"/>
+   <Label fx:id="itemDescriptionLbl" text="Item description" wrapText="true">
+      <font>
+         <Font size="16.0"/>
+      </font>
+   </Label>
    <HBox alignment="CENTER_RIGHT" spacing="5">
       <children>
-         <Button text="Edit" onAction="#edit"/>
-         <Button text="Remove" onAction="#remove"/>
+         <Button text="" onAction="#edit">
+            <font>
+               <Font size="30.0" />
+            </font>
+            <graphic>
+               <ImageView pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../images/edit.png"/>
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
+         <Pane HBox.hgrow="ALWAYS"/>
+         <Button text="" onAction="#remove">
+            <font>
+               <Font size="30.0" />
+            </font>
+            <graphic>
+               <ImageView pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../images/cross.png"/>
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
       </children>
    </HBox>
 </fx:root>

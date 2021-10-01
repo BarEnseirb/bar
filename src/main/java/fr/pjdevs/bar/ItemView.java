@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.fxml.FXML;
@@ -59,6 +60,12 @@ public class ItemView extends VBox {
 
     @FXML
     public void remove() {
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure to want to delete this item ?");
+        Optional<ButtonType> res = alert.showAndWait();
+        if (res.isEmpty() || res.get() == ButtonType.CANCEL) {
+            return;
+        }
+        
         try {
             ItemList.getInstance().remove(this.item);
         } catch (IOException e) {
