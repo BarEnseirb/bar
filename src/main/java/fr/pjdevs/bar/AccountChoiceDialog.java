@@ -37,15 +37,15 @@ public class AccountChoiceDialog extends Dialog<Account> {
         TableView<Account> tableView = new TableView<Account>();
         
         TableColumn<Account, String> loginColumn = new TableColumn<Account, String>("Login");
-        loginColumn.setCellValueFactory(cellData -> cellData.getValue().login);
+        loginColumn.setCellValueFactory(cellData -> cellData.getValue().loginProperty());
         TableColumn<Account, String> nameColumn = new TableColumn<Account, String>("Name");
-        nameColumn.setCellValueFactory(cellData -> cellData.getValue().name);
+        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         TableColumn<Account, Integer> moneyColumn = new TableColumn<Account, Integer>("Money");
-        moneyColumn.setCellValueFactory(cellData -> cellData.getValue().money.asObject());
+        moneyColumn.setCellValueFactory(cellData -> cellData.getValue().moneyProperty().asObject());
         TableColumn<Account, Integer> yearColumn = new TableColumn<Account, Integer>("Year");
-        yearColumn.setCellValueFactory(cellData -> cellData.getValue().year.asObject());
+        yearColumn.setCellValueFactory(cellData -> cellData.getValue().yearProperty().asObject());
         TableColumn<Account, Integer> sectorColumn = new TableColumn<Account, Integer>("Sector");
-        sectorColumn.setCellValueFactory(cellData -> cellData.getValue().sector.asObject());
+        sectorColumn.setCellValueFactory(cellData -> cellData.getValue().sectorProperty().asObject());
 
         tableView.getColumns().add(loginColumn);
         tableView.getColumns().add(nameColumn);
@@ -77,8 +77,8 @@ public class AccountChoiceDialog extends Dialog<Account> {
                 if (newValue == null || newValue.isBlank()) {
                     return true;
                 } else {
-                    return account.name.get().toLowerCase().contains(newValue.toLowerCase()) || account.login.get().toLowerCase().contains(newValue.toLowerCase())
-                        || String.valueOf(account.year.get()).equals(newValue) || String.valueOf(account.sector.get()).equals(newValue);
+                    return account.getName().toLowerCase().contains(newValue.toLowerCase()) || account.getLogin().toLowerCase().contains(newValue.toLowerCase())
+                        || String.valueOf(account.getYear()).equals(newValue) || String.valueOf(account.getSector()).equals(newValue);
                 }
             });
         });

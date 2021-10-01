@@ -2,16 +2,12 @@ package fr.pjdevs.bar;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 public final class ItemList {
     private class ItemModel {

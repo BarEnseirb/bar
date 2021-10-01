@@ -103,9 +103,9 @@ public class CartPane extends VBox {
 
             Account account = accountResult.get();
             
-            if (account.money.get() >= this.total.get()) {
-                account.money.set(account.money.get() - this.total.get());
-                c.updateAccount(account.login.get(), account);
+            if (account.getMoney() >= this.total.get()) {
+                account.setMoney(account.getMoney() - this.total.get());
+                c.updateAccount(account.getLogin(), account);
 
                 new Alert(AlertType.INFORMATION, String.format("Purschased %,.2fE", this.total.get()/100.0)).show();
 

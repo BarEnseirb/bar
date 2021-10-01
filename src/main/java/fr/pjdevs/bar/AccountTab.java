@@ -50,68 +50,68 @@ public class AccountTab extends Tab {
         }
 
         TableColumn<Account, String> loginColumn = new TableColumn<Account, String>("Login");
-        loginColumn.setCellValueFactory(cellData -> cellData.getValue().login);
+        loginColumn.setCellValueFactory(cellData -> cellData.getValue().loginProperty());
         loginColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         loginColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, String>>(){
                 @Override
                 public void handle(CellEditEvent<Account, String> t) {
                     Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
-                    String oldLogin = account.login.get();
-                    account.login.set(t.getNewValue());
+                    String oldLogin = account.getLogin();
+                    account.setLogin(t.getNewValue());
                     updateAccount(oldLogin, account);
                 }
             }
         );      
 
         TableColumn<Account, String> nameColumn = new TableColumn<Account, String>("Name");
-        nameColumn.setCellValueFactory(cellData -> cellData.getValue().name);
+        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         nameColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, String>>(){
                 @Override
                 public void handle(CellEditEvent<Account, String> t) {
                     Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
-                    account.name.set(t.getNewValue());
-                    updateAccount(account.login.get(), account);
+                    account.setName(t.getNewValue());
+                    updateAccount(account.getLogin(), account);
                 }
             }
         );      
 
         TableColumn<Account, Integer> moneyColumn = new TableColumn<Account, Integer>("Money");
-        moneyColumn.setCellValueFactory(cellData -> cellData.getValue().money.asObject());
+        moneyColumn.setCellValueFactory(cellData -> cellData.getValue().moneyProperty().asObject());
         moneyColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         moneyColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, Integer>>(){
                 @Override
                 public void handle(CellEditEvent<Account, Integer> t) {
                     Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
-                    account.money.set(t.getNewValue());
-                    updateAccount(account.login.get(), account);
+                    account.setMoney(t.getNewValue());
+                    updateAccount(account.getLogin(), account);
                 }
             }
         );
 
         TableColumn<Account, Integer> yearColumn = new TableColumn<Account, Integer>("Year");
-        yearColumn.setCellValueFactory(cellData -> cellData.getValue().year.asObject());
+        yearColumn.setCellValueFactory(cellData -> cellData.getValue().yearProperty().asObject());
         yearColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         yearColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, Integer>>(){
                 @Override
                 public void handle(CellEditEvent<Account, Integer> t) {
                     Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
-                    account.year.set(t.getNewValue());
-                    updateAccount(account.login.get(), account);
+                    account.setYear(t.getNewValue());
+                    updateAccount(account.getLogin(), account);
                 }
             }
         );  
 
         
         TableColumn<Account, Integer> sectorColumn = new TableColumn<Account, Integer>("Sector");
-        sectorColumn.setCellValueFactory(cellData -> cellData.getValue().sector.asObject());
+        sectorColumn.setCellValueFactory(cellData -> cellData.getValue().sectorProperty().asObject());
         sectorColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         sectorColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, Integer>>(){
                 @Override
                 public void handle(CellEditEvent<Account, Integer> t) {
                     Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
-                    account.sector.set(t.getNewValue());
-                    updateAccount(account.login.get(), account);
+                    account.setSector(t.getNewValue());
+                    updateAccount(account.getLogin(), account);
                 }
             }
         );  
@@ -129,8 +129,8 @@ public class AccountTab extends Tab {
                 if (newValue == null || newValue.isBlank()) {
                     return true;
                 } else {
-                    return account.name.get().toLowerCase().contains(newValue.toLowerCase()) || account.login.get().toLowerCase().contains(newValue.toLowerCase())
-                        || String.valueOf(account.year.get()).equals(newValue) || String.valueOf(account.sector.get()).equals(newValue);
+                    return account.getName().toLowerCase().contains(newValue.toLowerCase()) || account.getLogin().toLowerCase().contains(newValue.toLowerCase())
+                        || String.valueOf(account.getYear()).equals(newValue) || String.valueOf(account.getSector()).equals(newValue);
                 }
             });
         });
@@ -181,7 +181,7 @@ public class AccountTab extends Tab {
     @FXML
     public void removeAccount() {
         try (DatabaseConnection c = new DatabaseConnection()) {
-            String login = accountTable.getSelectionModel().getSelectedItem().login.get();
+            String login = accountTable.getSelectionModel().getSelectedItem().getLogin();
             c.removeAccount(login);
             this.updateAccountList();
             new Alert(AlertType.INFORMATION, "Account " + login + " successfuly removed.").show();

@@ -34,7 +34,7 @@ public class DatabaseConnection implements AutoCloseable {
 
     public void updateAccount(String login, Account account) throws SQLException{
         this.connection.createStatement().executeUpdate(String.format("update student set login = '%s', name = '%s', money = %s, year = %s where login = '%s'",
-            account.login.get(), account.name.get(),  String.valueOf(account.money.get()), String.valueOf(account.year.get()), login));
+            account.getLogin(), account.getName(),  String.valueOf(account.getMoney()), String.valueOf(account.getYear()), login));
     }
 
     public void createAccount(String login, String name, int year, int sector) throws SQLException{
