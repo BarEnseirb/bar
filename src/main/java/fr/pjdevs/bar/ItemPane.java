@@ -42,8 +42,6 @@ public class ItemPane extends VBox {
                 addItem();
             } 
         });
-        this.addBtn.setPrefWidth(200);
-        this.addBtn.setPrefHeight(200);
 
         try {
             ItemList.getInstance().addListenner(new ChangedListenner(){
@@ -82,7 +80,10 @@ public class ItemPane extends VBox {
 
         try {
             for (Item item : ItemList.getInstance().getList()) {
-                this.itemsBox.add(new ItemView(item), currentColumn, currentRow);
+                ItemView iw = new ItemView(item);
+                this.itemsBox.add(iw, currentColumn, currentRow);
+                GridPane.setFillWidth(this.addBtn, true);
+                GridPane.setFillHeight(this.addBtn, true);
                 ++currentColumn;
 
                 if (currentColumn > columnCount) {
