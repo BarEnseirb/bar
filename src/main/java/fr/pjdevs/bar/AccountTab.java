@@ -2,6 +2,7 @@ package fr.pjdevs.bar;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
@@ -103,12 +104,12 @@ public class AccountTab extends Tab {
         );  
 
         
-        TableColumn<Account, Integer> sectorColumn = new TableColumn<Account, Integer>("Sector");
-        sectorColumn.setCellValueFactory(cellData -> cellData.getValue().sectorProperty().asObject());
-        sectorColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        sectorColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, Integer>>(){
+        TableColumn<Account, String> sectorColumn = new TableColumn<Account, String>("Sector");
+        sectorColumn.setCellValueFactory(cellData -> cellData.getValue().sectorProperty());
+        sectorColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        sectorColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, String>>(){
                 @Override
-                public void handle(CellEditEvent<Account, Integer> t) {
+                public void handle(CellEditEvent<Account, String> t) {
                     Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
                     account.setSector(t.getNewValue());
                     updateAccount(account.getLogin(), account);
@@ -130,7 +131,7 @@ public class AccountTab extends Tab {
                     return true;
                 } else {
                     return account.getName().toLowerCase().contains(newValue.toLowerCase()) || account.getLogin().toLowerCase().contains(newValue.toLowerCase())
-                        || String.valueOf(account.getYear()).equals(newValue) || String.valueOf(account.getSector()).equals(newValue);
+                        || String.valueOf(account.getYear()).equals(newValue) || account.getSector().equals(newValue);
                 }
             });
         });
@@ -151,20 +152,21 @@ public class AccountTab extends Tab {
 
     @FXML
     public void addAccount() {
-        String login = this.loginField.getText();
-        String name =  this.nameField.getText();
-        String yearStr = this.yearField.getText();
-        String sectorStr = this.sectorField.getText();
+        String login = this.loginField.getText().strip();
+        String name =  this.nameField.getText().strip();
+        String yearStr = this.yearField.getText().strip();
+        String sector = this.sectorField.getText().strip();
 
-        if (login.isBlank() || name.isBlank() || yearStr.isBlank() || sectorStr.isBlank()) {
+        if (login.isBlank() || name.isBlank() || yearStr.isBlank() || sector.isBlank()) {
             return;
         }
 
         try (DatabaseConnection c = new DatabaseConnection()) {
             int year = Integer.valueOf(yearStr);
-            int sector = Integer.valueOf(sectorStr);
-            if (year < 0 || sector < 0 || sector > 6) {
-                throw new NumberFormatException();
+            if (year < 0) {
+                throw new NumberFormatException("Year must not be negative");
+            } else if (sector.length() > 1) {
+                throw new Exception("Sector must be one capital letter");
             }
 
             c.createAccount(login, name, year, sector);
@@ -174,7 +176,9 @@ public class AccountTab extends Tab {
         } catch (SQLException e) {
             new Alert(AlertType.ERROR, e.getMessage()).show();
         } catch (NumberFormatException e) {
-            new Alert(AlertType.ERROR, "Year or Sector field is not a valid number.").show();
+            new Alert(AlertType.ERROR, e.getMessage()).show();
+        } catch (Exception e) {
+            new Alert(AlertType.ERROR, e.getMessage()).show();
         }
     }
 

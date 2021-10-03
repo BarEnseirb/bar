@@ -6,18 +6,18 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class Account {
-    private SimpleStringProperty login;
-    private SimpleStringProperty name;
-    private SimpleIntegerProperty money;
-    private SimpleIntegerProperty year;
-    private SimpleIntegerProperty sector;
+    private StringProperty login;
+    private StringProperty name;
+    private IntegerProperty money;
+    private IntegerProperty year;
+    private StringProperty sector;
 
-    public Account(String login, String name, int money, int year, int sector) {
+    public Account(String login, String name, int money, int year, String sector) {
         this.login = new SimpleStringProperty(login);
         this.name = new SimpleStringProperty(name);
         this.money = new SimpleIntegerProperty(money);
         this.year = new SimpleIntegerProperty(year);
-        this.sector = new SimpleIntegerProperty(sector);
+        this.sector = new SimpleStringProperty(sector);
     }
 
     public String getLogin() {
@@ -68,15 +68,15 @@ public class Account {
         return this.year;
     }
 
-    public int getSector() {
+    public String getSector() {
         return this.sector.get();
     }
 
-    public void setSector(int sector) {
+    public void setSector(String sector) {
         this.sector.set(sector);
     }
 
-    public IntegerProperty sectorProperty() {
+    public StringProperty sectorProperty() {
         return this.sector;
     }
 }

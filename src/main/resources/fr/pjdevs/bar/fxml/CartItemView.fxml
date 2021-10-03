@@ -3,11 +3,24 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.* ?>
 <?import javafx.scene.layout.* ?>
+<?import javafx.scene.text.* ?>
 <?import javafx.scene.image.* ?>
 
-<fx:root type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10">
+<fx:root styleClass="cart-item" type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10">
    <Label fx:id="itemNameLbl" text="Item"/>
    <Label fx:id="itemPriceLbl" text="0.5E"/>
    <Label fx:id="itemCountLbl" text="x 1"/>
-   <Button fx:id="minusBtn" text="-" onAction="#minus"/>
+   <Pane HBox.hgrow="ALWAYS"/>
+   <Button fx:id="minusBtn" text="" onAction="#minus">
+      <font>
+         <Font size="30.0" />
+      </font>
+      <graphic>
+         <ImageView pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../images/cross.png"/>
+            </image>
+         </ImageView>
+      </graphic>
+   </Button>
 </fx:root>

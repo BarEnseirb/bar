@@ -80,7 +80,7 @@
     -fx-focus-color: rgba(0, 0, 0, 0);
 } */
 
-.item-pane .button {
+.item-pane .button, .cart-item .button {
     -fx-background-color: rgba(0, 0, 0, 0);
         /* #c3c4c4,
         linear-gradient(#d6d6d6 50%, white 100%),

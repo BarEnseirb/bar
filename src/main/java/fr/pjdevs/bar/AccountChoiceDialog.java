@@ -44,8 +44,8 @@ public class AccountChoiceDialog extends Dialog<Account> {
         moneyColumn.setCellValueFactory(cellData -> cellData.getValue().moneyProperty().asObject());
         TableColumn<Account, Integer> yearColumn = new TableColumn<Account, Integer>("Year");
         yearColumn.setCellValueFactory(cellData -> cellData.getValue().yearProperty().asObject());
-        TableColumn<Account, Integer> sectorColumn = new TableColumn<Account, Integer>("Sector");
-        sectorColumn.setCellValueFactory(cellData -> cellData.getValue().sectorProperty().asObject());
+        TableColumn<Account, String> sectorColumn = new TableColumn<Account, String>("Sector");
+        sectorColumn.setCellValueFactory(cellData -> cellData.getValue().sectorProperty());
 
         tableView.getColumns().add(loginColumn);
         tableView.getColumns().add(nameColumn);
@@ -78,7 +78,7 @@ public class AccountChoiceDialog extends Dialog<Account> {
                     return true;
                 } else {
                     return account.getName().toLowerCase().contains(newValue.toLowerCase()) || account.getLogin().toLowerCase().contains(newValue.toLowerCase())
-                        || String.valueOf(account.getYear()).equals(newValue) || String.valueOf(account.getSector()).equals(newValue);
+                        || String.valueOf(account.getYear()).equals(newValue) || account.getSector().equals(newValue);
                 }
             });
         });
