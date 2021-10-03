@@ -50,7 +50,7 @@ All dependencies are specified in the Gradle project.
 Some private data are not provided here.
 You will need a data folder next to the JAR file containing :
 
-- `data/db/bar.db` : A SQLite database with two tables `student |login|name|money|year|class|` and `history |studentid|product|price|date|transaction|`.
+- `data/db/bar.db` : A SQLite database with two tables `student |login|name|money|year|sector|` and `history |login_student|product|price|date|transaction|`.
 
 - `data/items/items.json` : A list of available items in following JSON format
 ```json
