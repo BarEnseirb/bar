@@ -19,7 +19,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DateStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
-public class HistoryPane extends VBox {
+public class HistoryPane extends VBox implements Updatable {
     @FXML
     private TableView<HistoryEntry> historyTable;
     @FXML
@@ -81,11 +81,12 @@ public class HistoryPane extends VBox {
         this.historyTable.setItems(this.filteredHistoryList);
         this.historyTable.setEditable(false);
 
-        this.updateHistoryEntryList();
+        this.update();
     }
 
+    @Override
     @FXML
-    public void updateHistoryEntryList() {
+    public void update() {
         try (DatabaseConnection c = new DatabaseConnection()) {
             this.historyList.clear();
 

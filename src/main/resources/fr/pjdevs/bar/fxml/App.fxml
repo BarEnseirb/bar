@@ -17,15 +17,15 @@
             </HBox>
          </content>
       </Tab>
-      <Tab closable="false" text="Account">
+      <UpdateTab closable="false" text="Account">
          <content>
             <AccountPane/>
          </content>
-      </Tab>
-      <Tab closable="false" text="History">
+      </UpdateTab>
+      <UpdateTab closable="false" text="History">
          <content>
             <HistoryPane/>
          </content>
-      </Tab>
+      </UpdateTab>
    </tabs>
 </TabPane>

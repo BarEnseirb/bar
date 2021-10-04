@@ -21,7 +21,7 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.IntegerStringConverter;
 
-public class AccountPane extends VBox {
+public class AccountPane extends VBox implements Updatable {
     @FXML
     private TableView<Account> accountTable;
     @FXML
@@ -138,7 +138,7 @@ public class AccountPane extends VBox {
         this.accountTable.setItems(this.filteredAccountList);
         this.accountTable.setEditable(true);
 
-        this.updateAccountList();
+        this.update();
     }
 
     private void updateAccount(String login, Account account) {
@@ -169,7 +169,7 @@ public class AccountPane extends VBox {
             }
 
             c.createAccount(login, name, year, sector);
-            this.updateAccountList();
+            this.update();
 
             new Alert(AlertType.INFORMATION, "Account " + login + " successfuly added.").show();
         } catch (SQLException e) {
@@ -186,15 +186,16 @@ public class AccountPane extends VBox {
         try (DatabaseConnection c = new DatabaseConnection()) {
             String login = accountTable.getSelectionModel().getSelectedItem().getLogin();
             c.removeAccount(login);
-            this.updateAccountList();
+            this.update();
             new Alert(AlertType.INFORMATION, "Account " + login + " successfuly removed.").show();
         } catch (SQLException e) {
             new Alert(AlertType.ERROR, e.getMessage()).show();
         }
     }
 
+    @Override
     @FXML
-    public void updateAccountList() {
+    public void update() {
         try (DatabaseConnection c = new DatabaseConnection()) {
             this.accountList.clear();
 
@@ -216,7 +217,7 @@ public class AccountPane extends VBox {
 
         try (DatabaseConnection c = new DatabaseConnection()) {
             c.nextYear();
-            this.updateAccountList();
+            this.update();
             new Alert(AlertType.INFORMATION, "All years have been incremented.").show();
         } catch (Exception e) {
             new Alert(AlertType.ERROR, e.getMessage()).show();
