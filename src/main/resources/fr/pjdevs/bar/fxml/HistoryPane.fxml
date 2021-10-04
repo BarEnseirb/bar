@@ -6,7 +6,7 @@
 
 <fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml">
     <children>
-        <TextField fx:id="filterField" promptText="Filter"/>
+        <TextField fx:id="filterField" promptText="Filtre"/>
         <TableView fx:id="historyTable" VBox.vgrow="ALWAYS" maxHeight="Infinity"/>
     </children>
 </fx:root>

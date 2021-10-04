@@ -7,7 +7,7 @@
 
 <TabPane tabClosingPolicy="UNAVAILABLE">
    <tabs>
-      <Tab closable="false" text="Pay">
+      <Tab closable="false" text="Paiement">
          <content>
             <HBox>
                <children>
@@ -17,12 +17,12 @@
             </HBox>
          </content>
       </Tab>
-      <UpdateTab closable="false" text="Account">
+      <UpdateTab closable="false" text="Comptes">
          <content>
             <AccountPane/>
          </content>
       </UpdateTab>
-      <UpdateTab closable="false" text="History">
+      <UpdateTab closable="false" text="Historique">
          <content>
             <HistoryPane/>
          </content>

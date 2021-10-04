@@ -7,19 +7,19 @@
     <children>
         <HBox spacing="10">
             <children>
-                <Button styleClass="warning" text="Go Next Year" onAction="#nextYear" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                <Button styleClass="warning" text="Passer une année" onAction="#nextYear" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
             </children>
         </HBox>
-        <TextField fx:id="nameFilterField" promptText="Filter by name or login"/>
+        <TextField fx:id="nameFilterField" promptText="Filtre"/>
         <TableView fx:id="accountTable" VBox.vgrow="ALWAYS" maxHeight="Infinity"/>
         <HBox spacing="10">
             <children>
                 <TextField fx:id="loginField" promptText="Login"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                <TextField fx:id="nameField" promptText="Name"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                <TextField fx:id="yearField" promptText="Year"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                <TextField fx:id="sectorField" promptText="Sector"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                <Button text="Add" onAction="#addAccount"/>
-                <Button text="Remove" onAction="#removeAccount"/>
+                <TextField fx:id="nameField" promptText="Nom"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                <TextField fx:id="yearField" promptText="Année"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                <TextField fx:id="sectorField" promptText="Filière"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                <Button text="Ajouter" onAction="#addAccount"/>
+                <Button text="Supprimer" onAction="#removeAccount"/>
             </children>
         </HBox>
     </children>

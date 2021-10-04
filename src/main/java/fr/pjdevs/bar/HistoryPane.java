@@ -39,15 +39,15 @@ public class HistoryPane extends VBox implements Updatable {
             throw new RuntimeException(exception);
         }
 
-        TableColumn<HistoryEntry, String> studentLoginColumn = new TableColumn<HistoryEntry, String>("Student login");
+        TableColumn<HistoryEntry, String> studentLoginColumn = new TableColumn<HistoryEntry, String>("Login");
         studentLoginColumn.setCellValueFactory(cellData -> cellData.getValue().studentLoginProperty());
         studentLoginColumn.setCellFactory(TextFieldTableCell.forTableColumn());    
 
-        TableColumn<HistoryEntry, String> productColumn = new TableColumn<HistoryEntry, String>("Product");
+        TableColumn<HistoryEntry, String> productColumn = new TableColumn<HistoryEntry, String>("Produit");
         productColumn.setCellValueFactory(cellData -> cellData.getValue().productProperty());
         productColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        TableColumn<HistoryEntry, Integer> priceColumn = new TableColumn<HistoryEntry, Integer>("Price");
+        TableColumn<HistoryEntry, Integer> priceColumn = new TableColumn<HistoryEntry, Integer>("Prix");
         priceColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
         priceColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 

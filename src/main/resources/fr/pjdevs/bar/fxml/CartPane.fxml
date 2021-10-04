@@ -93,19 +93,19 @@
         <GridPane hgap="10" vgap="10">
             <Label text="Total:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
             <Label styleClass="price" fx:id="totalLbl" wrapText="true" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-            <Label text="Given:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <Label text="Donné:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
             <Label styleClass="price" fx:id="givenTotalLbl" wrapText="true" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
-            <Label text="To give back:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <Label text="A rendre:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
             <Label styleClass="price,red" fx:id="backTotalLbl" wrapText="true" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-            <Label text="Left to pay:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+            <Label text="Reste à payer:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
             <Label styleClass="price,green" fx:id="leftTotalLbl" wrapText="true" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
         </GridPane>
         <HBox spacing="20">
             <children>
-                <Button fx:id="purchaseBtn" text="Purchase" onAction="#purchase"/>
-                <Button fx:id="purchaseMoneyBtn" text="Purchase money" onAction="#purchaseMoney"/>
-                <Button fx:id="clearBtn" text="Clear cart" onAction="#clear"/>
-                <Button fx:id="clearMoneyBtn" text="Clear money" onAction="#clearMoney"/>
+                <Button fx:id="purchaseBtn" text="Achat compte" onAction="#purchase"/>
+                <Button fx:id="purchaseMoneyBtn" text="Achat espèce" onAction="#purchaseMoney"/>
+                <Button fx:id="clearBtn" text="Nettoyer panier" onAction="#clear"/>
+                <Button fx:id="clearMoneyBtn" text="Nettoyter espèce" onAction="#clearMoney"/>
             </children>
         </HBox>
     </children>

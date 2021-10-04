@@ -65,7 +65,7 @@ public class AccountPane extends VBox implements Updatable {
             }
         );      
 
-        TableColumn<Account, String> nameColumn = new TableColumn<Account, String>("Name");
+        TableColumn<Account, String> nameColumn = new TableColumn<Account, String>("Nom");
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         nameColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, String>>(){
@@ -78,7 +78,7 @@ public class AccountPane extends VBox implements Updatable {
             }
         );      
 
-        TableColumn<Account, Integer> moneyColumn = new TableColumn<Account, Integer>("Money");
+        TableColumn<Account, Integer> moneyColumn = new TableColumn<Account, Integer>("Argent");
         moneyColumn.setCellValueFactory(cellData -> cellData.getValue().moneyProperty().asObject());
         moneyColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         moneyColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, Integer>>(){
@@ -93,7 +93,7 @@ public class AccountPane extends VBox implements Updatable {
             }
         );
 
-        TableColumn<Account, Integer> yearColumn = new TableColumn<Account, Integer>("Year");
+        TableColumn<Account, Integer> yearColumn = new TableColumn<Account, Integer>("Annee");
         yearColumn.setCellValueFactory(cellData -> cellData.getValue().yearProperty().asObject());
         yearColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         yearColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, Integer>>(){
@@ -107,7 +107,7 @@ public class AccountPane extends VBox implements Updatable {
         );  
 
         
-        TableColumn<Account, String> sectorColumn = new TableColumn<Account, String>("Sector");
+        TableColumn<Account, String> sectorColumn = new TableColumn<Account, String>("Filiere");
         sectorColumn.setCellValueFactory(cellData -> cellData.getValue().sectorProperty());
         sectorColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         sectorColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, String>>(){
@@ -175,15 +175,15 @@ public class AccountPane extends VBox implements Updatable {
         try (DatabaseConnection c = new DatabaseConnection()) {
             int year = Integer.valueOf(yearStr);
             if (year < 0) {
-                throw new NumberFormatException("Year must not be negative");
+                throw new NumberFormatException("L'année doit être positive");
             } else if (sector.length() > 1) {
-                throw new Exception("Sector must be one capital letter");
+                throw new Exception("La filière doit être N,E,I,M,R,S,T");
             }
 
             c.createAccount(login, name, year, sector);
             this.update();
 
-            new Alert(AlertType.INFORMATION, "Account " + login + " successfuly added.").show();
+            new Alert(AlertType.INFORMATION, "Compte " + login + " ajouté avec succès.").show();
         } catch (SQLException e) {
             new Alert(AlertType.ERROR, e.getMessage()).show();
         } catch (NumberFormatException e) {
@@ -199,7 +199,7 @@ public class AccountPane extends VBox implements Updatable {
             String login = accountTable.getSelectionModel().getSelectedItem().getLogin();
             c.removeAccount(login);
             this.update();
-            new Alert(AlertType.INFORMATION, "Account " + login + " successfuly removed.").show();
+            new Alert(AlertType.INFORMATION, "Compte " + login + " supprimé avec succès.").show();
         } catch (SQLException e) {
             new Alert(AlertType.ERROR, e.getMessage()).show();
         }
@@ -221,7 +221,7 @@ public class AccountPane extends VBox implements Updatable {
 
     @FXML
     public void nextYear() {
-        Alert alert = new Alert(AlertType.CONFIRMATION, "Go to next year ?");
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Voulez-vous passer une année ?");
         Optional<ButtonType> res = alert.showAndWait();
         if (res.isEmpty() || res.get() == ButtonType.CANCEL) {
             return;
@@ -230,7 +230,7 @@ public class AccountPane extends VBox implements Updatable {
         try (DatabaseConnection c = new DatabaseConnection()) {
             c.nextYear();
             this.update();
-            new Alert(AlertType.INFORMATION, "All years have been incremented.").show();
+            new Alert(AlertType.INFORMATION, "Toutes les années ont été incrémentées.").show();
         } catch (Exception e) {
             new Alert(AlertType.ERROR, e.getMessage()).show();
         }
