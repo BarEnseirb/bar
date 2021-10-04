@@ -2,6 +2,8 @@ package fr.pjdevs.bar;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.util.Date;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
@@ -83,8 +85,10 @@ public class AccountPane extends VBox implements Updatable {
                 @Override
                 public void handle(CellEditEvent<Account, Integer> t) {
                     Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
+                    int oldMoney = account.getMoney();
                     account.setMoney(t.getNewValue());
                     updateAccount(account.getLogin(), account);
+                    createHistoryEntry(account.getLogin(), oldMoney, account.getMoney());
                 }
             }
         );
@@ -139,6 +143,14 @@ public class AccountPane extends VBox implements Updatable {
         this.accountTable.setEditable(true);
 
         this.update();
+    }
+
+    private void createHistoryEntry(String login, int oldMoney, int money) {
+        try (DatabaseConnection c = new DatabaseConnection()) {
+            c.createHistoryEntry(login, money > oldMoney ? "Credit" : "Debit", money-oldMoney, Date.from(Instant.now()), "Mouvement");
+        } catch (SQLException e) {
+            new Alert(AlertType.ERROR, e.getMessage()).show();;
+        }        
     }
 
     private void updateAccount(String login, Account account) {
