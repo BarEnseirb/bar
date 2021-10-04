@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.* ?>
+<?import javafx.scene.layout.* ?>
+
+<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml">
+    <children>
+        <TextField fx:id="filterField" promptText="Filter"/>
+        <TableView fx:id="historyTable" VBox.vgrow="ALWAYS" maxHeight="Infinity"/>
+    </children>
+</fx:root>

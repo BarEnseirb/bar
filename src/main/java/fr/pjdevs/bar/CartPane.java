@@ -1,7 +1,11 @@
 package fr.pjdevs.bar;
 
+import java.util.Date;
+import java.util.Map;
 import java.util.Optional;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.time.Instant;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
@@ -105,7 +109,13 @@ public class CartPane extends VBox {
             
             if (account.getMoney() >= this.total.get()) {
                 account.setMoney(account.getMoney() - this.total.get());
+                
                 c.updateAccount(account.getLogin(), account);
+                for (Map.Entry<Item, Integer> e : Cart.getInstance().getItems().entrySet()) {
+                    Item item = e.getKey();
+                    Integer count = e.getValue();
+                    c.createHistoryEntry(account.getLogin(), item.getName() + (count > 0 ? " x" + count : ""), this.total.get(), Date.from(Instant.now()), "Achat");
+                }
 
                 new Alert(AlertType.INFORMATION, String.format("Purschased %,.2fE", this.total.get()/100.0)).show();
 
@@ -114,8 +124,7 @@ public class CartPane extends VBox {
             } else {
                 new Alert(AlertType.ERROR, "Not enough money.").show();
             }
-                
-        } catch (Exception e) {
+        } catch (SQLException e) {
             new Alert(AlertType.ERROR, e.getMessage()).show();
         }
     }

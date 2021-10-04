@@ -2,7 +2,6 @@ package fr.pjdevs.bar;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
@@ -11,10 +10,10 @@ import javafx.event.EventHandler;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.VBox;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
@@ -22,7 +21,7 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.IntegerStringConverter;
 
-public class AccountTab extends Tab {
+public class AccountPane extends VBox {
     @FXML
     private TableView<Account> accountTable;
     @FXML
@@ -39,8 +38,8 @@ public class AccountTab extends Tab {
     private ObservableList<Account> accountList;
     private FilteredList<Account> filteredAccountList;
 
-    public AccountTab() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/AccountTab.fxml"));
+    public AccountPane() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/AccountPane.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
     

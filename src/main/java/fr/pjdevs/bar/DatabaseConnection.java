@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DatabaseConnection implements AutoCloseable {
@@ -32,12 +34,12 @@ public class DatabaseConnection implements AutoCloseable {
         return accounts;
     }
 
-    public void updateAccount(String login, Account account) throws SQLException{
+    public void updateAccount(String login, Account account) throws SQLException {
         this.connection.createStatement().executeUpdate(String.format("update student set login = '%s', name = '%s', money = %s, year = %s, sector = '%s' where login = '%s'",
             account.getLogin(), account.getName(),  String.valueOf(account.getMoney()), String.valueOf(account.getYear()), account.getSector(), login));
     }
 
-    public void createAccount(String login, String name, int year, String sector) throws SQLException{
+    public void createAccount(String login, String name, int year, String sector) throws SQLException {
         this.connection.createStatement().executeUpdate(String.format("insert into student (login, name, money, year, sector) VALUES ('%s', '%s', %s, %s, '%s')",
             login, name, "0", String.valueOf(year), sector));   
     }
@@ -52,5 +54,21 @@ public class DatabaseConnection implements AutoCloseable {
 
     public void close() throws SQLException {
         this.connection.close();
+    }
+
+    public void createHistoryEntry(String login, String product, int price, Date date, String transaction) throws SQLException {
+        this.connection.createStatement().executeUpdate(String.format("insert into history (login_student, product, price, date, \"transaction\") VALUES ('%s', '%s', %s, '%s', '%s')",
+            login, product, String.valueOf(price), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date), transaction));   
+    }
+
+    public List<HistoryEntry> getHistoryEntryList() throws SQLException {
+        ResultSet r = this.connection.createStatement().executeQuery("select * from history");
+        List<HistoryEntry> historyEntries = new ArrayList<HistoryEntry>();
+
+        while (r.next()) {
+            historyEntries.add(new HistoryEntry(r.getString("login_student"), r.getString("product"), r.getInt("price"), r.getDate("date"), r.getString("transaction")));
+        }
+
+        return historyEntries;
     }
 }
