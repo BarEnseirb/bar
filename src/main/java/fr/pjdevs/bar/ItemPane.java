@@ -51,7 +51,7 @@ public class ItemPane extends VBox {
                 }
             });
         } catch (IOException e) {
-            new Alert(AlertType.ERROR, "Cannot open item list :\n" + e.getMessage()).show();
+            new Alert(AlertType.ERROR, "Impossible d'ouvrir la liste des items :\n" + e.getMessage()).show();
         }
 
         this.update();
@@ -64,10 +64,10 @@ public class ItemPane extends VBox {
             try {
                 ItemList.getInstance().add(newItem.get());
             } catch (IOException e) {
-                new Alert(AlertType.ERROR, "Cannot open item list :\n" + e.getMessage()).show();
+                new Alert(AlertType.ERROR, "Impossible d'ouvrir la liste des items :\n" + e.getMessage()).show();
             }
         } else {
-            new Alert(AlertType.ERROR, "Item not added due to wrong values.").show();
+            new Alert(AlertType.ERROR, "L'item n'a pas été ajouté à cause de valeur incorectes").show();
         }
     }
 
@@ -92,7 +92,7 @@ public class ItemPane extends VBox {
                 }
             }
         } catch (IOException e) {
-            new Alert(AlertType.ERROR, "Cannot open item list :\n" + e.getMessage()).show();
+            new Alert(AlertType.ERROR, "Impossible d'ourvrir la liste des items :\n" + e.getMessage()).show();
         }
 
         this.itemsBox.add(this.addBtn, currentColumn, currentRow);
