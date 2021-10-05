@@ -2,7 +2,6 @@ package fr.pjdevs.bar;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.Exception;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
