@@ -114,7 +114,10 @@ public class CartPane extends VBox {
                 for (Map.Entry<Item, Integer> e : Cart.getInstance().getItems().entrySet()) {
                     Item item = e.getKey();
                     Integer count = e.getValue();
-                    c.createHistoryEntry(account.getLogin(), item.getName() + (count > 0 ? " x" + count : ""), this.total.get(), Date.from(Instant.now()), "Achat");
+
+                    if (item.getPrice() > 0) {
+                        c.createHistoryEntry(account.getLogin(), item.getName() + (count > 0 ? " x" + count : ""), this.total.get(), Date.from(Instant.now()), "Achat");
+                    }
                 }
 
                 new Alert(AlertType.INFORMATION, String.format("Purschased %,.2fE", this.total.get()/100.0)).show();

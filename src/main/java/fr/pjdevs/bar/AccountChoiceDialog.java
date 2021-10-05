@@ -58,7 +58,7 @@ public class AccountChoiceDialog extends Dialog<Account> {
         bottomLayout.setAlignment(Pos.CENTER);
         Label filterLabel = new Label("FIltre :");
         TextField nameFilterField = new TextField();
-        nameFilterField.setPromptText("Login ou nom");
+        nameFilterField.setPromptText("Login ou nom ou annee ou filiere");
 
         bottomLayout.getChildren().add(filterLabel);
         bottomLayout.getChildren().add(nameFilterField);

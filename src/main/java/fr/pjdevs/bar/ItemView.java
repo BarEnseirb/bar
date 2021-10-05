@@ -7,8 +7,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
 
 public class ItemView extends VBox {
@@ -29,6 +32,9 @@ public class ItemView extends VBox {
         this.itemNameLbl.textProperty().bind(this.item.nameProperty());
         this.itemPriceLbl.textProperty().bind(this.item.priceProperty().divide(100.0).asString("%,.2fE"));
         this.itemDescriptionLbl.textProperty().bind(this.item.descriptionProperty());
+        this.backgroundProperty().bind(Bindings.createObjectBinding((() -> {
+            return new Background(new BackgroundFill(this.item.getColor(), null, null));
+        }), this.item.colorProperty()));;
     }
 
     @FXML

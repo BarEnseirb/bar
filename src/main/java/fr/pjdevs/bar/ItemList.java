@@ -9,16 +9,20 @@ import java.nio.file.Paths;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import javafx.scene.paint.Color;
+
 public final class ItemList {
     private class ItemModel {
         private String name;
         private int price;
         private String description;
+        private String color;
 
-        private ItemModel(String name, int price, String description) {
+        private ItemModel(String name, int price, String description, String color) {
             this.name = name;
             this.price = price;
             this.description = description;
+            this.color = color;
         }
     }
 
@@ -32,7 +36,7 @@ public final class ItemList {
         List<Item> items = new ArrayList<Item>(models.size());
 
         for (ItemModel model : models) {
-            items.add(new Item(model.name, model.price, model.description));
+            items.add(new Item(model.name, model.price, model.description, Color.valueOf(model.color)));
         }
 
         return items;
@@ -42,7 +46,7 @@ public final class ItemList {
         List<ItemModel> models = new ArrayList<ItemModel>(items.size());
         
         for (Item item : items) {
-            models.add(new ItemModel(item.getName(), item.getPrice(), item.getDesciption()));
+            models.add(new ItemModel(item.getName(), item.getPrice(), item.getDesciption(), item.getColor().toString()));
         }
 
         return models;

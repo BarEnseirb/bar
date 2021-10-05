@@ -2,6 +2,7 @@ package fr.pjdevs.bar;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -18,11 +19,11 @@ public class ItemDialog extends Dialog<Item> {
         super();
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
-        this.setTitle("Edit");
-        this.setHeaderText("Choose new items properties");
+        this.setTitle("Editer");
+        this.setHeaderText("Editez les propriétés de l'item");
         this.setWidth(800);
 
-        ButtonType chooseButtonType = new ButtonType("Choose", ButtonData.OK_DONE);
+        ButtonType chooseButtonType = new ButtonType("Choisir", ButtonData.OK_DONE);
         this.getDialogPane().getButtonTypes().addAll(chooseButtonType, ButtonType.CANCEL);
 
         // UI
@@ -36,6 +37,8 @@ public class ItemDialog extends Dialog<Item> {
         TextArea descriptionArea = new TextArea(item != null ? item.getDesciption() : "");
         GridPane.setVgrow(descriptionArea, Priority.ALWAYS);
 
+        ColorPicker colorPicker = new ColorPicker(item.getColor());
+
         this.setResultConverter(dialogButton -> {
             if (dialogButton == chooseButtonType) {
                 try {
@@ -48,7 +51,7 @@ public class ItemDialog extends Dialog<Item> {
                         throw new Exception();
                     }
 
-                    return new Item(name, price, description);
+                    return new Item(name, price, description, colorPicker.getValue());
                 } catch (Exception e) {
                     return null;
                 }
@@ -63,6 +66,7 @@ public class ItemDialog extends Dialog<Item> {
         mainLayout.add(priceField, 1, 1);
         mainLayout.add(new Label("Description:"), 0, 2);
         mainLayout.add(descriptionArea, 1, 2);
+        mainLayout.add(colorPicker, 0, 3);
 
         this.getDialogPane().setContent(mainLayout);
     }
