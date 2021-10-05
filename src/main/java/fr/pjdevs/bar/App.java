@@ -2,18 +2,24 @@ package fr.pjdevs.bar;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.Exception;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.nio.file.StandardOpenOption;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import javafx.fxml.FXMLLoader;
 
 /**
@@ -61,15 +67,46 @@ public class App extends Application {
         }
 
         if (lock) {
+            final Image ekip = new Image(getClass().getResourceAsStream("images/ekip.jpg"));
+            final ImageView splash = new ImageView(ekip);
+            final AnchorPane splashRoot = new AnchorPane(splash);
+            final Scene splashScene = new Scene(splashRoot);
+
+            //Load splash screen with fade in effect
+            FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), splashRoot);
+            fadeIn.setFromValue(0);
+            fadeIn.setToValue(1);
+            fadeIn.setCycleCount(1);
+    
+            //Finish splash with fade out effect
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), splashRoot);
+            fadeOut.setFromValue(1);
+            fadeOut.setToValue(0);
+            fadeOut.setCycleCount(1);
+
+            final Stage splashStage = new Stage(StageStyle.TRANSPARENT);
+            splashStage.getIcons().add(ekip);
+            splashStage.setScene(splashScene);
+            splashStage.show();
+
+            fadeIn.play();
+
             final Parent root = FXMLLoader.load(getClass().getResource("fxml/App.fxml"));
             root.getStylesheets().add(getClass().getResource("css/bar.css").toExternalForm());
             final Scene scene = new Scene(root);
-
-            stage.getIcons().add(new Image(getClass().getResourceAsStream("images/ekip.jpg")));
+            
+            stage.getIcons().add(ekip);
             stage.setTitle("Bar");
             stage.setScene(scene);
             stage.setMaximized(true);
-            stage.show();
+
+            fadeIn.setOnFinished(e -> {
+                fadeOut.play();
+                fadeOut.setOnFinished(f -> {
+                    stage.show();
+                    splashStage.close();
+                });
+            });
         } else {
             new Alert(AlertType.ERROR, "Impossble d'acquerir le lock. Une instance de l'application doit deja etre lance.").show();
             stage.close();
