@@ -17,7 +17,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DateStringConverter;
-import javafx.util.converter.IntegerStringConverter;
 
 public class HistoryPane extends VBox implements Updatable {
     @FXML
@@ -47,9 +46,8 @@ public class HistoryPane extends VBox implements Updatable {
         productColumn.setCellValueFactory(cellData -> cellData.getValue().productProperty());
         productColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        TableColumn<HistoryEntry, Integer> priceColumn = new TableColumn<HistoryEntry, Integer>("Prix");
-        priceColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
-        priceColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        TableColumn<HistoryEntry, String> priceColumn = new TableColumn<HistoryEntry, String>("Prix");
+        priceColumn.setCellValueFactory(new IntegerStringMoneyCallback<HistoryEntry>(entry -> entry.priceProperty()));
 
         TableColumn<HistoryEntry, Date> dateColumn = new TableColumn<HistoryEntry, Date>("Date");
         dateColumn.setCellValueFactory(cellData -> cellData.getValue().dateProperty());

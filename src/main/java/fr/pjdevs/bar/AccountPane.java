@@ -1,6 +1,7 @@
 package fr.pjdevs.bar;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.time.Instant;
 import java.util.Date;
@@ -21,6 +22,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.BigDecimalStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
 public class AccountPane extends VBox implements Updatable {
@@ -78,20 +80,8 @@ public class AccountPane extends VBox implements Updatable {
             }
         );      
 
-        TableColumn<Account, Integer> moneyColumn = new TableColumn<Account, Integer>("Argent");
-        moneyColumn.setCellValueFactory(cellData -> cellData.getValue().moneyProperty().asObject());
-        moneyColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        moneyColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, Integer>>(){
-                @Override
-                public void handle(CellEditEvent<Account, Integer> t) {
-                    Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
-                    int oldMoney = account.getMoney();
-                    account.setMoney(t.getNewValue());
-                    updateAccount(account.getLogin(), account);
-                    createHistoryEntry(account.getLogin(), oldMoney, account.getMoney());
-                }
-            }
-        );
+        TableColumn<Account, String> moneyColumn = new TableColumn<Account, String>("Argent");
+        moneyColumn.setCellValueFactory(new IntegerStringMoneyCallback<Account>(account -> account.moneyProperty()));
 
         TableColumn<Account, Integer> yearColumn = new TableColumn<Account, Integer>("Annee");
         yearColumn.setCellValueFactory(cellData -> cellData.getValue().yearProperty().asObject());
@@ -120,11 +110,26 @@ public class AccountPane extends VBox implements Updatable {
             }
         );  
 
+        TableColumn<Account, BigDecimal> creditColumn = new TableColumn<Account, BigDecimal>("Credit");
+        creditColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigDecimalStringConverter()));
+        creditColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, BigDecimal>>(){
+                @Override
+                public void handle(CellEditEvent<Account, BigDecimal> t) {
+                    int amount = t.getNewValue().setScale(2).unscaledValue().intValue();
+                    Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
+                    account.setMoney(account.getMoney() + amount);
+                    updateAccount(account.getLogin(), account);
+                    createHistoryEntry(account.getLogin(), amount);
+                }
+            }
+        );
+
         this.accountTable.getColumns().add(loginColumn);
         this.accountTable.getColumns().add(nameColumn);
         this.accountTable.getColumns().add(moneyColumn);
         this.accountTable.getColumns().add(yearColumn);
         this.accountTable.getColumns().add(sectorColumn);
+        this.accountTable.getColumns().add(creditColumn);
 
         this.accountList = FXCollections.observableArrayList();
         this.filteredAccountList = new FilteredList<Account>(this.accountList);
@@ -145,9 +150,9 @@ public class AccountPane extends VBox implements Updatable {
         this.update();
     }
 
-    private void createHistoryEntry(String login, int oldMoney, int money) {
+    private void createHistoryEntry(String login, int amount) {
         try (DatabaseConnection c = new DatabaseConnection()) {
-            c.createHistoryEntry(login, money > oldMoney ? "Credit" : "Debit", money-oldMoney, Date.from(Instant.now()), "Mouvement");
+            c.createHistoryEntry(login, amount > 0 ? "Credit" : "Debit", amount, Date.from(Instant.now()), "Mouvement");
         } catch (SQLException e) {
             new Alert(AlertType.ERROR, e.getMessage()).show();;
         }        

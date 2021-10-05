@@ -40,8 +40,8 @@ public class AccountChoiceDialog extends Dialog<Account> {
         loginColumn.setCellValueFactory(cellData -> cellData.getValue().loginProperty());
         TableColumn<Account, String> nameColumn = new TableColumn<Account, String>("Nom");
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        TableColumn<Account, Integer> moneyColumn = new TableColumn<Account, Integer>("Argent");
-        moneyColumn.setCellValueFactory(cellData -> cellData.getValue().moneyProperty().asObject());
+        TableColumn<Account, String> moneyColumn = new TableColumn<Account, String>("Argent");
+        moneyColumn.setCellValueFactory(new IntegerStringMoneyCallback<Account>(account -> account.moneyProperty()));
         TableColumn<Account, Integer> yearColumn = new TableColumn<Account, Integer>("Annee");
         yearColumn.setCellValueFactory(cellData -> cellData.getValue().yearProperty().asObject());
         TableColumn<Account, String> sectorColumn = new TableColumn<Account, String>("Filiere");
@@ -56,7 +56,7 @@ public class AccountChoiceDialog extends Dialog<Account> {
         HBox bottomLayout = new HBox();
         bottomLayout.setSpacing(10.0);
         bottomLayout.setAlignment(Pos.CENTER);
-        Label filterLabel = new Label("FIltre :");
+        Label filterLabel = new Label("Filtre :");
         TextField nameFilterField = new TextField();
         nameFilterField.setPromptText("Login ou nom ou annee ou filiere");
 
