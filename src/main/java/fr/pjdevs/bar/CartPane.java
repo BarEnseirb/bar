@@ -120,12 +120,12 @@ public class CartPane extends VBox {
                     }
                 }
 
-                new Alert(AlertType.INFORMATION, String.format("Purschased %,.2fE", this.total.get()/100.0)).show();
+                new Alert(AlertType.INFORMATION, String.format("Achat de %,.2fE effectué.", this.total.get()/100.0)).show();
 
                 Cart.getInstance().clear();
                 this.update();
             } else {
-                new Alert(AlertType.ERROR, "Not enough money.").show();
+                new Alert(AlertType.ERROR, "Pas assez d'argent sur ce compte.").show();
             }
         } catch (SQLException e) {
             new Alert(AlertType.ERROR, e.getMessage()).show();
@@ -138,9 +138,9 @@ public class CartPane extends VBox {
             this.clear();
             this.clearMoney();
 
-            new Alert(AlertType.INFORMATION, String.format("Purschased %,.2fE", this.total.get()/100.0)).show();
+            new Alert(AlertType.INFORMATION, String.format("Achat de %,.2fE effectué.", this.total.get()/100.0)).show();
         } else {
-            new Alert(AlertType.ERROR, "Not enough money.").show();
+            new Alert(AlertType.ERROR, "Pas assez d'argent.").show();
         }
     }
 
