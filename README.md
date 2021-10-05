@@ -51,14 +51,42 @@ Some private data are not provided here.
 You will need a data folder next to the JAR file containing :
 
 - `data/db/bar.db` : A SQLite database with two tables `student |login|name|money|year|sector|` and `history |login_student|product|price|date|transaction|`.
+It can be created with the following SQL statements :
 
-- `data/items/items.json` : A list of available items in following JSON format
+```sql
+CREATE TABLE "student" (
+	"login"	TEXT NOT NULL,
+	"name"	TEXT NOT NULL,
+	"money"	INT NOT NULL,
+	"year"	INT NOT NULL,
+	"sector"	CHAR(1) NOT NULL,
+	PRIMARY KEY("login"),
+	CHECK("year" >= 0),
+	CHECK("money" >= 0),
+	CHECK("sector" IN ('N', 'E', 'I', 'M', 'R', 'S', 'T'))
+);
+```
+
+```sql
+CREATE TABLE "history" (
+	"login_student"	TEXT NOT NULL,
+	"product"	TEXT NOT NULL,
+	"price"	INTEGER NOT NULL,
+	"date"	TEXT NOT NULL,
+	"transaction"	TEXT NOT NULL,
+	CHECK("transaction" IN ('Achat', 'Mouvement')),
+	FOREIGN KEY("login_student") REFERENCES "student_save"("login")
+);
+```
+
+- `data/items/items.json` : A list of available items in following JSON format that can be created if not present
 ```json
 [
     {
         "name": "Product name",
         "price": 120,
-        "description": "Promotion"
+        "description": "Promotion",
+        "color": "0xffffffff"
     },
     ...
 ]
