@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
 
@@ -37,7 +38,7 @@ public class ItemDialog extends Dialog<Item> {
         TextArea descriptionArea = new TextArea(item != null ? item.getDesciption() : "");
         GridPane.setVgrow(descriptionArea, Priority.ALWAYS);
 
-        ColorPicker colorPicker = new ColorPicker(item.getColor());
+        ColorPicker colorPicker = new ColorPicker(item != null ? item.getColor() : Color.BLUE);
 
         this.setResultConverter(dialogButton -> {
             if (dialogButton == chooseButtonType) {
