@@ -57,16 +57,16 @@ public class ItemView extends VBox {
             try {
                 ItemList.getInstance().update(this.item, newItem.get());
             } catch (IOException e) {
-                new Alert(AlertType.ERROR, "Cannot open item list :\n" + e.getMessage()).show();
+                new Alert(AlertType.ERROR, "Impossible d'ouvrir la liste des items :\n" + e.getMessage()).show();
             }
         } else {
-            new Alert(AlertType.ERROR, "Item not updated due to wrong values.").show();
+            new Alert(AlertType.ERROR, "L'item n'a pas été mis à jour à cause de valeurs incorectes.").show();
         }
     }
 
     @FXML
     public void remove() {
-        Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure to want to delete this item ?");
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Voulez-vous vraiment supprimer cet item ?");
         Optional<ButtonType> res = alert.showAndWait();
         if (res.isEmpty() || res.get() == ButtonType.CANCEL) {
             return;
@@ -75,7 +75,7 @@ public class ItemView extends VBox {
         try {
             ItemList.getInstance().remove(this.item);
         } catch (IOException e) {
-            new Alert(AlertType.ERROR, "Cannot open item list :\n" + e.getMessage()).show();
+            new Alert(AlertType.ERROR, "Impossible d'ouvrir la liste des items :\n" + e.getMessage()).show();
         }
     }
 }
