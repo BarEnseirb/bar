@@ -94,7 +94,7 @@ public class CartPane extends VBox {
 
     @FXML
     public void purchase() {
-        if (Cart.getInstance().getItems().size() <= 0) {
+        if (Cart.getInstance().getItems().size() <= 0 || this.total.get() <= 0) {
             return;
         }
 
@@ -134,6 +134,10 @@ public class CartPane extends VBox {
 
     @FXML
     public void purchaseMoney() {
+        if (Cart.getInstance().getItems().size() <= 0 || this.total.get() <= 0) {
+            return;
+        }
+
         if (this.givenTotal.get() >= this.total.get()) {
             this.clear();
             this.clearMoney();
