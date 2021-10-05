@@ -78,7 +78,7 @@ public class App extends Application {
             fadeIn.setCycleCount(1);
     
             //Finish splash with fade out effect
-            FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), splashRoot);
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), splashRoot);
             fadeOut.setFromValue(1);
             fadeOut.setToValue(0);
             fadeOut.setCycleCount(1);
