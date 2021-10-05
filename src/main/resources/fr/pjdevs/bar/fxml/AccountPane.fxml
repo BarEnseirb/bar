@@ -2,6 +2,8 @@
 
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
 
 <fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
     <children>
@@ -12,14 +14,36 @@
         </HBox>
         <TextField fx:id="nameFilterField" promptText="Filtre"/>
         <TableView fx:id="accountTable" VBox.vgrow="ALWAYS" maxHeight="Infinity"/>
-        <HBox spacing="10">
+        <HBox spacing="10" alignment="CENTER">
             <children>
                 <TextField fx:id="loginField" promptText="Login"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
                 <TextField fx:id="nameField" promptText="Nom"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
                 <TextField fx:id="yearField" promptText="Année"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
                 <TextField fx:id="sectorField" promptText="Filière"  HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-                <Button text="Ajouter" onAction="#addAccount"/>
-                <Button text="Supprimer" onAction="#removeAccount"/>
+                <Button styleClass="transparent" onAction="#addAccount">
+                <font>
+                        <Font size="30.0" />
+                    </font>
+                    <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/add.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button styleClass="transparent" onAction="#removeAccount">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                    <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/cross.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
             </children>
         </HBox>
     </children>

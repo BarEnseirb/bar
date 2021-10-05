@@ -71,7 +71,7 @@ public class App extends Application {
             stage.setMaximized(true);
             stage.show();
         } else {
-            new Alert(AlertType.ERROR, "Cannot acquire lock. An instance may already be running.").show();
+            new Alert(AlertType.ERROR, "Impossble d'acquerir le lock. Une instance de l'application doit deja etre lance.").show();
             stage.close();
         }
     }

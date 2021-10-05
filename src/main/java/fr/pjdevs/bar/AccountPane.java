@@ -180,15 +180,20 @@ public class AccountPane extends VBox implements Updatable {
         try (DatabaseConnection c = new DatabaseConnection()) {
             int year = Integer.valueOf(yearStr);
             if (year < 0) {
-                throw new NumberFormatException("L'année doit être positive");
+                throw new NumberFormatException("L'annee doit être positive");
             } else if (sector.length() > 1) {
-                throw new Exception("La filière doit être N,E,I,M,R,S,T");
+                throw new Exception("La filiere doit etre N,E,I,M,R,S,T");
             }
 
             c.createAccount(login, name, year, sector);
             this.update();
 
-            new Alert(AlertType.INFORMATION, "Compte " + login + " ajouté avec succès.").show();
+            this.loginField.clear();
+            this.nameField.clear();
+            this.yearField.clear();
+            this.sectorField.clear();
+
+            new Alert(AlertType.INFORMATION, "Compte " + login + " ajoute avec succes.").show();
         } catch (SQLException e) {
             new Alert(AlertType.ERROR, e.getMessage()).show();
         } catch (NumberFormatException e) {
@@ -200,11 +205,17 @@ public class AccountPane extends VBox implements Updatable {
 
     @FXML
     public void removeAccount() {
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Voulez-vous vraiment supprimer ce compte ?");
+        Optional<ButtonType> res = alert.showAndWait();
+        if (res.isEmpty() || res.get() == ButtonType.CANCEL) {
+            return;
+        }
+
         try (DatabaseConnection c = new DatabaseConnection()) {
             String login = accountTable.getSelectionModel().getSelectedItem().getLogin();
             c.removeAccount(login);
             this.update();
-            new Alert(AlertType.INFORMATION, "Compte " + login + " supprimé avec succès.").show();
+            new Alert(AlertType.INFORMATION, "Compte " + login + " supprime avec succes.").show();
         } catch (SQLException e) {
             new Alert(AlertType.ERROR, e.getMessage()).show();
         }
@@ -226,7 +237,7 @@ public class AccountPane extends VBox implements Updatable {
 
     @FXML
     public void nextYear() {
-        Alert alert = new Alert(AlertType.CONFIRMATION, "Voulez-vous passer une année ?");
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Voulez-vous passer une annee ?");
         Optional<ButtonType> res = alert.showAndWait();
         if (res.isEmpty() || res.get() == ButtonType.CANCEL) {
             return;
@@ -235,7 +246,7 @@ public class AccountPane extends VBox implements Updatable {
         try (DatabaseConnection c = new DatabaseConnection()) {
             c.nextYear();
             this.update();
-            new Alert(AlertType.INFORMATION, "Toutes les années ont été incrémentées.").show();
+            new Alert(AlertType.INFORMATION, "Toutes les annees ont ete incrementees.").show();
         } catch (Exception e) {
             new Alert(AlertType.ERROR, e.getMessage()).show();
         }

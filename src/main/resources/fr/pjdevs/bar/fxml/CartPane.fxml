@@ -13,6 +13,16 @@
                 <VBox fx:id="cartItemsBox"/>
             </content>
         </ScrollPane>
+        <GridPane hgap="10" vgap="10">
+            <Label text="Total:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <Label styleClass="price" fx:id="totalLbl" wrapText="true" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="Donné:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <Label styleClass="price" fx:id="givenTotalLbl" wrapText="true" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+            <Label text="A rendre:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <Label styleClass="price,red" fx:id="backTotalLbl" wrapText="true" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label text="Reste à payer:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+            <Label styleClass="price,green" fx:id="leftTotalLbl" wrapText="true" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+        </GridPane>
         <GridPane hgap="5" vgap="5">
             <ImageView onMouseClicked="#add1Cent" fitHeight="100" fitWidth="100" preserveRatio="true" GridPane.rowIndex="0" GridPane.columnIndex="0">
                 <image>
@@ -89,16 +99,6 @@
                     <Image url="@../images/500euro.jpg"/>
                 </image>
             </ImageView>
-        </GridPane>
-        <GridPane hgap="10" vgap="10">
-            <Label text="Total:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <Label styleClass="price" fx:id="totalLbl" wrapText="true" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-            <Label text="Donné:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
-            <Label styleClass="price" fx:id="givenTotalLbl" wrapText="true" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
-            <Label text="A rendre:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-            <Label styleClass="price,red" fx:id="backTotalLbl" wrapText="true" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-            <Label text="Reste à payer:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
-            <Label styleClass="price,green" fx:id="leftTotalLbl" wrapText="true" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
         </GridPane>
         <HBox spacing="20">
             <children>

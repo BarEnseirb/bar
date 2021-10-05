@@ -60,7 +60,7 @@ public class ItemView extends VBox {
                 new Alert(AlertType.ERROR, "Impossible d'ouvrir la liste des items :\n" + e.getMessage()).show();
             }
         } else {
-            new Alert(AlertType.ERROR, "L'item n'a pas été mis à jour à cause de valeurs incorectes.").show();
+            new Alert(AlertType.ERROR, "L'item n'a pas ete mis a jour à cause de valeurs incorectes.").show();
         }
     }
 

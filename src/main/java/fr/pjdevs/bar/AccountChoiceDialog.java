@@ -25,7 +25,7 @@ public class AccountChoiceDialog extends Dialog<Account> {
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
         this.setTitle("Paiement");
-        this.setHeaderText("Choisissez un compte à créditer");
+        this.setHeaderText("Choisissez un compte a crediter");
         this.setWidth(800);
 
         ButtonType chooseButtonType = new ButtonType("Choisir", ButtonData.OK_DONE);

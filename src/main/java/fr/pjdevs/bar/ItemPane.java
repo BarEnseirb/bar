@@ -67,7 +67,7 @@ public class ItemPane extends VBox {
                 new Alert(AlertType.ERROR, "Impossible d'ouvrir la liste des items :\n" + e.getMessage()).show();
             }
         } else {
-            new Alert(AlertType.ERROR, "L'item n'a pas été ajouté à cause de valeur incorectes").show();
+            new Alert(AlertType.ERROR, "L'item n'a pas ete ajoute à cause de valeur incorectes").show();
         }
     }
 

@@ -120,7 +120,7 @@ public class CartPane extends VBox {
                     }
                 }
 
-                new Alert(AlertType.INFORMATION, String.format("Achat de %,.2fE effectué.", this.total.get()/100.0)).show();
+                new Alert(AlertType.INFORMATION, String.format("Achat de %,.2fE effectue.", this.total.get()/100.0)).show();
 
                 Cart.getInstance().clear();
                 this.update();
@@ -142,7 +142,7 @@ public class CartPane extends VBox {
             this.clear();
             this.clearMoney();
 
-            new Alert(AlertType.INFORMATION, String.format("Achat de %,.2fE effectué.", this.total.get()/100.0)).show();
+            new Alert(AlertType.INFORMATION, String.format("Achat de %,.2fE effectue.", this.total.get()/100.0)).show();
         } else {
             new Alert(AlertType.ERROR, "Pas assez d'argent.").show();
         }

@@ -2,6 +2,7 @@ package fr.pjdevs.bar;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javafx.collections.ObservableList;
@@ -71,7 +72,7 @@ public class HistoryPane extends VBox implements Updatable {
                     return true;
                 } else {
                     return entry.getStudentLogin().toLowerCase().contains(newValue.toLowerCase()) || entry.getProduct().toLowerCase().contains(newValue.toLowerCase())
-                        || entry.getDate().toString().equals(newValue.toLowerCase()) || entry.getTransaction().toLowerCase().equals(newValue.toLowerCase());
+                        || new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(entry.getDate()).contains(newValue) || entry.getTransaction().toLowerCase().equals(newValue.toLowerCase());
                 }
             });
         });

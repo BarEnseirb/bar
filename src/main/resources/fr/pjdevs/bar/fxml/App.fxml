@@ -5,7 +5,7 @@
 
 <?import fr.pjdevs.bar.*?>
 
-<TabPane tabClosingPolicy="UNAVAILABLE">
+<TabPane styleClass="big" tabClosingPolicy="UNAVAILABLE">
    <tabs>
       <Tab closable="false" text="Paiement">
          <content>

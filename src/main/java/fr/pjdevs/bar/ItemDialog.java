@@ -21,7 +21,7 @@ public class ItemDialog extends Dialog<Item> {
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
         this.setTitle("Editer");
-        this.setHeaderText("Editez les propriétés de l'item");
+        this.setHeaderText("Editez les proprietes de l'item");
         this.setWidth(800);
 
         ButtonType chooseButtonType = new ButtonType("Choisir", ButtonData.OK_DONE);
