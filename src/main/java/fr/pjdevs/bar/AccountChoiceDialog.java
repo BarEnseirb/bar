@@ -24,11 +24,11 @@ public class AccountChoiceDialog extends Dialog<Account> {
         super();
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
-        this.setTitle("Payment");
-        this.setHeaderText("Choose an account to pay");
+        this.setTitle("Paiement");
+        this.setHeaderText("Choisissez un compte à créditer");
         this.setWidth(800);
 
-        ButtonType chooseButtonType = new ButtonType("Choose", ButtonData.OK_DONE);
+        ButtonType chooseButtonType = new ButtonType("Choisir", ButtonData.OK_DONE);
         this.getDialogPane().getButtonTypes().addAll(chooseButtonType, ButtonType.CANCEL);
 
         // UI
@@ -38,13 +38,13 @@ public class AccountChoiceDialog extends Dialog<Account> {
         
         TableColumn<Account, String> loginColumn = new TableColumn<Account, String>("Login");
         loginColumn.setCellValueFactory(cellData -> cellData.getValue().loginProperty());
-        TableColumn<Account, String> nameColumn = new TableColumn<Account, String>("Name");
+        TableColumn<Account, String> nameColumn = new TableColumn<Account, String>("Nom");
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        TableColumn<Account, Integer> moneyColumn = new TableColumn<Account, Integer>("Money");
+        TableColumn<Account, Integer> moneyColumn = new TableColumn<Account, Integer>("Argent");
         moneyColumn.setCellValueFactory(cellData -> cellData.getValue().moneyProperty().asObject());
-        TableColumn<Account, Integer> yearColumn = new TableColumn<Account, Integer>("Year");
+        TableColumn<Account, Integer> yearColumn = new TableColumn<Account, Integer>("Annee");
         yearColumn.setCellValueFactory(cellData -> cellData.getValue().yearProperty().asObject());
-        TableColumn<Account, String> sectorColumn = new TableColumn<Account, String>("Sector");
+        TableColumn<Account, String> sectorColumn = new TableColumn<Account, String>("Filiere");
         sectorColumn.setCellValueFactory(cellData -> cellData.getValue().sectorProperty());
 
         tableView.getColumns().add(loginColumn);
@@ -56,9 +56,9 @@ public class AccountChoiceDialog extends Dialog<Account> {
         HBox bottomLayout = new HBox();
         bottomLayout.setSpacing(10.0);
         bottomLayout.setAlignment(Pos.CENTER);
-        Label filterLabel = new Label("Filter :");
+        Label filterLabel = new Label("FIltre :");
         TextField nameFilterField = new TextField();
-        nameFilterField.setPromptText("Login/Name");
+        nameFilterField.setPromptText("Login ou nom");
 
         bottomLayout.getChildren().add(filterLabel);
         bottomLayout.getChildren().add(nameFilterField);
