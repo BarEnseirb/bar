@@ -88,10 +88,6 @@
     -fx-text-fill: rgb(221, 221, 221);
 }
 
-.cart-pane .button {
-    -fx-min-height: 100px;
-}
-
 .item-pane .button, .cart-item .button, .transparent {
     -fx-background-color: rgba(0, 0, 0, 0);
         /* #c3c4c4,

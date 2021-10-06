@@ -66,7 +66,7 @@ public class App extends Application {
         }
 
         if (lock) {
-            final Image ekip = new Image(getClass().getResourceAsStream("images/ekip.jpg"));
+            final Image ekip = new Image(getClass().getResourceAsStream("images/ekip.jpg"), 1080, 760, false, false);
             final ImageView splash = new ImageView(ekip);
             final AnchorPane splashRoot = new AnchorPane(splash);
             final Scene splashScene = new Scene(splashRoot);

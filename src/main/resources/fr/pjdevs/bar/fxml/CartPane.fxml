@@ -4,9 +4,9 @@
 <?import javafx.scene.control.* ?>
 <?import javafx.scene.layout.* ?>
 <?import javafx.scene.image.* ?>
+<?import javafx.scene.text.* ?>
 
-
-<fx:root styleClass="cart-pane" type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml" spacing="50">
+<fx:root styleClass="cart-pane" type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml" spacing="25">
     <children>
         <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
             <content>
@@ -102,10 +102,54 @@
         </GridPane>
         <HBox spacing="20">
             <children>
-                <Button fx:id="purchaseBtn" text="Achat compte" onAction="#purchase"/>
-                <Button fx:id="purchaseMoneyBtn" text="Achat espèce" onAction="#purchaseMoney"/>
-                <Button fx:id="clearBtn" text="Nettoyer panier" onAction="#clear"/>
-                <Button fx:id="clearMoneyBtn" text="Nettoyter espèce" onAction="#clearMoney"/>
+                <Button fx:id="purchaseBtn" text="Compte" onAction="#purchase" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                    <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/shop.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="purchaseMoneyBtn" text="Espèce" onAction="#purchaseMoney" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                    <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/shop.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="clearBtn" text="Panier" onAction="#clear" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                    <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/clear.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="clearMoneyBtn" text="Espèce" onAction="#clearMoney" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                    <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/clear.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
             </children>
         </HBox>
     </children>
