@@ -7,7 +7,7 @@
 <?import javafx.scene.image.* ?>
 
 <fx:root styleClass="cart-item" type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml" alignment="CENTER" spacing="10">
-   <Label fx:id="itemNameLbl" text="Item"/>
+   <Label fx:id="itemNameLbl" text="Item" wrapText="true"/>
    <Label fx:id="itemPriceLbl" text="0.5E"/>
    <Label fx:id="itemCountLbl" text="x 1"/>
    <Pane HBox.hgrow="ALWAYS"/>
