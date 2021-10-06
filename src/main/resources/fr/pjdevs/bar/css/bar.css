@@ -88,7 +88,7 @@
     -fx-text-fill: rgb(221, 221, 221);
 }
 
-.item-pane .button, .cart-item .button, .transparent {
+.item-pane .button, .transparent {
     -fx-background-color: rgba(0, 0, 0, 0);
         /* #c3c4c4,
         linear-gradient(#d6d6d6 50%, white 100%),
@@ -109,6 +109,10 @@
 
 .cart-pane {
     -fx-font-size: 1.5em;
+}
+
+.cart-pane .button {
+    -fx-min-width: 200px;
 }
 
 .price {

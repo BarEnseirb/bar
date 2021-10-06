@@ -100,7 +100,7 @@
                 </image>
             </ImageView>
         </GridPane>
-        <HBox spacing="20">
+        <HBox spacing="10">
             <children>
                 <Button fx:id="purchaseBtn" text="Compte" onAction="#purchase" HBox.hgrow="ALWAYS">
                     <font>

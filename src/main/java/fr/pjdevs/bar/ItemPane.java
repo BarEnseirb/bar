@@ -76,7 +76,7 @@ public class ItemPane extends VBox {
 
         int currentRow = 0;
         int currentColumn = 0;
-        int columnCount = 4;
+        int columnCount = 3;
 
         try {
             for (Item item : ItemList.getInstance().getList()) {

@@ -11,7 +11,7 @@
    <Label fx:id="itemPriceLbl" text="0.5E"/>
    <Label fx:id="itemCountLbl" text="x 1"/>
    <Pane HBox.hgrow="ALWAYS"/>
-   <Button fx:id="minusBtn" text="" onAction="#minus">
+   <Button styleClass="transparent" fx:id="minusBtn" text="" onAction="#minus">
       <font>
          <Font size="30.0" />
       </font>
