@@ -141,8 +141,6 @@ public class CartPane extends VBox {
         if (this.givenTotal.get() >= this.total.get()) {
             this.clear();
             this.clearMoney();
-
-            new Alert(AlertType.INFORMATION, String.format("Achat de %,.2fE effectue.", this.total.get()/100.0)).show();
         } else {
             new Alert(AlertType.ERROR, "Pas assez d'argent.").show();
         }

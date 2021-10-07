@@ -9,7 +9,6 @@ import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.event.EventHandler;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +19,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.BigDecimalStringConverter;
 import javafx.util.converter.IntegerStringConverter;
@@ -56,29 +54,21 @@ public class AccountPane extends VBox implements Updatable {
         TableColumn<Account, String> loginColumn = new TableColumn<Account, String>("Login");
         loginColumn.setCellValueFactory(cellData -> cellData.getValue().loginProperty());
         loginColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        loginColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, String>>(){
-                @Override
-                public void handle(CellEditEvent<Account, String> t) {
-                    Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
-                    String oldLogin = account.getLogin();
-                    account.setLogin(t.getNewValue());
-                    updateAccount(oldLogin, account);
-                }
-            }
-        );      
+        loginColumn.setOnEditCommit(t -> {
+            Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
+            String oldLogin = account.getLogin();
+            account.setLogin(t.getNewValue());
+            updateAccount(oldLogin, account);
+        });      
 
         TableColumn<Account, String> nameColumn = new TableColumn<Account, String>("Nom");
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        nameColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, String>>(){
-                @Override
-                public void handle(CellEditEvent<Account, String> t) {
-                    Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
-                    account.setName(t.getNewValue());
-                    updateAccount(account.getLogin(), account);
-                }
-            }
-        );      
+        nameColumn.setOnEditCommit(t -> {
+            Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
+            account.setName(t.getNewValue());
+            updateAccount(account.getLogin(), account);
+        });      
 
         TableColumn<Account, String> moneyColumn = new TableColumn<Account, String>("Argent");
         moneyColumn.setCellValueFactory(new IntegerStringMoneyCallback<Account>(account -> account.moneyProperty()));
@@ -86,43 +76,37 @@ public class AccountPane extends VBox implements Updatable {
         TableColumn<Account, Integer> yearColumn = new TableColumn<Account, Integer>("Annee");
         yearColumn.setCellValueFactory(cellData -> cellData.getValue().yearProperty().asObject());
         yearColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        yearColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, Integer>>(){
-                @Override
-                public void handle(CellEditEvent<Account, Integer> t) {
-                    Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
-                    account.setYear(t.getNewValue());
-                    updateAccount(account.getLogin(), account);
-                }
-            }
-        );  
+        yearColumn.setOnEditCommit(t -> {
+            Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
+            account.setYear(t.getNewValue());
+            updateAccount(account.getLogin(), account);
+        });  
 
         
         TableColumn<Account, String> sectorColumn = new TableColumn<Account, String>("Filiere");
         sectorColumn.setCellValueFactory(cellData -> cellData.getValue().sectorProperty());
         sectorColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        sectorColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, String>>(){
-                @Override
-                public void handle(CellEditEvent<Account, String> t) {
-                    Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
-                    account.setSector(t.getNewValue());
-                    updateAccount(account.getLogin(), account);
-                }
-            }
-        );  
+        sectorColumn.setOnEditCommit(t -> {
+            Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
+            account.setSector(t.getNewValue());
+            updateAccount(account.getLogin(), account);
+        });  
 
         TableColumn<Account, BigDecimal> creditColumn = new TableColumn<Account, BigDecimal>("Credit");
         creditColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigDecimalStringConverter()));
-        creditColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Account, BigDecimal>>(){
-                @Override
-                public void handle(CellEditEvent<Account, BigDecimal> t) {
-                    int amount = t.getNewValue().setScale(2).unscaledValue().intValue();
-                    Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
-                    account.setMoney(account.getMoney() + amount);
-                    updateAccount(account.getLogin(), account);
-                    createHistoryEntry(account.getLogin(), amount);
-                }
+        creditColumn.setOnEditCommit(t -> {
+            int amount = t.getNewValue().setScale(2).unscaledValue().intValue();
+            Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
+            int total = account.getMoney() + amount;
+
+            if (total >= 0) {
+                account.setMoney(total);
+                updateAccount(account.getLogin(), account);
+                createHistoryEntry(account.getLogin(), amount);
+            } else {
+                new Alert(AlertType.ERROR, "Le compte ne peut pas etre en negatif.").show();
             }
-        );
+        });
 
         this.accountTable.getColumns().add(loginColumn);
         this.accountTable.getColumns().add(nameColumn);
