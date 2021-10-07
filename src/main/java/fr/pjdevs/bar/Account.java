@@ -2,6 +2,7 @@ package fr.pjdevs.bar;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.TextField;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -47,8 +48,7 @@ public class Account {
     }
 
     /**
-     * Get login of this Account.
-     * @return The login of this account.
+     * The textual login of this Account.
      */
     public String getLogin() {
         return this.login.get();
@@ -62,26 +62,47 @@ public class Account {
         this.login.set(login);
     }
 
+    /**
+     * The login of this account.
+     * @return
+     */
     public StringProperty loginProperty() {
         return this.login;
     }
 
+    /**
+     * The name of this account.
+     */
     public String getName() {
         return this.name.get();
     }
 
+    /**
+     * Sets the name of this account.
+     * @param name The new name
+     */
     public void setName(String name) {
         this.name.set(name);
     }
 
+    /**
+     * The name of this accont.
+     */
     public StringProperty nameProperty() {
         return this.name;
     }
 
+    /**
+     * Gets the money of this account.
+     */
     public int getMoney() {
         return this.money.get();
     }
 
+    /**
+     * Sets the money of this 
+     * @param money
+     */
     public void setMoney(int money) {
         this.money.set(money);
     }
