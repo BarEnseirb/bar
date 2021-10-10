@@ -13,15 +13,24 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
 
+/**
+ * Custom {@link Dialog} to pick an {@link Account} among a given list.
+ */
 public class AccountChoiceDialog extends Dialog<Account> {
 
+    /**
+     * Create an instance of this dialog.
+     * @param accountList The list of accounts available which will be displayed.
+     */
     public AccountChoiceDialog(List<Account> accountList) {
         // Dialog super
         super();
+
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
         this.setTitle("Paiement");
@@ -34,55 +43,29 @@ public class AccountChoiceDialog extends Dialog<Account> {
         // UI
         VBox mainLayout = new VBox();
 
-        TableView<Account> tableView = new TableView<Account>();
+        HBox topLayout = new HBox();
+        topLayout.setSpacing(10.0);
+        topLayout.setAlignment(Pos.CENTER);
         
-        TableColumn<Account, String> loginColumn = new TableColumn<Account, String>("Login");
-        loginColumn.setCellValueFactory(cellData -> cellData.getValue().loginProperty());
-        TableColumn<Account, String> nameColumn = new TableColumn<Account, String>("Nom");
-        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        TableColumn<Account, String> moneyColumn = new TableColumn<Account, String>("Argent");
-        moneyColumn.setCellValueFactory(new IntegerStringMoneyCallback<Account>(account -> account.moneyProperty()));
-        TableColumn<Account, Integer> yearColumn = new TableColumn<Account, Integer>("Annee");
-        yearColumn.setCellValueFactory(cellData -> cellData.getValue().yearProperty().asObject());
-        TableColumn<Account, String> sectorColumn = new TableColumn<Account, String>("Filiere");
-        sectorColumn.setCellValueFactory(cellData -> cellData.getValue().sectorProperty());
+        TextField filterField = new TextField();
+        filterField.setPromptText("Filtre");
 
-        tableView.getColumns().add(loginColumn);
-        tableView.getColumns().add(nameColumn);
-        tableView.getColumns().add(moneyColumn);
-        tableView.getColumns().add(yearColumn);
-        tableView.getColumns().add(sectorColumn);
+        topLayout.getChildren().add(filterField);
+        HBox.setHgrow(filterField, Priority.ALWAYS);
 
-        HBox bottomLayout = new HBox();
-        bottomLayout.setSpacing(10.0);
-        bottomLayout.setAlignment(Pos.CENTER);
-        Label filterLabel = new Label("Filtre :");
-        TextField nameFilterField = new TextField();
-        nameFilterField.setPromptText("Login ou nom ou annee ou filiere");
+        AccountTableView tableView = new AccountTableView();
+        tableView.setEditable(false);
+        tableView.setFilterField(filterField);
 
-        bottomLayout.getChildren().add(filterLabel);
-        bottomLayout.getChildren().add(nameFilterField);
-
+        mainLayout.getChildren().add(topLayout);
         mainLayout.getChildren().add(tableView);
-        mainLayout.getChildren().add(bottomLayout);
 
         this.getDialogPane().setContent(mainLayout);
 
         // Data
-        FilteredList<Account> filteredAccountList = new FilteredList<Account>(FXCollections.observableArrayList(accountList));
-        tableView.setItems(filteredAccountList);
+        tableView.setAccountList(FXCollections.observableArrayList(accountList));;
 
-        nameFilterField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredAccountList.setPredicate(account -> {
-                if (newValue == null || newValue.isBlank()) {
-                    return true;
-                } else {
-                    return account.getName().toLowerCase().contains(newValue.toLowerCase()) || account.getLogin().toLowerCase().contains(newValue.toLowerCase())
-                        || String.valueOf(account.getYear()).equals(newValue) || account.getSector().equals(newValue);
-                }
-            });
-        });
-
+        // Result
         this.setResultConverter(dialogButton -> {
             if (dialogButton == chooseButtonType) {
                 return tableView.getSelectionModel().getSelectedItem();

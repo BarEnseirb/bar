@@ -1,14 +1,12 @@
 package fr.pjdevs.bar;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.time.Instant;
 import java.util.Date;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,16 +14,14 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.converter.BigDecimalStringConverter;
-import javafx.util.converter.IntegerStringConverter;
-
+/**
+ * Account component where the account list is displayed
+ * and where you can update acocunts properties.
+ */
 public class AccountPane extends VBox implements Updatable {
     @FXML
-    private TableView<Account> accountTable;
+    private AccountTableView accountTable;
     @FXML
     private TextField loginField;
     @FXML
@@ -34,11 +30,8 @@ public class AccountPane extends VBox implements Updatable {
     private TextField yearField;
     @FXML
     private TextField sectorField;
-    @FXML
-    private TextField nameFilterField;
 
     private ObservableList<Account> accountList;
-    private FilteredList<Account> filteredAccountList;
 
     public AccountPane() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/AccountPane.fxml"));
@@ -51,50 +44,32 @@ public class AccountPane extends VBox implements Updatable {
             throw new RuntimeException(exception);
         }
 
-        TableColumn<Account, String> loginColumn = new TableColumn<Account, String>("Login");
-        loginColumn.setCellValueFactory(cellData -> cellData.getValue().loginProperty());
-        loginColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        loginColumn.setOnEditCommit(t -> {
+        this.accountTable.setLoginOnEditCommit(t -> {
             Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
             String oldLogin = account.getLogin();
             account.setLogin(t.getNewValue());
             updateAccount(oldLogin, account);
         });      
 
-        TableColumn<Account, String> nameColumn = new TableColumn<Account, String>("Nom");
-        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        nameColumn.setOnEditCommit(t -> {
+        this.accountTable.setNameOnEditCommit(t -> {
             Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
             account.setName(t.getNewValue());
             updateAccount(account.getLogin(), account);
-        });      
+        });
 
-        TableColumn<Account, String> moneyColumn = new TableColumn<Account, String>("Argent");
-        moneyColumn.setCellValueFactory(new IntegerStringMoneyCallback<Account>(account -> account.moneyProperty()));
-
-        TableColumn<Account, Integer> yearColumn = new TableColumn<Account, Integer>("Annee");
-        yearColumn.setCellValueFactory(cellData -> cellData.getValue().yearProperty().asObject());
-        yearColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        yearColumn.setOnEditCommit(t -> {
+        this.accountTable.setYearOnEditCommit(t -> {
             Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
             account.setYear(t.getNewValue());
             updateAccount(account.getLogin(), account);
         });  
 
-        
-        TableColumn<Account, String> sectorColumn = new TableColumn<Account, String>("Filiere");
-        sectorColumn.setCellValueFactory(cellData -> cellData.getValue().sectorProperty());
-        sectorColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        sectorColumn.setOnEditCommit(t -> {
+        this.accountTable.setSectorOnEditCommit(t -> {
             Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
             account.setSector(t.getNewValue());
             updateAccount(account.getLogin(), account);
         });  
 
-        TableColumn<Account, BigDecimal> creditColumn = new TableColumn<Account, BigDecimal>("Credit");
-        creditColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigDecimalStringConverter()));
-        creditColumn.setOnEditCommit(t -> {
+        this.accountTable.setCreditOnEditCommit(t -> {
             int amount = t.getNewValue().setScale(2).unscaledValue().intValue();
             Account account = (Account)t.getTableView().getItems().get(t.getTablePosition().getRow());
             int total = account.getMoney() + amount;
@@ -108,29 +83,8 @@ public class AccountPane extends VBox implements Updatable {
             }
         });
 
-        this.accountTable.getColumns().add(loginColumn);
-        this.accountTable.getColumns().add(nameColumn);
-        this.accountTable.getColumns().add(moneyColumn);
-        this.accountTable.getColumns().add(yearColumn);
-        this.accountTable.getColumns().add(sectorColumn);
-        this.accountTable.getColumns().add(creditColumn);
-
         this.accountList = FXCollections.observableArrayList();
-        this.filteredAccountList = new FilteredList<Account>(this.accountList);
-        this.nameFilterField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredAccountList.setPredicate(account -> {
-                if (newValue == null || newValue.isBlank()) {
-                    return true;
-                } else {
-                    return account.getName().toLowerCase().contains(newValue.toLowerCase()) || account.getLogin().toLowerCase().contains(newValue.toLowerCase())
-                        || String.valueOf(account.getYear()).equals(newValue) || account.getSector().equals(newValue);
-                }
-            });
-        });
-
-        this.accountTable.setItems(this.filteredAccountList);
-        this.accountTable.setEditable(true);
-
+        this.accountTable.setAccountList(accountList);;
         this.update();
     }
 

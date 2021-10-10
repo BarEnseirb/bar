@@ -63,7 +63,6 @@ public class Account {
 
     /**
      * The login of this account.
-     * @return
      */
     public StringProperty loginProperty() {
         return this.login;
@@ -99,37 +98,60 @@ public class Account {
     }
 
     /**
-     * Sets the money of this 
-     * @param money
+     * Sets the money of this account.
+     * @param money The new money value.
      */
     public void setMoney(int money) {
         this.money.set(money);
     }
 
+    /**
+     * The money in centimes of this account.
+     */
     public IntegerProperty moneyProperty() {
         return this.money;
     }
 
+    /**
+     * Gets the year of this account.
+     */
     public int getYear() {
         return this.year.get();
     }
 
+    /**
+     * Sets the year of this account.
+     * @param year The new year value.
+     */
     public void setYear(int year) {
         this.year.set(year);
     }
 
+    /**
+     * The year of this account.
+     */
     public IntegerProperty yearProperty() {
         return this.year;
     }
 
+    /**
+     * Gets the sector of this account.
+     */
     public String getSector() {
         return this.sector.get();
     }
 
+    /**
+     * Sets the sector of this account.
+     * @param sector The new sector value.
+     */
     public void setSector(String sector) {
         this.sector.set(sector);
     }
 
+    /**
+     * The sector of this account.
+     */
     public StringProperty sectorProperty() {
         return this.sector;
     }

@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.Instant;
 
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
@@ -51,18 +50,11 @@ public class CartPane extends VBox {
         this.total = new SimpleIntegerProperty(0);
         this.givenTotal = new SimpleIntegerProperty(0);
 
-        this.totalLbl.textProperty().bind(this.total.divide(100.0).asString("%.2fE"));
-        this.givenTotalLbl.textProperty().bind(this.givenTotal.divide(100.0).asString("%.2fE"));
-        this.leftTotalLbl.textProperty().bind(Bindings.createStringBinding(() -> {
-            int left = total.get() - givenTotal.get();
-            if (left < 0) return "0,00E";
-            else return String.format("%,.2fE", left/100.0);
-        }, this.total, this.givenTotal));
-        this.backTotalLbl.textProperty().bind(Bindings.createStringBinding(() -> {
-            int back = givenTotal.get() - total.get();
-            if (back < 0) return "0,00E";
-            else return String.format("%,.2fE", back/100.0);
-        }, this.total, this.givenTotal));
+        this.totalLbl.textProperty().bind(CustomStringBindings.createIntegerMoneyStringBinding(this.total));
+        this.givenTotalLbl.textProperty().bind(CustomStringBindings.createIntegerMoneyStringBinding(this.givenTotal));
+        this.leftTotalLbl.textProperty().bind(CustomStringBindings.createPositiveIntegerMoneyStringBinding(this.total.subtract(this.givenTotal)));
+
+        this.backTotalLbl.textProperty().bind(CustomStringBindings.createPositiveIntegerMoneyStringBinding(this.givenTotal.subtract(this.total)));
 
         Cart.getInstance().addListenner(new ChangedListenner() {
             @Override
@@ -120,7 +112,7 @@ public class CartPane extends VBox {
                     }
                 }
 
-                new Alert(AlertType.INFORMATION, String.format("Achat de %,.2fE effectue.", this.total.get()/100.0)).show();
+                new Alert(AlertType.INFORMATION, String.format("Achat de %s effectue.", CustomStringBindings.createIntegerMoneyStringBinding(this.total).get())).show();
 
                 Cart.getInstance().clear();
                 this.update();
