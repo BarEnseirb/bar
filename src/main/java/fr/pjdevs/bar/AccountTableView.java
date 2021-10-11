@@ -15,23 +15,57 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.BigDecimalStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
+/**
+ * Custom {@link TableView} to display {@link Account}.
+ */
 public class AccountTableView extends TableView<Account> {
 
+    /**
+     * Wrapped source list to filter the account with a text field.
+     */
     private FilteredList<Account> filteredAccountList;
 
+    /**
+     * The login column.
+     */
     private TableColumn<Account, String> loginColumn;
+    /**
+     * The name column.
+     */
     private TableColumn<Account, String> nameColumn;
+    /**
+     * The money column.
+     */
     private TableColumn<Account, String> moneyColumn;
+    /**
+     * The year column.
+     */
     private TableColumn<Account, Integer> yearColumn;
+    /**
+     * The sector column.
+     */
     private TableColumn<Account, String> sectorColumn;
+    /**
+     * The credit column to add money to the account when the table is editable.
+     */
     private TableColumn<Account, BigDecimal> creditColumn;
 
+    /**
+     * TextField property to fillter the accounts.
+     */
     private ObjectProperty<TextField> filterFieldProperty;
 
+    /**
+     * Creates a new AccountTableView instance with no filter text field.
+     */
     public AccountTableView() {
         this(null);
     }
 
+    /**
+     * Creates a new AccountTableView instance with a filter text field.
+     * @param filterField The TextField to filter accounts.
+     */
     public AccountTableView(TextField filterField) {
         super();
 
@@ -72,30 +106,55 @@ public class AccountTableView extends TableView<Account> {
         });
         this.filterFieldProperty = new SimpleObjectProperty<TextField>();
 
-        this.setEditable(false);;
+        this.setEditable(false);
         this.filterFieldProperty.set(filterField);
     }
 
+    /**
+     * Sets the event handler for commit when editing login column.
+     * @param value The event handler.
+     */
     public void setLoginOnEditCommit(EventHandler<CellEditEvent<Account, String>> value) {
         this.loginColumn.setOnEditCommit(value);
     }
 
+    /**
+     * Sets the event handler for commit when editing name column.
+     * @param value The event handler.
+     */
     public void setNameOnEditCommit(EventHandler<CellEditEvent<Account, String>> value) {
         this.nameColumn.setOnEditCommit(value);
     }
 
+    /**
+     * Sets the event handler for commit when editing year column.
+     * @param value The event handler.
+     */
     public void setYearOnEditCommit(EventHandler<CellEditEvent<Account, Integer>> value) {
         this.yearColumn.setOnEditCommit(value);
     }
 
+    /**
+     * Sets the event handler for commit when editing sector column.
+     * @param value The event handler.
+     */
     public void setSectorOnEditCommit(EventHandler<CellEditEvent<Account, String>> value) {
         this.sectorColumn.setOnEditCommit(value);
     }
 
+    /**
+    * Sets the event handler for commit when editing credit column.
+     * @param value The event handler.
+     */
     public void setCreditOnEditCommit(EventHandler<CellEditEvent<Account, BigDecimal>> value) {
         this.creditColumn.setOnEditCommit(value);
     }
 
+    /**
+     * Sets the account list of this table.
+     * This method replaces the method {@link TableView#setItems} because it also wraps the source list in a FilteredList.
+     * @param accountList The source account list.
+     */
     public void setAccountList(ObservableList<Account> accountList) {
         this.filteredAccountList = new FilteredList<Account>(accountList);
 
@@ -115,14 +174,24 @@ public class AccountTableView extends TableView<Account> {
         this.setItems(this.filteredAccountList);
     }
 
+    /**
+     * Gets the filter TextField.
+     */
     public TextField getFilterField() {
         return this.filterFieldProperty.get();
     }
 
+    /**
+     * Sets the filter TextField.
+     * @param value The new filter TextField.
+     */
     public void setFilterField(TextField value) {
         this.filterFieldProperty.set(value);
     }
 
+    /**
+     * The filter TextField for the accounts.
+     */
     public ObjectProperty<TextField> filterFieldProperty() {
         return this.filterFieldProperty;
     }
