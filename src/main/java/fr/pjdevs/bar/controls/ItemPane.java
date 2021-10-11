@@ -18,11 +18,23 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * Item pane component where items of the item list can be added to the cart and new items can be added.
+ */
 public class ItemPane extends VBox {
+    /**
+     * The grid where all items are displayed.
+     */
     @FXML
     private GridPane itemsBox;
+    /**
+     * Button to add a new item.
+     */
     private Button addBtn;
 
+    /**
+     * Creates an new ItemPane instance.
+     */
     public ItemPane() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/ItemPane.fxml"));
         fxmlLoader.setRoot(this);
@@ -60,6 +72,9 @@ public class ItemPane extends VBox {
         this.update();
     }
 
+    /**
+     * Adds an item to the list by displaying an {@link ItemDialog}.
+     */
     private void addItem() {
         Optional<Item> newItem = new ItemDialog(null).showAndWait();
 
@@ -74,6 +89,9 @@ public class ItemPane extends VBox {
         }
     }
 
+    /**
+     * Updates this component by updating the list of items, placing them on the grid and placing the add button.
+     */
     private void update() {
         this.itemsBox.getChildren().clear();
 
