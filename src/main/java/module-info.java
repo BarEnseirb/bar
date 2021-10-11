@@ -12,4 +12,7 @@ module fr.pjdevs.bar {
     opens fr.pjdevs.bar.models to com.google.gson;
 
     exports fr.pjdevs.bar;
+    exports fr.pjdevs.bar.controls;
+    exports fr.pjdevs.bar.models;
+    exports fr.pjdevs.bar.util;
 }
