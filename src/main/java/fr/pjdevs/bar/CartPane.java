@@ -83,11 +83,11 @@ public class CartPane extends VBox {
         this.total = new SimpleIntegerProperty(0);
         this.givenTotal = new SimpleIntegerProperty(0);
 
-        this.totalLbl.textProperty().bind(CustomStringBindings.createIntegerMoneyStringBinding(this.total));
-        this.givenTotalLbl.textProperty().bind(CustomStringBindings.createIntegerMoneyStringBinding(this.givenTotal));
-        this.leftTotalLbl.textProperty().bind(CustomStringBindings.createPositiveIntegerMoneyStringBinding(this.total.subtract(this.givenTotal)));
+        this.totalLbl.textProperty().bind(MoneyStringBindings.createIntegerMoneyStringBinding(this.total));
+        this.givenTotalLbl.textProperty().bind(MoneyStringBindings.createIntegerMoneyStringBinding(this.givenTotal));
+        this.leftTotalLbl.textProperty().bind(MoneyStringBindings.createPositiveIntegerMoneyStringBinding(this.total.subtract(this.givenTotal)));
 
-        this.backTotalLbl.textProperty().bind(CustomStringBindings.createPositiveIntegerMoneyStringBinding(this.givenTotal.subtract(this.total)));
+        this.backTotalLbl.textProperty().bind(MoneyStringBindings.createPositiveIntegerMoneyStringBinding(this.givenTotal.subtract(this.total)));
 
         Cart.getInstance().addListenner(new ChangedListenner() {
             @Override
@@ -157,7 +157,7 @@ public class CartPane extends VBox {
                     }
                 }
 
-                new Alert(AlertType.INFORMATION, String.format("Achat de %s effectue.", CustomStringBindings.createIntegerMoneyStringBinding(this.total).get())).show();
+                new Alert(AlertType.INFORMATION, String.format("Achat de %s effectue.", MoneyStringBindings.createIntegerMoneyStringBinding(this.total).get())).show();
 
                 Cart.getInstance().clear();
                 this.update();
