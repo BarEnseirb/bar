@@ -9,11 +9,6 @@
 
 <fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
     <children>
-        <HBox spacing="10">
-            <children>
-                <Button styleClass="warning" text="Passer une année" onAction="#nextYear" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
-            </children>
-        </HBox>
         <TextField fx:id="filterField" promptText="Filtre"/>
         <AccountTableView fx:id="accountTable" editable="true" filterField="${filterField}" VBox.vgrow="ALWAYS" maxHeight="Infinity"/>
         <HBox spacing="10" alignment="CENTER">
@@ -46,6 +41,11 @@
                         </ImageView>
                     </graphic>
                 </Button>
+            </children>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <children>
+                <Button styleClass="warning" text="Passer une année" onAction="#nextYear"/>
             </children>
         </HBox>
     </children>
