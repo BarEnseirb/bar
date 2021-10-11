@@ -85,7 +85,7 @@ public class DatabaseConnection implements AutoCloseable {
 
     /**
      * Removes an account by login (primary key) in the database.
-     * @param login
+     * @param login The login of the account to remove.
      * @throws SQLException If JDBC cannot connect to the database or if the query fails.
      */
     public void removeAccount(String login) throws SQLException {
