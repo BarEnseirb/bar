@@ -54,6 +54,7 @@ public class HistoryEntry {
 
     /**
      * Gets the login of the student concerned by this entry.
+     * @return The student login.
      */
     public String getStudentLogin() {
         return this.studentLogin.get();
@@ -61,6 +62,7 @@ public class HistoryEntry {
 
     /**
      * The login of the student concerned by this entry.
+     * @return The student login property.
      */
     public StringProperty studentLoginProperty() {
         return this.studentLogin;
@@ -68,6 +70,7 @@ public class HistoryEntry {
 
     /**
      * Gets the product name of this entry.
+     * @return The product name.
      */
     public String getProduct() {
         return this.product.get();
@@ -75,6 +78,7 @@ public class HistoryEntry {
 
     /**
      * The product name of this entry.
+     * @return The product name property.
      */
     public StringProperty productProperty() {
         return this.product;
@@ -82,6 +86,7 @@ public class HistoryEntry {
 
     /**
      * Gets the price of this entry.
+     * @return The price.
      */
     public int getPrice() {
         return this.price.get();
@@ -89,6 +94,7 @@ public class HistoryEntry {
 
     /**
      * The price of this entry.
+     * @return The price property.
      */
     public IntegerProperty priceProperty() {
         return this.price;
@@ -96,6 +102,7 @@ public class HistoryEntry {
 
     /**
      * Gets the date of this entry.
+     * @return The date.
      */
     public Date getDate() {
         return this.date.get();
@@ -103,6 +110,7 @@ public class HistoryEntry {
 
     /**
      * The date of this entry.
+     * @return The date property.
      */
     public ObjectProperty<Date> dateProperty() {
         return this.date;
@@ -110,6 +118,7 @@ public class HistoryEntry {
 
     /**
      * Gets the transaction type of this entry.
+     * @return The transaction.
      */
     public String getTransaction() {
         return this.transaction.get();
@@ -117,6 +126,7 @@ public class HistoryEntry {
 
     /**
      * The transaction type of this entry.
+     * @return The transaction property.
      */
     public StringProperty transactionProperty() {
         return this.transaction;

@@ -178,6 +178,7 @@ public class AccountTableView extends TableView<Account> {
 
     /**
      * Gets the filter TextField.
+     * @return The filter {@link TextField}.
      */
     public TextField getFilterField() {
         return this.filterFieldProperty.get();
@@ -193,6 +194,7 @@ public class AccountTableView extends TableView<Account> {
 
     /**
      * The filter TextField for the accounts.
+     * @return The filter object property.
      */
     public ObjectProperty<TextField> filterFieldProperty() {
         return this.filterFieldProperty;

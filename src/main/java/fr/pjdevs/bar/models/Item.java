@@ -58,6 +58,7 @@ public class Item {
 
     /**
      * Gets the name of this item.
+     * @return The name.
      */
     public String getName() {
         return this.name.get();
@@ -65,6 +66,7 @@ public class Item {
 
     /**
      * Gets the price of this item.
+     * @return The price.
      */
     public int getPrice() {
         return this.price.get();
@@ -72,6 +74,7 @@ public class Item {
 
     /**
      * Gets the description of this item.
+     * @return The description.
      */
     public String getDesciption() {
         return this.description.get();
@@ -79,6 +82,7 @@ public class Item {
 
     /**
      * The name of this item.
+     * @return The name property.
      */
     public StringProperty nameProperty() {
         return this.name;
@@ -86,6 +90,7 @@ public class Item {
 
     /**
      * The price of this item.
+     * @return The price property.
      */
     public IntegerProperty priceProperty() {
         return this.price;
@@ -93,6 +98,7 @@ public class Item {
 
     /**
      * The description of this item.
+     * @return The description property.
      */
     public StringProperty descriptionProperty() {
         return this.description;
@@ -100,6 +106,7 @@ public class Item {
 
     /**
      * Gets the color of this item.
+     * @return The color.
      */
     public Color getColor() {
         return this.color.get();
@@ -115,6 +122,7 @@ public class Item {
 
     /**
      * The color of this item.
+     * @return The color property.
      */
     public ObjectProperty<Color> colorProperty() {
         return this.color;

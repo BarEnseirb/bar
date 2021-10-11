@@ -48,6 +48,7 @@ public class Account {
 
     /**
      * The textual login of this Account.
+     * @return The login of this account.
      */
     public String getLogin() {
         return this.login.get();
@@ -55,7 +56,7 @@ public class Account {
 
     /**
      * Sets the login of this account.
-     * @param login
+     * @param login The new login.
      */
     public void setLogin(String login) {
         this.login.set(login);
@@ -63,6 +64,7 @@ public class Account {
 
     /**
      * The login of this account.
+     * @return The login property.
      */
     public StringProperty loginProperty() {
         return this.login;
@@ -70,6 +72,7 @@ public class Account {
 
     /**
      * The name of this account.
+     * @return The name.
      */
     public String getName() {
         return this.name.get();
@@ -84,7 +87,8 @@ public class Account {
     }
 
     /**
-     * The name of this accont.
+     * The name of this account.
+     * @return The name property.
      */
     public StringProperty nameProperty() {
         return this.name;
@@ -92,6 +96,7 @@ public class Account {
 
     /**
      * Gets the money of this account.
+     * @return The money property.
      */
     public int getMoney() {
         return this.money.get();
@@ -107,6 +112,7 @@ public class Account {
 
     /**
      * The money in centimes of this account.
+     * @return The money property.
      */
     public IntegerProperty moneyProperty() {
         return this.money;
@@ -114,6 +120,7 @@ public class Account {
 
     /**
      * Gets the year of this account.
+     * @return The year property.
      */
     public int getYear() {
         return this.year.get();
@@ -129,6 +136,7 @@ public class Account {
 
     /**
      * The year of this account.
+     * @return The year property.
      */
     public IntegerProperty yearProperty() {
         return this.year;
@@ -136,6 +144,7 @@ public class Account {
 
     /**
      * Gets the sector of this account.
+     * @return The sector.
      */
     public String getSector() {
         return this.sector.get();
@@ -151,6 +160,7 @@ public class Account {
 
     /**
      * The sector of this account.
+     * @return The sector property.
      */
     public StringProperty sectorProperty() {
         return this.sector;

@@ -5,7 +5,7 @@ import javafx.beans.binding.NumberExpression;
 import javafx.beans.binding.StringBinding;
 
 /**
- * Non-instantiable class to wrap some usefull predefined {@link StringBindings} related to money conversion.
+ * Non-instantiable class to wrap some usefull predefined {@link StringBinding} related to money conversion.
  */
 public final class MoneyStringBindings  {
     /**

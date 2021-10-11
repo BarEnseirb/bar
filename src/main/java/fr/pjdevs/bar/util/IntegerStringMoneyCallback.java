@@ -6,7 +6,7 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.util.Callback;
 
 /**
- * Callback for the {@link CellValueFactory} to convert an {@link Integer} representing money to decimal {@link String}.
+ * Callback for the CellValueFactory to convert an {@link Integer} representing money to decimal {@link String}.
  * @param <T> Type of the model which contains the {@link IntegerProperty}.
  */
 public class IntegerStringMoneyCallback<T> implements Callback<CellDataFeatures<T, String>, ObservableValue<String>> {

@@ -150,7 +150,8 @@ public final class ItemList {
     }
 
     /**
-     * Gets the list of {@link Items}.
+     * Gets the list of {@link Item}.
+     * @return The list of items.
      */
     public final List<Item> getList() {
         return this.itemList;
