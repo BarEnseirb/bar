@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"fr.pjdevs.bar","l":"fr.pjdevs.bar"},{"m":"fr.pjdevs.bar","l":"fr.pjdevs.bar.controls"},{"m":"fr.pjdevs.bar","l":"fr.pjdevs.bar.models"},{"m":"fr.pjdevs.bar","l":"fr.pjdevs.bar.util"}];updateSearchResults();
