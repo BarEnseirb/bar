@@ -15,24 +15,46 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+
 /**
  * Account component where the account list is displayed
- * and where you can update acocunts properties.
+ * and where you can update acocunts properties or add accounts.
  */
 public class AccountPane extends VBox implements Updatable {
+    /**
+     * The table to display account.
+     */
     @FXML
     private AccountTableView accountTable;
+    /**
+     * Field for login when creating an account.
+     */
     @FXML
     private TextField loginField;
+    /**
+     * Field for name when creating an account.
+     */
     @FXML
     private TextField nameField;
+    /**
+     * Field for year when creating an account.
+     */
     @FXML
     private TextField yearField;
+    /**
+     * Field for sector when creating an account.
+     */
     @FXML
     private TextField sectorField;
 
+    /**
+     * The source list of all account for the table view. 
+     */
     private ObservableList<Account> accountList;
 
+    /**
+     * Creates a new AccountPane instance.
+     */
     public AccountPane() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/AccountPane.fxml"));
         fxmlLoader.setRoot(this);
@@ -88,6 +110,11 @@ public class AccountPane extends VBox implements Updatable {
         this.update();
     }
 
+    /**
+     * Creates a new 'Mouvement' entry in the table {@code history} of the database.
+     * @param login The login of the concerned account.
+     * @param amount The amount of the 'Mouvement'.
+     */
     private void createHistoryEntry(String login, int amount) {
         try (DatabaseConnection c = new DatabaseConnection()) {
             c.createHistoryEntry(login, amount > 0 ? "Credit" : "Debit", amount, Date.from(Instant.now()), "Mouvement");
@@ -96,6 +123,11 @@ public class AccountPane extends VBox implements Updatable {
         }        
     }
 
+    /**
+     * Update an account properties.
+     * @param login The login of the account to update.
+     * @param account The new account values.
+     */
     private void updateAccount(String login, Account account) {
         try (DatabaseConnection c = new DatabaseConnection()) {
             c.updateAccount(login, account);
@@ -104,6 +136,10 @@ public class AccountPane extends VBox implements Updatable {
         }
     }
 
+    /**
+     * FXML accessible method to add an account when the create account's button is clicked.
+     * It uses all the previously defined text field for the values and set money to 0. 
+     */
     @FXML
     public void addAccount() {
         String login = this.loginField.getText().strip();
@@ -132,15 +168,15 @@ public class AccountPane extends VBox implements Updatable {
             this.sectorField.clear();
 
             new Alert(AlertType.INFORMATION, "Compte " + login + " ajoute avec succes.").show();
-        } catch (SQLException e) {
-            new Alert(AlertType.ERROR, e.getMessage()).show();
-        } catch (NumberFormatException e) {
-            new Alert(AlertType.ERROR, e.getMessage()).show();
         } catch (Exception e) {
             new Alert(AlertType.ERROR, e.getMessage()).show();
         }
     }
 
+    /**
+     * FXML accessible method to remove the currently select account the the table view
+     * when a button is cliked.
+     */
     @FXML
     public void removeAccount() {
         Alert alert = new Alert(AlertType.CONFIRMATION, "Voulez-vous vraiment supprimer ce compte ?");
@@ -159,9 +195,10 @@ public class AccountPane extends VBox implements Updatable {
         }
     }
 
-    @Override
-    @FXML
-    public void update() {
+    /**
+     * Updates the account list by reading it in the database.
+     */
+    public void updateAccountList() {
         try (DatabaseConnection c = new DatabaseConnection()) {
             this.accountList.clear();
 
@@ -173,6 +210,15 @@ public class AccountPane extends VBox implements Updatable {
         }
     }
 
+    @Override
+    @FXML
+    public void update() {
+        this.updateAccountList();
+    }
+
+    /**
+     * FXML accessible method to add one year to everybody when a button is clicked.
+     */
     @FXML
     public void nextYear() {
         Alert alert = new Alert(AlertType.CONFIRMATION, "Voulez-vous passer une annee ?");
