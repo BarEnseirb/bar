@@ -22,15 +22,33 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DateStringConverter;
 
+/**
+ * History component which contains the table of the history.
+ */
 public class HistoryPane extends VBox implements Updatable {
+    /**
+     * The table to display the history.
+     */
     @FXML
     private TableView<HistoryEntry> historyTable;
+    /**
+     * The filter text field to filter entries.
+     */
     @FXML
     private TextField filterField;
 
+    /**
+     * The source list of the entries for the table.
+     */
     private ObservableList<HistoryEntry> historyList;
+    /**
+     * The filtered list of the entries.
+     */
     private FilteredList<HistoryEntry> filteredHistoryList;
 
+    /**
+     * Creates a new HistoryPane instance.
+     */
     public HistoryPane() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/HistoryPane.fxml"));
         fxmlLoader.setRoot(this);
