@@ -109,13 +109,18 @@ public final class Cart {
     }
 
     /**
-     * 
+     * The count of a given item.
+     * @param item The item to get the count.
+     * @return An int which is the count of this item.
      */
     public int getCount(Item item) {
         Integer count = this.items.get(item);
         return count == null ? 0 : count;
     }
 
+    /**
+     * Clears the Cart by removing all the items inside.
+     */
     public void clear() {
         this.items.clear();
         this.cartChanged();
