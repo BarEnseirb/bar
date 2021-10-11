@@ -7,7 +7,7 @@ public interface ChangedListenner {
 
     /**
      * This method is called whenever a change occurs in the object
-     * e.g. when an item is supressed in a {@link Cart}. 
+     * e.g. when an item is supressed/added/updated in the {@link Cart}. 
      */
     void onChanged();
 }
