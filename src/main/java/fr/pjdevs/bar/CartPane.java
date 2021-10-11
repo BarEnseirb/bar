@@ -17,25 +17,58 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+ * Cart component where {@link Cart}, prices, purchase/clear buttons are displayed.
+ */
 public class CartPane extends VBox {
+    /**
+     * Property for the total price of the {@link Cart}.
+     */
     private IntegerProperty total;
+    /**
+     * Property for the given total with real money.
+     */
     private IntegerProperty givenTotal;
 
+    /**
+     * Box where all the {@link CartItemView} are displayed.
+     */
     @FXML
     private VBox cartItemsBox;
+    /**
+     * Button to clear the {@link Cart}.
+     */
     @FXML
     private Button clearBtn;
+    /**
+     * Button to purchase with an account.
+     */
     @FXML
     private Button purchaseBtn;
+    /**
+     * Label for {@link #total}.
+     */
     @FXML
     private Label totalLbl;
+    /**
+     * Label for {@link #givenTotal}.
+     */
     @FXML
     private Label givenTotalLbl;
+    /**
+     * Label for the money to get back.
+     */
     @FXML
     private Label backTotalLbl;
+    /**
+     * Label for the money left to pay.
+     */
     @FXML
     private Label leftTotalLbl;
 
+    /**
+     * Creates a new CartPane instance.
+     */
     public CartPane() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/CartPane.fxml"));
         fxmlLoader.setRoot(this);
@@ -64,6 +97,9 @@ public class CartPane extends VBox {
         });
     }
 
+    /**
+     * Update this component accordig to the {@link Cart} content.
+     */
     private void update() {
         this.cartItemsBox.getChildren().clear();
         this.total.set(0);
@@ -74,16 +110,25 @@ public class CartPane extends VBox {
         });
     }
 
+    /**
+     * FXML accessible method to clear the {@link Cart}.
+     */
     @FXML
     public void clear() {
         Cart.getInstance().clear();
     }
 
+    /**
+     * FXML accessible method to clear the money.
+     */
     @FXML
     public void clearMoney() {
         this.givenTotal.set(0);
     }
 
+    /**
+     * FXML accessible method to purchase with an account.
+     */
     @FXML
     public void purchase() {
         if (Cart.getInstance().getItems().size() <= 0 || this.total.get() <= 0) {
@@ -124,6 +169,9 @@ public class CartPane extends VBox {
         }
     }
 
+    /**
+     * FXML accessible method to purchase with given money.
+     */
     @FXML
     public void purchaseMoney() {
         if (Cart.getInstance().getItems().size() <= 0 || this.total.get() <= 0) {
@@ -138,24 +186,73 @@ public class CartPane extends VBox {
         }
     }
 
+    /**
+     * Convenient method to add money.
+     * @param amount The amount of money to add.
+     */
     private void add(int amount) {
         this.givenTotal.set(this.givenTotal.get()+amount);
     }
 
-    @FXML public void add1Cent()   { this.add(1);     }
-    @FXML public void add2Cent()   { this.add(2);     }
-    @FXML public void add5Cent()   { this.add(5);     }
-    @FXML public void add10Cent()  { this.add(10);    }
-    @FXML public void add20Cent()  { this.add(20);    }
-    @FXML public void add50Cent()  { this.add(50);    }
-    @FXML public void add1Euro()   { this.add(100);   }
-    @FXML public void add2Euro()   { this.add(200);   }
-    @FXML public void add5Euro()   { this.add(500);   }
-    @FXML public void add10Euro()  { this.add(1000);  }
-    @FXML public void add20Euro()  { this.add(2000);  }
+    /**
+     * FXML accesible method to add 1 cent to the given money.
+     */
+    @FXML public void add1Cent() { this.add(1); }
+    /**
+     * FXML accesible method to add 2 cent to the given money.
+     */
+    @FXML public void add2Cent() { this.add(2); }
+    /**
+     * FXML accesible method to add 5 cent to the given money.
+     */
+    @FXML public void add5Cent() { this.add(5); }
+    /**
+     * FXML accesible method to add 10 cent to the given money.
+     */
+    @FXML public void add10Cent() { this.add(10); }
+    /**
+     * FXML accesible method to add 20 cent to the given money.
+     */
+    @FXML public void add20Cent() { this.add(20); }
+    /**
+     * FXML accesible method to add 50 cent to the given money.
+     */
+    @FXML public void add50Cent() { this.add(50); }
+    /**
+     * FXML accesible method to add 1 euro to the given money.
+     */
+    @FXML public void add1Euro() { this.add(100); }
+    /**
+     * FXML accesible method to add 2 euro to the given money.
+     */
+    @FXML public void add2Euro() { this.add(200); }
+    /**
+     * FXML accesible method to add 5 euros to the given money.
+     */
+    @FXML public void add5Euro() { this.add(500); }
+    /**
+     * FXML accesible method to add 10 euros to the given money.
+     */
+    @FXML public void add10Euro() { this.add(1000); }
+    /**
+     * FXML accesible method to add 20 euros to the given money.
+     */
+    @FXML public void add20Euro() { this.add(2000); }
+    /**
+     * FXML accesible method to add 50 euros to the given money.
+     */
     @FXML public void add50Euro()  { this.add(5000);  }
+    /**
+     * FXML accesible method to add 100 euros to the given money.
+     */
     @FXML public void add100Euro() { this.add(10000); }
+    /**
+     * FXML accesible method to add 200 euros to the given money.
+     */
     @FXML public void add200Euro() { this.add(20000); }
+    /**
+     * FXML accesible method to add 500 euros to the given money.
+     */
     @FXML public void add500Euro() { this.add(50000); }
     
 }
