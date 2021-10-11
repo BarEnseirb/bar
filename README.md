@@ -26,6 +26,8 @@ $ ./gradlew run
 
 ### Documentation
 
+#### Build
+
 You can build the documentation with Javadoc by running :
 
 ```
@@ -34,6 +36,9 @@ $ ./gradlew javadoc
 
 Then you can find the HTML docs under `build/docs/javadoc`
 
+#### Publish
+
+The docs under `docs/` is published with Github Pages at https://pjdevs.github.io/bar/. It must be updated for every new version.
 
 ## JAR packaging
 
