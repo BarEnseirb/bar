@@ -66,6 +66,7 @@ public class App extends Application {
         }
 
         if (lock) {
+            // Splash creen
             final Image ekip = new Image(getClass().getResourceAsStream("images/ekip.jpg"), 1080, 760, false, false);
             final ImageView splash = new ImageView(ekip);
             final AnchorPane splashRoot = new AnchorPane(splash);
@@ -90,6 +91,7 @@ public class App extends Application {
 
             fadeIn.play();
 
+            // Main app
             final Parent root = FXMLLoader.load(getClass().getResource("fxml/App.fxml"));
             root.getStylesheets().add(getClass().getResource("css/bar.css").toExternalForm());
             final Scene scene = new Scene(root);
@@ -99,6 +101,7 @@ public class App extends Application {
             stage.setScene(scene);
             stage.setMaximized(true);
 
+            // Set callbacks
             fadeIn.setOnFinished(e -> {
                 fadeOut.play();
                 fadeOut.setOnFinished(f -> {
@@ -107,7 +110,7 @@ public class App extends Application {
                 });
             });
         } else {
-            new Alert(AlertType.ERROR, "Impossble d'acquerir le lock. Une instance de l'application doit deja etre lance.").show();
+            new Alert(AlertType.ERROR, "Impossible d'acquerir le lock. Une instance de l'application doit deja etre lance.").show();
             stage.close();
         }
     }
