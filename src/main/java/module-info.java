@@ -1,3 +1,6 @@
+/**
+ * The module containing the bar application.
+ */
 module fr.pjdevs.bar {
     requires javafx.controls;
     requires javafx.fxml;
