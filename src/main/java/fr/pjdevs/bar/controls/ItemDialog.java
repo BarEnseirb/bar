@@ -15,7 +15,15 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
 
+/**
+ * Custom {@link Dialog} to choose/edit {@link Item} properties.
+ */
 public class ItemDialog extends Dialog<Item> {
+    /**
+     * Creates a new ItemDialog instance.
+     * @param item The item used to fill properties field.
+     * If the item is {@code null} the fields are empty.
+     */
     public ItemDialog(Item item) {
         // Dialog super
         super();
