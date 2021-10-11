@@ -1,5 +1,6 @@
-package fr.pjdevs.bar;
+package fr.pjdevs.bar.controls;
 
+import fr.pjdevs.bar.models.Item;
 import javafx.geometry.Pos;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ColorPicker;

@@ -1,6 +1,9 @@
-package fr.pjdevs.bar;
+package fr.pjdevs.bar.models;
 
 import java.util.Map;
+
+import fr.pjdevs.bar.util.ChangedListenner;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;

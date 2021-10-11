@@ -1,4 +1,4 @@
-package fr.pjdevs.bar;
+package fr.pjdevs.bar.controls;
 
 import javafx.scene.Node;
 import javafx.scene.control.Tab;

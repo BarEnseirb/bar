@@ -1,8 +1,11 @@
-package fr.pjdevs.bar;
+package fr.pjdevs.bar.controls;
 
 import java.io.IOException;
 import java.util.Optional;
 
+import fr.pjdevs.bar.models.Item;
+import fr.pjdevs.bar.models.ItemList;
+import fr.pjdevs.bar.util.ChangedListenner;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

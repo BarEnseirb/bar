@@ -1,7 +1,8 @@
-package fr.pjdevs.bar;
+package fr.pjdevs.bar.controls;
 
 import java.util.List;
 
+import fr.pjdevs.bar.models.Account;
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.control.ButtonType;

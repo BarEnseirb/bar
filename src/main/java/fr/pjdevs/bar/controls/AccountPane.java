@@ -1,4 +1,4 @@
-package fr.pjdevs.bar;
+package fr.pjdevs.bar.controls;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -6,6 +6,8 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.Optional;
 
+import fr.pjdevs.bar.models.Account;
+import fr.pjdevs.bar.models.DatabaseConnection;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;

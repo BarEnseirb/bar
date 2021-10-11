@@ -1,7 +1,9 @@
-package fr.pjdevs.bar;
+package fr.pjdevs.bar.controls;
 
 import java.math.BigDecimal;
 
+import fr.pjdevs.bar.models.Account;
+import fr.pjdevs.bar.util.IntegerStringMoneyCallback;
 import javafx.event.EventHandler;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;

@@ -1,6 +1,9 @@
 package fr.pjdevs.bar;
 
 import org.junit.jupiter.api.Test;
+
+import fr.pjdevs.bar.models.ItemList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ItemListTest {

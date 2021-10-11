@@ -1,10 +1,13 @@
-package fr.pjdevs.bar;
+package fr.pjdevs.bar.controls;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import fr.pjdevs.bar.models.DatabaseConnection;
+import fr.pjdevs.bar.models.HistoryEntry;
+import fr.pjdevs.bar.util.IntegerStringMoneyCallback;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.FXCollections;

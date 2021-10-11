@@ -1,4 +1,4 @@
-package fr.pjdevs.bar;
+package fr.pjdevs.bar.models;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

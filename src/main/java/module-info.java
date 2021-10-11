@@ -5,7 +5,8 @@ module fr.pjdevs.bar {
 
     requires com.google.gson;
     
-    opens fr.pjdevs.bar to javafx.fxml, com.google.gson;
+    opens fr.pjdevs.bar.controls to javafx.fxml;
+    opens fr.pjdevs.bar.models to com.google.gson;
 
     exports fr.pjdevs.bar;
 }

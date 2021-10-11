@@ -1,4 +1,6 @@
-package fr.pjdevs.bar;
+package fr.pjdevs.bar.util;
+
+import fr.pjdevs.bar.models.Cart;
 
 /**
  * Listenner interface for event related to changes/updates in an object.

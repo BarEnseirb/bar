@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import fr.pjdevs.bar.*?>
+<?import fr.pjdevs.bar.controls.*?>
 
 <TabPane styleClass="big" tabClosingPolicy="UNAVAILABLE">
    <tabs>

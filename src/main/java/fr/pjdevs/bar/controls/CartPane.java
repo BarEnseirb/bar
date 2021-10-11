@@ -1,8 +1,16 @@
-package fr.pjdevs.bar;
+package fr.pjdevs.bar.controls;
 
 import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
+
+import fr.pjdevs.bar.models.Account;
+import fr.pjdevs.bar.models.Cart;
+import fr.pjdevs.bar.models.DatabaseConnection;
+import fr.pjdevs.bar.models.Item;
+import fr.pjdevs.bar.util.ChangedListenner;
+import fr.pjdevs.bar.util.MoneyStringBindings;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.Instant;

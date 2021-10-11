@@ -1,4 +1,4 @@
-package fr.pjdevs.bar;
+package fr.pjdevs.bar.models;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

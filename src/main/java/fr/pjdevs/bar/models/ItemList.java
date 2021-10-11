@@ -1,4 +1,4 @@
-package fr.pjdevs.bar;
+package fr.pjdevs.bar.models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import fr.pjdevs.bar.util.ChangedListenner;
 import javafx.scene.paint.Color;
 
 public final class ItemList {

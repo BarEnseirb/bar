@@ -1,7 +1,10 @@
-package fr.pjdevs.bar;
+package fr.pjdevs.bar.controls;
 
 import java.io.IOException;
 
+import fr.pjdevs.bar.models.Cart;
+import fr.pjdevs.bar.models.Item;
+import fr.pjdevs.bar.util.MoneyStringBindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;

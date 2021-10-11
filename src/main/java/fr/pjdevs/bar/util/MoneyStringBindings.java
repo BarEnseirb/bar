@@ -1,4 +1,4 @@
-package fr.pjdevs.bar;
+package fr.pjdevs.bar.util;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberExpression;

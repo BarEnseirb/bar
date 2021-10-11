@@ -1,4 +1,4 @@
-package fr.pjdevs.bar;
+package fr.pjdevs.bar.models;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
