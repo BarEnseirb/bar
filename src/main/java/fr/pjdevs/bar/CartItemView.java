@@ -58,7 +58,7 @@ public class CartItemView extends HBox {
         this.count = new SimpleIntegerProperty(count);
 
         this.itemNameLbl.textProperty().bind(this.item.nameProperty());
-        this.itemPriceLbl.textProperty().bind(CustomStringBindings.createIntegerMoneyStringBinding(this.item.priceProperty()));
+        this.itemPriceLbl.textProperty().bind(MoneyStringBindings.createIntegerMoneyStringBinding(this.item.priceProperty()));
         this.itemCountLbl.textProperty().bind(this.count.asString("x%d"));
     }
 

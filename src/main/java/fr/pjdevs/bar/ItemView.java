@@ -30,7 +30,7 @@ public class ItemView extends VBox {
 
         this.item = item;
         this.itemNameLbl.textProperty().bind(this.item.nameProperty());
-        this.itemPriceLbl.textProperty().bind(CustomStringBindings.createIntegerMoneyStringBinding(this.item.priceProperty()));
+        this.itemPriceLbl.textProperty().bind(MoneyStringBindings.createIntegerMoneyStringBinding(this.item.priceProperty()));
         this.itemDescriptionLbl.textProperty().bind(this.item.descriptionProperty());
         this.backgroundProperty().bind(Bindings.createObjectBinding((() -> {
             return new Background(new BackgroundFill(this.item.getColor(), null, null));
